@@ -1,0 +1,6 @@
+framework module Pods_CompanyInventory_iOS {
+  umbrella header "Pods-CompanyInventory-iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
