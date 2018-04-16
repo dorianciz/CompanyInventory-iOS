@@ -26,6 +26,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var logoPostTrailingConstraint: NSLayoutConstraint!
     
     var loginBrain = LoginBrain()
+    var userservice: FirebaseCIUserEngine!
     
     private var firstLayoutSubviews: Bool?
     
@@ -34,7 +35,11 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
         usernameTextfield.delegate = self
         passwordTextfield.delegate = self
+        
+        usernameTextfield.text = "testuser4@companyinventory.com"
+        passwordTextfield.text = "Test123"
         applyStyles()
+        userservice = FirebaseCIUserEngine()
     }
     
     override func viewWillAppear(_ animated: Bool) {

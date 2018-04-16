@@ -11,6 +11,7 @@ import Foundation
 enum Response: Int {
     case success = 200
     case error = -1000
+    case missingInformations = -1100
     case missingUsernameAndPassword = -2000
     case missingUsername = -2001
     case missingPassword = -2002

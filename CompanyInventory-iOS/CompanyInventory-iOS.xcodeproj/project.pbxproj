@@ -14,6 +14,17 @@
 		ED4B57DF20816ABD002734FD /* ShakeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DE20816ABD002734FD /* ShakeAnimation.swift */; };
 		ED4B57E1208174E5002734FD /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57E0208174E5002734FD /* LoaderViewController.swift */; };
 		ED4B57E3208175C1002734FD /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57E2208175C1002734FD /* NavigationManager.swift */; };
+		ED4B57E520821D3D002734FD /* InventoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57E420821D3D002734FD /* InventoriesViewController.swift */; };
+		ED4B57E8208225E2002734FD /* CIUserDatabase_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57E7208225E2002734FD /* CIUserDatabase_iOSTests.swift */; };
+		ED4B57EA208228F8002734FD /* CIUserDatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57E9208228F8002734FD /* CIUserDatabaseProtocol.swift */; };
+		ED4B57EC208229EA002734FD /* CIUserRealmDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57EB208229EA002734FD /* CIUserRealmDatabase.swift */; };
+		ED4B57EE20824AF2002734FD /* InventoryItemByDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57ED20824AF2002734FD /* InventoryItemByDate.swift */; };
+		ED4B57F020824DD8002734FD /* InventoryDatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57EF20824DD8002734FD /* InventoryDatabaseProtocol.swift */; };
+		ED4B57F220824E06002734FD /* InventoryDatabase_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57F120824E06002734FD /* InventoryDatabase_iOSTests.swift */; };
+		ED4B57F4208295E7002734FD /* InventoryRealmDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57F3208295E7002734FD /* InventoryRealmDatabase.swift */; };
+		ED4B57F62082B1E2002734FD /* InventoryEngine_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57F52082B1E2002734FD /* InventoryEngine_iOSTests.swift */; };
+		ED4B57F82082B529002734FD /* InventoryEngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57F72082B529002734FD /* InventoryEngineProtocol.swift */; };
+		ED4B57FA2082B584002734FD /* FirebaseInventoryEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57F92082B584002734FD /* FirebaseInventoryEngine.swift */; };
 		ED93CB59206454B000ABBDEF /* CIUserBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED93CB58206454B000ABBDEF /* CIUserBrain.swift */; };
 		ED93CB5D206455CF00ABBDEF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED93CB5C206455CF00ABBDEF /* LoginViewController.swift */; };
 		EDA283BC206ACA40004B46F1 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA283BB206ACA40004B46F1 /* ThemeManager.swift */; };
@@ -32,6 +43,9 @@
 		EDB975822036F05400F79FBF /* CIUserEngine_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB975812036F05400F79FBF /* CIUserEngine_iOSTests.swift */; };
 		EDB975842036F42C00F79FBF /* FirebaseCIUserEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB975832036F42C00F79FBF /* FirebaseCIUserEngine.swift */; };
 		EDB975862036F45A00F79FBF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB975852036F45A00F79FBF /* Constants.swift */; };
+		EDD8F6DE2084078600563BD5 /* InventoryBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD8F6DD2084078600563BD5 /* InventoryBrain.swift */; };
+		EDD8F6E020840EB200563BD5 /* AddNewInventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD8F6DF20840EB200563BD5 /* AddNewInventoryViewController.swift */; };
+		EDD8F6E320841BA000563BD5 /* InventoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD8F6E220841BA000563BD5 /* InventoryTableViewCell.swift */; };
 		EDDF489520363FC000167991 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDF489420363FC000167991 /* AppDelegate.swift */; };
 		EDDF489A20363FC000167991 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDDF489820363FC000167991 /* Main.storyboard */; };
 		EDDF489C20363FC000167991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDDF489B20363FC000167991 /* Assets.xcassets */; };
@@ -61,6 +75,17 @@
 		ED4B57DE20816ABD002734FD /* ShakeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeAnimation.swift; sourceTree = "<group>"; };
 		ED4B57E0208174E5002734FD /* LoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
 		ED4B57E2208175C1002734FD /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		ED4B57E420821D3D002734FD /* InventoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoriesViewController.swift; sourceTree = "<group>"; };
+		ED4B57E7208225E2002734FD /* CIUserDatabase_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIUserDatabase_iOSTests.swift; sourceTree = "<group>"; };
+		ED4B57E9208228F8002734FD /* CIUserDatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIUserDatabaseProtocol.swift; sourceTree = "<group>"; };
+		ED4B57EB208229EA002734FD /* CIUserRealmDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIUserRealmDatabase.swift; sourceTree = "<group>"; };
+		ED4B57ED20824AF2002734FD /* InventoryItemByDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryItemByDate.swift; sourceTree = "<group>"; };
+		ED4B57EF20824DD8002734FD /* InventoryDatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryDatabaseProtocol.swift; sourceTree = "<group>"; };
+		ED4B57F120824E06002734FD /* InventoryDatabase_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryDatabase_iOSTests.swift; sourceTree = "<group>"; };
+		ED4B57F3208295E7002734FD /* InventoryRealmDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryRealmDatabase.swift; sourceTree = "<group>"; };
+		ED4B57F52082B1E2002734FD /* InventoryEngine_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryEngine_iOSTests.swift; sourceTree = "<group>"; };
+		ED4B57F72082B529002734FD /* InventoryEngineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryEngineProtocol.swift; sourceTree = "<group>"; };
+		ED4B57F92082B584002734FD /* FirebaseInventoryEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseInventoryEngine.swift; sourceTree = "<group>"; };
 		ED93CB58206454B000ABBDEF /* CIUserBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIUserBrain.swift; sourceTree = "<group>"; };
 		ED93CB5C206455CF00ABBDEF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EDA283BB206ACA40004B46F1 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -80,6 +105,9 @@
 		EDB975812036F05400F79FBF /* CIUserEngine_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIUserEngine_iOSTests.swift; sourceTree = "<group>"; };
 		EDB975832036F42C00F79FBF /* FirebaseCIUserEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCIUserEngine.swift; sourceTree = "<group>"; };
 		EDB975852036F45A00F79FBF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EDD8F6DD2084078600563BD5 /* InventoryBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryBrain.swift; sourceTree = "<group>"; };
+		EDD8F6DF20840EB200563BD5 /* AddNewInventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewInventoryViewController.swift; sourceTree = "<group>"; };
+		EDD8F6E220841BA000563BD5 /* InventoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryTableViewCell.swift; sourceTree = "<group>"; };
 		EDDF489120363FC000167991 /* CompanyInventory-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CompanyInventory-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDDF489420363FC000167991 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDDF489920363FC000167991 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -131,6 +159,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		ED4B57E62082257E002734FD /* DatabaseLayer */ = {
+			isa = PBXGroup;
+			children = (
+				ED4B57E9208228F8002734FD /* CIUserDatabaseProtocol.swift */,
+				ED4B57EB208229EA002734FD /* CIUserRealmDatabase.swift */,
+				ED4B57EF20824DD8002734FD /* InventoryDatabaseProtocol.swift */,
+				ED4B57F3208295E7002734FD /* InventoryRealmDatabase.swift */,
+			);
+			path = DatabaseLayer;
+			sourceTree = "<group>";
+		};
 		EDA283BF206AF497004B46F1 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +194,14 @@
 				ED4B57E2208175C1002734FD /* NavigationManager.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		EDD8F6E120841B8900563BD5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EDD8F6E220841BA000563BD5 /* InventoryTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		EDDF488820363FBF00167991 = {
@@ -205,6 +252,9 @@
 				EDB975772036CD2900F79FBF /* LoginEngine_iOSTests.swift */,
 				EDB975812036F05400F79FBF /* CIUserEngine_iOSTests.swift */,
 				ED4B57DA208143D0002734FD /* LoginBrain_iOSTests.swift */,
+				ED4B57E7208225E2002734FD /* CIUserDatabase_iOSTests.swift */,
+				ED4B57F120824E06002734FD /* InventoryDatabase_iOSTests.swift */,
+				ED4B57F52082B1E2002734FD /* InventoryEngine_iOSTests.swift */,
 			);
 			path = "CompanyInventory-iOSTests";
 			sourceTree = "<group>";
@@ -212,6 +262,7 @@
 		EDDF48B42036423900167991 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ED4B57E62082257E002734FD /* DatabaseLayer */,
 				EDDF48B82036428E00167991 /* Entity */,
 				EDDF48B72036427700167991 /* ServiceLayer */,
 				EDDF48B62036425500167991 /* ServerLayer */,
@@ -222,8 +273,11 @@
 		EDDF48B52036424300167991 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				EDD8F6E120841B8900563BD5 /* View */,
 				ED93CB5C206455CF00ABBDEF /* LoginViewController.swift */,
 				ED4B57E0208174E5002734FD /* LoaderViewController.swift */,
+				ED4B57E420821D3D002734FD /* InventoriesViewController.swift */,
+				EDD8F6DF20840EB200563BD5 /* AddNewInventoryViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -237,6 +291,8 @@
 				EDB9757B2036D00600F79FBF /* FirebaseLoginEngine.swift */,
 				EDB9757F2036EF1500F79FBF /* CIUserEngineProtocol.swift */,
 				EDB975832036F42C00F79FBF /* FirebaseCIUserEngine.swift */,
+				ED4B57F72082B529002734FD /* InventoryEngineProtocol.swift */,
+				ED4B57F92082B584002734FD /* FirebaseInventoryEngine.swift */,
 			);
 			path = ServerLayer;
 			sourceTree = "<group>";
@@ -246,6 +302,7 @@
 			children = (
 				ED93CB58206454B000ABBDEF /* CIUserBrain.swift */,
 				ED4B57DC20814480002734FD /* LoginBrain.swift */,
+				EDD8F6DD2084078600563BD5 /* InventoryBrain.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -256,6 +313,7 @@
 				EDDF48BA2036451D00167991 /* Inventory.swift */,
 				EDB97566203648BD00F79FBF /* Item.swift */,
 				EDB9757D2036DC1300F79FBF /* CIUser.swift */,
+				ED4B57ED20824AF2002734FD /* InventoryItemByDate.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -503,23 +561,34 @@
 			files = (
 				ED93CB5D206455CF00ABBDEF /* LoginViewController.swift in Sources */,
 				EDB975802036EF1500F79FBF /* CIUserEngineProtocol.swift in Sources */,
+				ED4B57EE20824AF2002734FD /* InventoryItemByDate.swift in Sources */,
 				EDA283BC206ACA40004B46F1 /* ThemeManager.swift in Sources */,
 				ED4B57DD20814480002734FD /* LoginBrain.swift in Sources */,
+				ED4B57F82082B529002734FD /* InventoryEngineProtocol.swift in Sources */,
 				EDDF48BB2036451D00167991 /* Inventory.swift in Sources */,
 				ED4B57DF20816ABD002734FD /* ShakeAnimation.swift in Sources */,
 				EDB97567203648BD00F79FBF /* Item.swift in Sources */,
 				EDB9756D20365F7100F79FBF /* ItemEngineProtocol.swift in Sources */,
+				EDD8F6E020840EB200563BD5 /* AddNewInventoryViewController.swift in Sources */,
 				EDB9757A2036CF8E00F79FBF /* LoginEngineProtocol.swift in Sources */,
 				ED4B57E3208175C1002734FD /* NavigationManager.swift in Sources */,
+				ED4B57E520821D3D002734FD /* InventoriesViewController.swift in Sources */,
 				EDB9757C2036D00600F79FBF /* FirebaseLoginEngine.swift in Sources */,
 				EDB97574203660BA00F79FBF /* FirebaseItemEngine.swift in Sources */,
+				EDD8F6E320841BA000563BD5 /* InventoryTableViewCell.swift in Sources */,
+				ED4B57EA208228F8002734FD /* CIUserDatabaseProtocol.swift in Sources */,
+				ED4B57F4208295E7002734FD /* InventoryRealmDatabase.swift in Sources */,
+				EDD8F6DE2084078600563BD5 /* InventoryBrain.swift in Sources */,
 				EDA283BE206AE867004B46F1 /* AnimationChainingFactory.swift in Sources */,
 				EDB9757E2036DC1300F79FBF /* CIUser.swift in Sources */,
 				ED93CB59206454B000ABBDEF /* CIUserBrain.swift in Sources */,
 				EDDF489520363FC000167991 /* AppDelegate.swift in Sources */,
+				ED4B57FA2082B584002734FD /* FirebaseInventoryEngine.swift in Sources */,
 				EDB975842036F42C00F79FBF /* FirebaseCIUserEngine.swift in Sources */,
+				ED4B57F020824DD8002734FD /* InventoryDatabaseProtocol.swift in Sources */,
 				EDB975722036600F00F79FBF /* Response.swift in Sources */,
 				ED4B57E1208174E5002734FD /* LoaderViewController.swift in Sources */,
+				ED4B57EC208229EA002734FD /* CIUserRealmDatabase.swift in Sources */,
 				EDB975862036F45A00F79FBF /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,9 +597,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED4B57E8208225E2002734FD /* CIUserDatabase_iOSTests.swift in Sources */,
 				EDB9756B20365C0600F79FBF /* ItemEngine_iOSTests.swift in Sources */,
+				ED4B57F62082B1E2002734FD /* InventoryEngine_iOSTests.swift in Sources */,
 				EDB975782036CD2900F79FBF /* LoginEngine_iOSTests.swift in Sources */,
 				ED4B57DB208143D0002734FD /* LoginBrain_iOSTests.swift in Sources */,
+				ED4B57F220824E06002734FD /* InventoryDatabase_iOSTests.swift in Sources */,
 				EDB975822036F05400F79FBF /* CIUserEngine_iOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -678,13 +750,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = TW98687ZKD;
+				DEVELOPMENT_TEAM = H2N6F5RHWC;
 				INFOPLIST_FILE = "CompanyInventory-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dorian.CompanyInventory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e6cc9631-b82a-4bc5-aadd-78f72cf6955e";
+				PROVISIONING_PROFILE_SPECIFIER = Generic_DevProfile;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -696,13 +768,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = TW98687ZKD;
+				DEVELOPMENT_TEAM = H2N6F5RHWC;
 				INFOPLIST_FILE = "CompanyInventory-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dorian.CompanyInventory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e6cc9631-b82a-4bc5-aadd-78f72cf6955e";
+				PROVISIONING_PROFILE_SPECIFIER = Generic_DevProfile;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -716,7 +788,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = H2N6F5RHWC;
 				INFOPLIST_FILE = "CompanyInventory-iOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dorian.CompanyInventory-iOSTests";

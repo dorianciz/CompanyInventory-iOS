@@ -14,7 +14,7 @@ class FirebaseItemEngine: ItemEngineProtocol {
     var firebaseDatabase = Database.database().reference()
     
     func createItem(withItem item: Item, withCompletion completion: @escaping (Response) -> Void) {
-        completion(Response.success)
+//        completion(Response.success)
     }
     
     func getAllItems(withCompletion completion: @escaping ([Item]?, Response) -> Void) {

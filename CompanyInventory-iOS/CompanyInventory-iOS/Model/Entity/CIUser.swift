@@ -17,5 +17,9 @@ class CIUser: Object {
     @objc dynamic var surname: String?
     @objc dynamic var photoName: String?
     var photoData: Data?
+    var inventories: [Inventory]?
     
+    override static func primaryKey() -> String? {
+        return "uid"
+    }
 }

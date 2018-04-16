@@ -22,11 +22,11 @@ class FirebaseCIUserEngine: CIUserEngineProtocol {
             completion(.error)
             return
         }
-        
-        self.firebaseDatabase.child(Constants.kFirebaseCIUserNodeName).child(uid).setValue([Constants.kFirebaseUsernameNodeName: username])
-        self.firebaseDatabase.child(Constants.kFirebaseCIUserNodeName).child(uid).setValue([Constants.kFirebaseNameNodeName: name])
-        self.firebaseDatabase.child(Constants.kFirebaseCIUserNodeName).child(uid).setValue([Constants.kFirebaseSurnameNodeName: surname])
-        self.firebaseDatabase.child(Constants.kFirebaseCIUserNodeName).child(uid).setValue([Constants.kFirebasePhotoFileName: photoName])
+    
+        self.firebaseDatabase.child(Constants.kFirebaseCIUserNodeName).child(uid).setValue([Constants.kFirebaseUsernameNodeName: username,
+                                                                                            Constants.kFirebaseNameNodeName: name,
+                                                                                            Constants.kFirebaseSurnameNodeName: surname,
+                                                                                            Constants.kFirebasePhotoFileName: photoName])
     
         completion(.success)
     }

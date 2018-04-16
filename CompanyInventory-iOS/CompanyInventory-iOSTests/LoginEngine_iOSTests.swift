@@ -34,7 +34,7 @@ class LoginEngine_iOSTests: XCTestCase {
         
         
         // 2. When
-        loginEngine.loginUser(withUsername: username, withPassword: password, withCompletion: { (responseCode) in
+        loginEngine.loginUser(withUsername: username, withPassword: password, withCompletion: { (responseCode, ciUser) in
             resCode = responseCode
             
             promise.fulfill()
@@ -55,7 +55,7 @@ class LoginEngine_iOSTests: XCTestCase {
         
         
         // 2. When
-        loginEngine.loginUser(withUsername: username, withPassword: password, withCompletion: { (responseCode) in
+        loginEngine.loginUser(withUsername: username, withPassword: password, withCompletion: { (responseCode, ciUser) in
             resCode = responseCode
             
             promise.fulfill()

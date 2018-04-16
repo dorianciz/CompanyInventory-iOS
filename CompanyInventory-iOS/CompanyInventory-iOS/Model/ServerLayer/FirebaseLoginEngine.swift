@@ -10,12 +10,13 @@ import Foundation
 import FirebaseAuth
 
 class FirebaseLoginEngine: LoginEngineProtocol {
-    func loginUser(withUsername username: String, withPassword password: String, withCompletion completion: @escaping (Response) -> Void) {
+    func loginUser(withUsername username: String, withPassword password: String, withCompletion completion: @escaping (Response, CIUser?) -> Void) {
         Auth.auth().signIn(withEmail: username, password: password) { (user, error) in
             if error == nil {
-                completion(Response.success)
+                let ciUser = CIUser()
+                completion(Response.success, ciUser)
             } else {
-                completion(Response.error)
+                completion(Response.error, nil)
             }
         }
     }

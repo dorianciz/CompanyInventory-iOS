@@ -9,6 +9,6 @@
 import Foundation
 
 protocol LoginEngineProtocol {
-    func loginUser(withUsername username: String, withPassword password: String, withCompletion completion: @escaping (Response) -> Void)
+    func loginUser(withUsername username: String, withPassword password: String, withCompletion completion: @escaping (Response, CIUser?) -> Void)
     func signInUser(withUsername username: String, withPassword password: String, withCompletion completion: @escaping (CIUser?, Response) -> Void)
 }

@@ -11,9 +11,11 @@ import Foundation
 class LoginBrain {
     
     var loginEngine: LoginEngineProtocol?
+    var ciUserDatabase: CIUserDatabaseProtocol?
     
-    init(withLoginEngine loginEngine: LoginEngineProtocol = FirebaseLoginEngine()) {
+    init(withLoginEngine loginEngine: LoginEngineProtocol = FirebaseLoginEngine(), withCiUserDatabase database: CIUserDatabaseProtocol = CIUserRealmDatabase()) {
         self.loginEngine = loginEngine
+        self.ciUserDatabase = database
     }
     
     func isEmailValid(email: String?) -> Bool? {
@@ -58,7 +60,11 @@ class LoginBrain {
 //            }
 //        }
         
-        loginEngine?.loginUser(withUsername: usernameValue, withPassword: passwordValue, withCompletion: { response in
+        loginEngine?.loginUser(withUsername: usernameValue, withPassword: passwordValue, withCompletion: { response, ciUser in
+            //Save user to database
+            if response == .success {
+                self.ciUserDatabase?.saveCurrentUser(ciUser)
+            }
             completion(response)
         })
     }

@@ -11,9 +11,13 @@ import RealmSwift
 
 class Inventory: Object {
     
-    var inventoryId: String?
-    var name: String?
-    var descriptionText: String?
+    @objc dynamic var inventoryId: String? = UUID().uuidString //Required
+    @objc dynamic var name: String? //Required
+    @objc dynamic var descriptionText: String? //Optional
+    var items: List<InventoryItemByDate>? = List<InventoryItemByDate>() //Optional
     
+    override static func primaryKey() -> String? {
+        return "inventoryId"
+    }
     
 }

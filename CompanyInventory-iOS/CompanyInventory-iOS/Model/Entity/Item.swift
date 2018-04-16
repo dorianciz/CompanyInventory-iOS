@@ -9,23 +9,26 @@
 import Foundation
 import RealmSwift
 
-enum ItemStatus: Int {
+@objc enum ItemStatus: Int {
     case success = 1
-    case expended
-    case nonExistent
-    case none
+    case expended = 2
+    case nonExistent = 3
+    case none = 4
 }
 
 class Item: Object {
     
-    var itemId: String?
-    var name: String?
-    var descriptionText: String?
-    var beaconId: String?
-    var status = ItemStatus.none
-    var locationName: String?
-    var latitude: Float?
-    var longitude: Float?
+    @objc dynamic var itemId: String? //Required
+    @objc dynamic var name: String? //Required
+    @objc dynamic var descriptionText: String? //Optional
+    @objc dynamic var beaconId: String? //Required
+    @objc dynamic var status = ItemStatus.none //Required
+    @objc dynamic var locationName: String? //Required
+    var latitude = RealmOptional<Float>() //Required
+    var longitude = RealmOptional<Float>() //Required
     
+    override static func primaryKey() -> String? {
+        return "itemId"
+    }
     
 }
