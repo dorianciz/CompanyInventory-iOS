@@ -13,6 +13,11 @@ import RealmSwift
 class FirebaseInventoryEngine: InventoryEngineProtocol {
     
     var firebaseDatabase = Database.database().reference()
+    private var userRealmDatabase: CIUserDatabaseProtocol!
+    
+    init(withUserDatabaseProtocol database: CIUserDatabaseProtocol = CIUserRealmDatabase()) {
+        userRealmDatabase = database
+    }
     
     func createInventory(withInventory inventory: Inventory?, withCompletion completion: @escaping (Response) -> Void) {
         guard let id = inventory?.inventoryId, let inventoryToSave = inventory else {
@@ -66,13 +71,26 @@ class FirebaseInventoryEngine: InventoryEngineProtocol {
                             Constants.kFirebaseInventoryDescriptionNodeName: inventoryToSave.descriptionText ?? "",
                             Constants.kFirebaseInventoryItemsByDateNodeName: dictionaryItems] as [String : Any]
         
-        self.firebaseDatabase.child(Constants.kFirebaseInventoriesNodeName).child(id).setValue(dictionary)
+        let loggedInUser = userRealmDatabase.getCurrentUser()
+        guard let userId = loggedInUser?.uid else {
+            completion(.error)
+            return
+        }
+        
+        self.firebaseDatabase.child(Constants.kFirebaseInventoriesNodeName).child(userId).child(id).setValue(dictionary)
         
         completion(.success)
     }
     
     func getAllInventories(withCompletion completion: @escaping (Response, [Inventory]?) -> Void) {
-        firebaseDatabase.child(Constants.kFirebaseInventoriesNodeName).observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        let loggedInUser = userRealmDatabase.getCurrentUser()
+        guard let userId = loggedInUser?.uid else {
+            completion(.error, nil)
+            return
+        }
+        
+        firebaseDatabase.child(Constants.kFirebaseInventoriesNodeName).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
             print("\(snapshot)")
             var inventories = [Inventory]()
             let inventoriesResult = snapshot.value as? NSDictionary
@@ -86,8 +104,8 @@ class FirebaseInventoryEngine: InventoryEngineProtocol {
                     var descriptionText: String?
                     
                     if let inventoryDictionary = inventory as? NSDictionary {
-                        name = inventoriesDictionary.value(forKey: Constants.kFirebaseInventoryNameNodeName) as? String
-                        descriptionText = inventoriesDictionary.value(forKey: Constants.kFirebaseInventoryDescriptionNodeName) as? String
+                        name = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryNameNodeName) as? String
+                        descriptionText = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryDescriptionNodeName) as? String
                         
                         let itemsByDate = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryItemsByDateNodeName) as? NSDictionary
                         

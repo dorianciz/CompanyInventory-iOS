@@ -23,5 +23,14 @@ final class ThemeManager {
         view.layer.shadowPath = UIBezierPath(rect: view.bounds).cgPath
     }
     
+    func createWhiteGradientLayer(_ view: UIView) {
+        let gradientLayer = CAGradientLayer()
+        
+        gradientLayer.frame = view.bounds
+        
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.white.cgColor]
+        
+        view.layer.insertSublayer(gradientLayer, at: 0)
+    }
     
 }

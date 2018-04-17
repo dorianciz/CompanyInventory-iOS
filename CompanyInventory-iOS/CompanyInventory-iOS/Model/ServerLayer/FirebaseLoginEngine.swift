@@ -14,6 +14,8 @@ class FirebaseLoginEngine: LoginEngineProtocol {
         Auth.auth().signIn(withEmail: username, password: password) { (user, error) in
             if error == nil {
                 let ciUser = CIUser()
+                ciUser.uid = user?.uid
+                ciUser.username = user?.email
                 completion(Response.success, ciUser)
             } else {
                 completion(Response.error, nil)

@@ -20,7 +20,15 @@ class InventoryBrain {
     
     func fetchAllInventories(_ completion: @escaping(Response, [Inventory]?) -> Void) {
         inventoryEngine.getAllInventories { (response, inventories) in
-            completion(response, inventories)
+            // Save to database
+            if let inventoriesArray = inventories {
+                for inventory in inventoriesArray {
+                    self.inventoryDatabase.saveInventory(inventory)
+                }
+                completion(response, inventoriesArray)
+            } else {
+                completion(response, inventories)
+            }
         }
     }
     
@@ -34,8 +42,10 @@ class InventoryBrain {
         inventory.name = inventoryName
         inventory.descriptionText = description
         
-        inventoryDatabase.saveInventory(inventory)
         inventoryEngine.createInventory(withInventory: inventory) { (response) in
+            if response == .success {
+                self.inventoryDatabase.saveInventory(inventory)
+            }
             completion(response)
         }
     }

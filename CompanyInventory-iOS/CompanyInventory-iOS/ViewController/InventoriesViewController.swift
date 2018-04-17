@@ -27,6 +27,8 @@ class InventoriesViewController: UIViewController {
         inventories = inventoryBrain.getAllLocalInventories()
         if inventories?.count != 0 {
             // Reload table view
+            tableView.isHidden = false
+            tableView.reloadData()
         } else {
             self.tableView.isHidden = true
         }
@@ -39,7 +41,13 @@ class InventoriesViewController: UIViewController {
                     if response == .success {
                         if let inventoriesList = inventories {
                             if inventoriesList.count != 0 {
-                                
+                                self.inventories = self.inventoryBrain.getAllLocalInventories()
+                                if self.inventories?.count != 0 {
+                                    self.tableView.isHidden = false
+                                    self.tableView.reloadData()
+                                } else {
+                                    self.tableView.isHidden = true
+                                }
                             } else {
                                 self.tableView.isHidden = true
                             }
@@ -56,6 +64,10 @@ class InventoriesViewController: UIViewController {
 }
 
 extension InventoriesViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Constants.kShowInventorySegue, sender: nil)
+    }
     
 }
 

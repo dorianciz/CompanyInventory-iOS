@@ -43,7 +43,9 @@ struct Constants {
     static let kStoryboardName = "Main"
     static let kLoaderViewControllerStoryboardId = "LoaderViewControllerId"
     static let kInventoryReuseIdentifier = "InventoryIdentifier"
+    static let kItemsByDateCellIdentifier = "ItemsByDateCellIdentifier"
     
     //Segue ids
     static let kShowLoggedInAppSegue = "showLoggedInAppSegue"
+    static let kShowInventorySegue = "showInventorySegue"
 }
