@@ -10,12 +10,15 @@ import Foundation
 
 class LoginBrain {
     
-    var loginEngine: LoginEngineProtocol?
-    var ciUserDatabase: CIUserDatabaseProtocol?
+    var loginEngine: LoginEngineProtocol
+    var ciUserDatabase: CIUserDatabaseProtocol
+    var generalDatabase: GeneralDatabaseProtocol
     
-    init(withLoginEngine loginEngine: LoginEngineProtocol = FirebaseLoginEngine(), withCiUserDatabase database: CIUserDatabaseProtocol = CIUserRealmDatabase()) {
+    
+    init(withLoginEngine loginEngine: LoginEngineProtocol = FirebaseLoginEngine(), withCiUserDatabase database: CIUserDatabaseProtocol = CIUserRealmDatabase(), withGeneralDatabase generalDatabase: GeneralDatabaseProtocol = GeneralRealmDatabase()) {
         self.loginEngine = loginEngine
         self.ciUserDatabase = database
+        self.generalDatabase = generalDatabase
     }
     
     func isEmailValid(email: String?) -> Bool? {
@@ -53,20 +56,21 @@ class LoginBrain {
             return
         }
         
-//        if let isEmailValid = isEmailValid(email: usernameValue) {
-//            if !isEmailValid {
-//                completion(.invalidUsername)
-//                return
-//            }
-//        }
-        
-        loginEngine?.loginUser(withUsername: usernameValue, withPassword: passwordValue, withCompletion: { response, ciUser in
+        loginEngine.loginUser(withUsername: usernameValue, withPassword: passwordValue, withCompletion: { response, ciUser in
             //Save user to database
             if response == .success {
-                self.ciUserDatabase?.saveCurrentUser(ciUser)
+                self.ciUserDatabase.saveCurrentUser(ciUser)
             }
             completion(response)
         })
+    }
+    
+    func checkIfUserIsAlreadyLoggedIn() -> Bool {
+        return ciUserDatabase.getCurrentUser() != nil
+    }
+    
+    func logout() {
+        generalDatabase.clearDatabase()
     }
     
 }

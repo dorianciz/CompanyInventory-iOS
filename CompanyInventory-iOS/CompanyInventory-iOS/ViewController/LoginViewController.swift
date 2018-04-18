@@ -10,11 +10,12 @@ import UIKit
 import AudioToolbox
 
 class LoginViewController: UIViewController {
+    
     @IBOutlet weak var loginFieldsContainer: UIView!
     @IBOutlet weak var usernameTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
-    
+
     @IBOutlet weak var launchScreen: UIView!
     
     @IBOutlet weak var logoPreWidthConstraint: NSLayoutConstraint!
@@ -26,20 +27,18 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var logoPostTrailingConstraint: NSLayoutConstraint!
     
     var loginBrain = LoginBrain()
-    var userservice: FirebaseCIUserEngine!
     
     private var firstLayoutSubviews: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         usernameTextfield.delegate = self
         passwordTextfield.delegate = self
         
         usernameTextfield.text = "testuser4@companyinventory.com"
         passwordTextfield.text = "Test123"
         applyStyles()
-        userservice = FirebaseCIUserEngine()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +48,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        checkIfUserHasBeenLoggedIn()
         animateLaunchScreen()
     }
     
@@ -88,6 +88,12 @@ class LoginViewController: UIViewController {
     
     private func applyStylesAfterSettingsFrames() {
         ThemeManager.sharedInstance.addShadow(toView: loginFieldsContainer)
+    }
+    
+    private func checkIfUserHasBeenLoggedIn() {
+        if loginBrain.checkIfUserIsAlreadyLoggedIn() {
+            self.performSegue(withIdentifier: Constants.kShowLoggedInAppSegue, sender: nil)
+        }
     }
 
     @IBAction func loginAction(_ sender: Any) {

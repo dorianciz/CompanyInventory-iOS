@@ -22,7 +22,7 @@ class InventoryViewController: UIViewController {
         tableView.dataSource = self
         applyStyles()
         fillStaticLabels()
-        showItems(false)
+//        showItems(false)
     }
     
     override func viewDidLayoutSubviews() {

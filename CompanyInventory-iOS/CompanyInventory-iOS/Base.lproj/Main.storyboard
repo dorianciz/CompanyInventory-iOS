@@ -162,11 +162,6 @@
                             <constraint firstItem="IkN-JE-laL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xG1-C4-Fn4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="IkN-JE-laL"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="errorLabel" destination="hQS-JF-VmV" id="NHq-iJ-6m5"/>
