@@ -352,7 +352,7 @@
                     <navigationItem key="navigationItem" title="Inventories" id="X4P-eu-q34">
                         <barButtonItem key="rightBarButtonItem" image="create_new" id="qAn-gX-Y58">
                             <connections>
-                                <segue destination="d2v-eI-ezr" kind="show" id="kEI-dp-IdS"/>
+                                <action selector="createNewInventoryAction:" destination="LVr-zT-Q5B" id="BHU-ys-tqb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -798,13 +798,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New inventory details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhp-tx-Mfu">
-                                <rect key="frame" x="25" y="89" width="325" height="27"/>
+                                <rect key="frame" x="25" y="45" width="325" height="27"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKH-Nt-gjh">
-                                <rect key="frame" x="-5" y="122" width="280" height="1"/>
+                                <rect key="frame" x="-5" y="78" width="280" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="4xv-zG-7sI"/>
@@ -816,7 +816,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name (Required)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UOe-Fb-sV4">
-                                <rect key="frame" x="25" y="163" width="251.5" height="45"/>
+                                <rect key="frame" x="25" y="119" width="251.5" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="zQa-7M-XbP"/>
                                 </constraints>
@@ -825,7 +825,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BOS-89-GHq">
-                                <rect key="frame" x="25" y="233" width="251.5" height="233.5"/>
+                                <rect key="frame" x="25" y="189" width="251.5" height="233.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -842,7 +842,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q3o-0X-e7j">
-                                <rect key="frame" x="25" y="511.5" width="142.5" height="45"/>
+                                <rect key="frame" x="25" y="467.5" width="142.5" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="1qG-Ns-pO9"/>
                                 </constraints>
@@ -865,7 +865,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKW-yF-GuH">
-                                <rect key="frame" x="207.5" y="511.5" width="142.5" height="45"/>
+                                <rect key="frame" x="207.5" y="467.5" width="142.5" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="WFw-v7-C7K"/>
                                 </constraints>

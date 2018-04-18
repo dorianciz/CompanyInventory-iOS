@@ -61,6 +61,32 @@ class InventoriesViewController: UIViewController {
             })
         }
     }
+    
+    @IBAction func createNewInventoryAction(_ sender: Any) {
+        let alertController = PopupManager.sharedInstance.showGenericPopup(withTitle: "Create new inventory", withMessage: "Add name of inventory with short description", withTextFieldsPlaceholders: ["Name", "Description"]) { results in
+            results.forEach{print($0)}
+            NavigationManager.sharedInstance.showLoader {
+                self.inventoryBrain.createNewInventory(results[0], results[1], { (response) in
+                    NavigationManager.sharedInstance.hideLoader {
+                        switch response {
+                        case .success:
+                            self.inventories = self.inventoryBrain.getAllLocalInventories()
+                            self.tableView.reloadData()
+                        case .error:
+                            //Show error
+                            break
+                        default:
+                            break
+                        }
+                    }
+                })
+            }
+            
+        }
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
 }
 
 extension InventoriesViewController: UITableViewDelegate {

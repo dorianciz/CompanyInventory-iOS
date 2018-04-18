@@ -25,6 +25,7 @@
 		ED4B57F62082B1E2002734FD /* InventoryEngine_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57F52082B1E2002734FD /* InventoryEngine_iOSTests.swift */; };
 		ED4B57F82082B529002734FD /* InventoryEngineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57F72082B529002734FD /* InventoryEngineProtocol.swift */; };
 		ED4B57FA2082B584002734FD /* FirebaseInventoryEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57F92082B584002734FD /* FirebaseInventoryEngine.swift */; };
+		ED51C5C32087F491000EB303 /* PopupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED51C5C22087F491000EB303 /* PopupManager.swift */; };
 		ED689E6A20854D0400187584 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED689E6920854D0400187584 /* InventoryViewController.swift */; };
 		ED689E6C20854D1300187584 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED689E6B20854D1300187584 /* ItemViewController.swift */; };
 		ED689E6E2085572F00187584 /* ItemsByDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED689E6D2085572F00187584 /* ItemsByDateTableViewCell.swift */; };
@@ -95,6 +96,7 @@
 		ED4B57F52082B1E2002734FD /* InventoryEngine_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryEngine_iOSTests.swift; sourceTree = "<group>"; };
 		ED4B57F72082B529002734FD /* InventoryEngineProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryEngineProtocol.swift; sourceTree = "<group>"; };
 		ED4B57F92082B584002734FD /* FirebaseInventoryEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseInventoryEngine.swift; sourceTree = "<group>"; };
+		ED51C5C22087F491000EB303 /* PopupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupManager.swift; sourceTree = "<group>"; };
 		ED689E6920854D0400187584 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		ED689E6B20854D1300187584 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		ED689E6D2085572F00187584 /* ItemsByDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsByDateTableViewCell.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				EDB975712036600F00F79FBF /* Response.swift */,
 				EDA283BB206ACA40004B46F1 /* ThemeManager.swift */,
 				ED4B57E2208175C1002734FD /* NavigationManager.swift */,
+				ED51C5C22087F491000EB303 /* PopupManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				EDD8F6E320841BA000563BD5 /* InventoryTableViewCell.swift in Sources */,
 				ED4B57EA208228F8002734FD /* CIUserDatabaseProtocol.swift in Sources */,
 				ED4B57F4208295E7002734FD /* InventoryRealmDatabase.swift in Sources */,
+				ED51C5C32087F491000EB303 /* PopupManager.swift in Sources */,
 				EDD8F6DE2084078600563BD5 /* InventoryBrain.swift in Sources */,
 				EDA283BE206AE867004B46F1 /* AnimationChainingFactory.swift in Sources */,
 				EDB9757E2036DC1300F79FBF /* CIUser.swift in Sources */,
