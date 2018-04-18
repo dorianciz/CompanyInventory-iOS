@@ -28,6 +28,12 @@
 		ED689E6A20854D0400187584 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED689E6920854D0400187584 /* InventoryViewController.swift */; };
 		ED689E6C20854D1300187584 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED689E6B20854D1300187584 /* ItemViewController.swift */; };
 		ED689E6E2085572F00187584 /* ItemsByDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED689E6D2085572F00187584 /* ItemsByDateTableViewCell.swift */; };
+		ED8077B52086848E00E8952D /* ItemsByDateHeaderSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8077B42086848E00E8952D /* ItemsByDateHeaderSectionTableViewCell.swift */; };
+		ED8077B72086B2C100E8952D /* BeaconScanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED8077B62086B2C100E8952D /* BeaconScanningViewController.swift */; };
+		ED8077C82086BE7200E8952D /* scanningBeacon.json in Resources */ = {isa = PBXBuildFile; fileRef = ED8077C62086BE7100E8952D /* scanningBeacon.json */; };
+		ED8077C92086BE7200E8952D /* successScanning.json in Resources */ = {isa = PBXBuildFile; fileRef = ED8077C72086BE7100E8952D /* successScanning.json */; };
+		ED8077CC2086C9AE00E8952D /* success_pulse.json in Resources */ = {isa = PBXBuildFile; fileRef = ED8077CB2086C9AD00E8952D /* success_pulse.json */; };
+		ED8077CD2086CDF200E8952D /* successScanAudio.m4a in Resources */ = {isa = PBXBuildFile; fileRef = ED8077CA2086C64400E8952D /* successScanAudio.m4a */; };
 		ED93CB59206454B000ABBDEF /* CIUserBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED93CB58206454B000ABBDEF /* CIUserBrain.swift */; };
 		ED93CB5D206455CF00ABBDEF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED93CB5C206455CF00ABBDEF /* LoginViewController.swift */; };
 		EDA283BC206ACA40004B46F1 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA283BB206ACA40004B46F1 /* ThemeManager.swift */; };
@@ -92,6 +98,12 @@
 		ED689E6920854D0400187584 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		ED689E6B20854D1300187584 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		ED689E6D2085572F00187584 /* ItemsByDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsByDateTableViewCell.swift; sourceTree = "<group>"; };
+		ED8077B42086848E00E8952D /* ItemsByDateHeaderSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsByDateHeaderSectionTableViewCell.swift; sourceTree = "<group>"; };
+		ED8077B62086B2C100E8952D /* BeaconScanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconScanningViewController.swift; sourceTree = "<group>"; };
+		ED8077C62086BE7100E8952D /* scanningBeacon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scanningBeacon.json; sourceTree = "<group>"; };
+		ED8077C72086BE7100E8952D /* successScanning.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = successScanning.json; sourceTree = "<group>"; };
+		ED8077CA2086C64400E8952D /* successScanAudio.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = successScanAudio.m4a; sourceTree = "<group>"; };
+		ED8077CB2086C9AD00E8952D /* success_pulse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = success_pulse.json; sourceTree = "<group>"; };
 		ED93CB58206454B000ABBDEF /* CIUserBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIUserBrain.swift; sourceTree = "<group>"; };
 		ED93CB5C206455CF00ABBDEF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EDA283BB206ACA40004B46F1 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -207,6 +219,7 @@
 			children = (
 				EDD8F6E220841BA000563BD5 /* InventoryTableViewCell.swift */,
 				ED689E6D2085572F00187584 /* ItemsByDateTableViewCell.swift */,
+				ED8077B42086848E00E8952D /* ItemsByDateHeaderSectionTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -287,6 +300,7 @@
 				EDD8F6DF20840EB200563BD5 /* AddNewInventoryViewController.swift */,
 				ED689E6920854D0400187584 /* InventoryViewController.swift */,
 				ED689E6B20854D1300187584 /* ItemViewController.swift */,
+				ED8077B62086B2C100E8952D /* BeaconScanningViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -330,6 +344,10 @@
 		EDDF48B9203642E300167991 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ED8077CB2086C9AD00E8952D /* success_pulse.json */,
+				ED8077CA2086C64400E8952D /* successScanAudio.m4a */,
+				ED8077C62086BE7100E8952D /* scanningBeacon.json */,
+				ED8077C72086BE7100E8952D /* successScanning.json */,
 				EDB975852036F45A00F79FBF /* Constants.swift */,
 			);
 			path = Resources;
@@ -425,9 +443,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED8077CD2086CDF200E8952D /* successScanAudio.m4a in Resources */,
+				ED8077C92086BE7200E8952D /* successScanning.json in Resources */,
+				ED8077CC2086C9AE00E8952D /* success_pulse.json in Resources */,
 				EDDF489F20363FC000167991 /* LaunchScreen.storyboard in Resources */,
 				EDB975762036BBC700F79FBF /* GoogleService-Info.plist in Resources */,
 				EDDF489C20363FC000167991 /* Assets.xcassets in Resources */,
+				ED8077C82086BE7200E8952D /* scanningBeacon.json in Resources */,
 				EDDF489A20363FC000167991 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,6 +477,7 @@
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -465,6 +488,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -569,9 +593,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED93CB5D206455CF00ABBDEF /* LoginViewController.swift in Sources */,
+				ED8077B72086B2C100E8952D /* BeaconScanningViewController.swift in Sources */,
 				EDB975802036EF1500F79FBF /* CIUserEngineProtocol.swift in Sources */,
 				ED4B57EE20824AF2002734FD /* InventoryItemByDate.swift in Sources */,
 				EDA283BC206ACA40004B46F1 /* ThemeManager.swift in Sources */,
+				ED8077B52086848E00E8952D /* ItemsByDateHeaderSectionTableViewCell.swift in Sources */,
 				ED4B57DD20814480002734FD /* LoginBrain.swift in Sources */,
 				ED689E6A20854D0400187584 /* InventoryViewController.swift in Sources */,
 				ED4B57F82082B529002734FD /* InventoryEngineProtocol.swift in Sources */,

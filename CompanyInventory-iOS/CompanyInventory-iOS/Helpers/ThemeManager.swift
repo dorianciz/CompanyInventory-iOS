@@ -14,6 +14,7 @@ final class ThemeManager {
     static let sharedInstance = ThemeManager()
     
     let brandColor = #colorLiteral(red: 1, green: 0.9865267873, blue: 0.4715276957, alpha: 1)
+    let generalGrayColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
     
     func addShadow(toView view: UIView) {
         view.layer.shadowColor = UIColor.gray.cgColor

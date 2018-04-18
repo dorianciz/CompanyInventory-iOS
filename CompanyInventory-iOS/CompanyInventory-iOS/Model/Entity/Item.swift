@@ -24,6 +24,8 @@ class Item: Object {
     @objc dynamic var beaconId: String? //Required
     @objc dynamic var status = ItemStatus.none //Required
     @objc dynamic var locationName: String? //Required
+    @objc dynamic var photoLocalPath: String? //Optional
+    @objc dynamic var photoFirebasePath: String? //Optional
     var latitude = RealmOptional<Float>() //Required
     var longitude = RealmOptional<Float>() //Required
     

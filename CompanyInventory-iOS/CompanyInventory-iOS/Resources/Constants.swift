@@ -44,8 +44,24 @@ struct Constants {
     static let kLoaderViewControllerStoryboardId = "LoaderViewControllerId"
     static let kInventoryReuseIdentifier = "InventoryIdentifier"
     static let kItemsByDateCellIdentifier = "ItemsByDateCellIdentifier"
+    static let kItemsByDateCellHeaderIdentifier = "ItemsByDateCellHeaderIdentifier"
     
     //Segue ids
     static let kShowLoggedInAppSegue = "showLoggedInAppSegue"
     static let kShowInventorySegue = "showInventorySegue"
+    static let kShowAddItemSegue = "showAddItemSegue"
+    
+    //Animations files names
+    static let kScanningBeaconAnimation = "scanningBeacon"
+    static let kSuccessScanningAnimation = "successScanning"
+    
+    //Audio names
+    static let kSuccessScanAudio = "successScanAudio"
+    static let kAudioExtension = "m4a"
+    
+    //Other
+    static let kAnimationViewWidth = 200
+    static let kAnimationViewHeight = 200
+    static let kAnimationViewX = 200
+    static let kAnimationViewY = 50
 }

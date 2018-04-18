@@ -12,6 +12,7 @@ class InventoryViewController: UIViewController {
 
     private let testItems = ["test 1", "test 2", "test 3", "test 4"]
     
+    @IBOutlet weak var noItemsLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var startButton: UIButton!
     
@@ -19,11 +20,36 @@ class InventoryViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .none
+        applyStyles()
+        fillStaticLabels()
+        showItems(false)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+    }
+    
+    private func applyStyles() {
+        tableView.separatorStyle = .none
+        addRightBarButton()
+    }
+    
+    private func fillStaticLabels() {
+        navigationItem.title = "Inventory"
+    }
+    
+    private func addRightBarButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+    }
+    
+    @objc func addTapped() {
+        performSegue(withIdentifier: Constants.kShowAddItemSegue, sender: nil)
+    }
+    
+    private func showItems(_ show: Bool) {
+        tableView.isHidden = !show
+        startButton.isHidden = !show
+        noItemsLabel.isHidden = show
     }
     
 }
@@ -45,6 +71,16 @@ extension InventoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ((testItems.count - 1)/3) + 1
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.kItemsByDateCellHeaderIdentifier) as! ItemsByDateHeaderSectionTableViewCell
+        cell.titleLabel.text = "Section \(section)"
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
