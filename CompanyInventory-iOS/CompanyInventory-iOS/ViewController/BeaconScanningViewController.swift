@@ -9,12 +9,15 @@
 import UIKit
 import Lottie
 import AVFoundation
+import CoreLocation
 
 class BeaconScanningViewController: UIViewController {
 
     private var scanningAnimationView: LOTAnimationView?
     private var successAnimationView: LOTAnimationView?
     private var avPlayer: AVAudioPlayer?
+    let locationManager = CLLocationManager()
+
     
     @IBOutlet weak var scanningLabel: UILabel!
     
@@ -22,6 +25,11 @@ class BeaconScanningViewController: UIViewController {
         super.viewDidLoad()
         configureAvPlayer()
         styleAnimationViews()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        let beaconRegion = asBeaconRegion()
+        locationManager.startMonitoring(for: beaconRegion)
+        locationManager.startRangingBeacons(in: beaconRegion)
         // Do any additional setup after loading the view.
     }
     
@@ -60,9 +68,9 @@ class BeaconScanningViewController: UIViewController {
         view.bringSubview(toFront: scanningLabel)
         
         //Testing
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.finishScanningSuccessfully()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//            self.finishScanningSuccessfully()
+//        }
         
     }
     
@@ -87,8 +95,24 @@ class BeaconScanningViewController: UIViewController {
         }
         
     }
+    
+    func asBeaconRegion() -> CLBeaconRegion {
+        return CLBeaconRegion(proximityUUID: UUID(uuidString: Constants.kBeaconId)!,
+                              major: 0,
+                              minor: 0,
+                              identifier: "Monitored region")
+    }
 
     @IBAction func cancelAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension BeaconScanningViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        
+        for beacon in beacons {
+            print(beacon)
+        }
     }
 }

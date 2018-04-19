@@ -15,6 +15,9 @@ final class ThemeManager {
     
     let brandColor = #colorLiteral(red: 1, green: 0.9865267873, blue: 0.4715276957, alpha: 1)
     let generalGrayColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+    let reportActionColor = #colorLiteral(red: 0, green: 0.5008062124, blue: 1, alpha: 1)
+    let inventoryOpenedColor = #colorLiteral(red: 0.2176683843, green: 0.8194433451, blue: 0.2584097683, alpha: 1)
+    let inventoryClosedColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
     
     func addShadow(toView view: UIView) {
         view.layer.shadowColor = UIColor.gray.cgColor

@@ -40,7 +40,7 @@ class FirebaseInventoryEngine: InventoryEngineProtocol {
                         itemsDictionary[id] = [ Constants.kFirebaseItemNameNodeName: name,
                                                 Constants.kFirebaseItemDescriptionNodeName: item.descriptionText ?? "",
                                                 Constants.kFirebaseItemBeaconIdNodeName: beaconId,
-                                                Constants.kFirebaseItemStatusNodeName: item.status,
+                                                Constants.kFirebaseItemStatusNodeName: item.status.rawValue,
                                                 Constants.kFirebaseItemLocationNameNodeName: locationName,
                                                 Constants.kFirebaseItemLongitudeNodeName: item.longitude,
                                                 Constants.kFirebaseItemLatitudeNodeName: item.latitude]
@@ -69,6 +69,7 @@ class FirebaseInventoryEngine: InventoryEngineProtocol {
         
         let dictionary = [  Constants.kFirebaseInventoryNameNodeName: name,
                             Constants.kFirebaseInventoryDescriptionNodeName: inventoryToSave.descriptionText ?? "",
+                            Constants.kFirebaseInventoryStatusNodeName: inventoryToSave.status.rawValue,
                             Constants.kFirebaseInventoryItemsByDateNodeName: dictionaryItems] as [String : Any]
         
         let loggedInUser = userRealmDatabase.getCurrentUser()
@@ -102,10 +103,15 @@ class FirebaseInventoryEngine: InventoryEngineProtocol {
                     let inventoryId = id as? String
                     var name: String?
                     var descriptionText: String?
+                    var inventoryStatus: InventoryStatus = .none
                     
                     if let inventoryDictionary = inventory as? NSDictionary {
                         name = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryNameNodeName) as? String
                         descriptionText = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryDescriptionNodeName) as? String
+                        let statusInt = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryStatusNodeName) as? Int
+                        let status = InventoryStatus(rawValue: statusInt ?? 0)
+                        inventoryStatus = status ?? .none
+                        
                         
                         let itemsByDate = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryItemsByDateNodeName) as? NSDictionary
                         
@@ -149,6 +155,7 @@ class FirebaseInventoryEngine: InventoryEngineProtocol {
                     inventoryToSave.inventoryId = inventoryId
                     inventoryToSave.name = name
                     inventoryToSave.descriptionText = descriptionText
+                    inventoryToSave.status = inventoryStatus
                     inventories.append(inventoryToSave)
                 }
                 completion(.success, inventories)

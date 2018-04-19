@@ -10,6 +10,9 @@ import UIKit
 
 class ItemViewController: UIViewController {
 
+    var inventoryId: String?
+    var inventoryItemByDateId: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         applyStyles()

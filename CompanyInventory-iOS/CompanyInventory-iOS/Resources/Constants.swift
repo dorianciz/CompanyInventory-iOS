@@ -24,6 +24,7 @@ struct Constants {
     static let kFirebaseInventoryIdNodeName = "inventoryId"
     static let kFirebaseInventoryNameNodeName = "inventoryName"
     static let kFirebaseInventoryDescriptionNodeName = "inventoryDescription"
+    static let kFirebaseInventoryStatusNodeName = "inventoryStatus"
     static let kFirebaseInventoryItemsByDateNodeName = "inventoryItemsByDate"
     //ItemByDate node names
     static let kFirebaseItemByDateIdNodeName = "itemByDateId"
@@ -60,8 +61,10 @@ struct Constants {
     static let kAudioExtension = "m4a"
     
     //Other
+    static let kBeaconId = "EDD1EBEA-C04E-5DEF-A017-C6799C0700BB"
     static let kAnimationViewWidth = 200
     static let kAnimationViewHeight = 200
     static let kAnimationViewX = 200
     static let kAnimationViewY = 50
+    static let kDefaultDateFormat = "yyyy/MM/dd"
 }

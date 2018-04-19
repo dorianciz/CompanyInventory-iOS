@@ -70,6 +70,9 @@ class InventoriesViewController: UIViewController {
                     NavigationManager.sharedInstance.hideLoader {
                         switch response {
                         case .success:
+                            if self.tableView.isHidden {
+                                self.tableView.isHidden = false
+                            }
                             self.inventories = self.inventoryBrain.getAllLocalInventories()
                             self.tableView.reloadData()
                         case .error:
@@ -87,12 +90,38 @@ class InventoriesViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let segueId = segue.identifier {
+            if segueId == Constants.kShowInventorySegue {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let controller = segue.destination as! InventoryViewController
+                    if let inventoryId = inventories?[indexPath.row].inventoryId {
+                        controller.inventoryId = inventoryId
+                    } else {
+                        controller.inventoryId = nil
+                    }
+                    
+                }
+            }
+        }
+    }
+    
 }
 
 extension InventoriesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: Constants.kShowInventorySegue, sender: nil)
+        performSegue(withIdentifier: Constants.kShowInventorySegue, sender: tableView)
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let report = UITableViewRowAction(style: .normal, title: "Report") { action, index in
+            print("Creating report")
+        }
+        report.backgroundColor = ThemeManager.sharedInstance.reportActionColor
+        // Check if inventory is finished
+        
+        return [report]
     }
     
 }
@@ -116,7 +145,17 @@ extension InventoriesViewController: UITableViewDataSource {
             let currentInventory = inventoriesArray[indexPath.row]
             cell.titleLabel.text = currentInventory.name
             cell.descriptionLabel.text = currentInventory.descriptionText
+            switch currentInventory.status {
+            case .open:
+                cell.statusView.backgroundColor = ThemeManager.sharedInstance.inventoryOpenedColor
+            case .closed:
+                cell.statusView.backgroundColor = ThemeManager.sharedInstance.inventoryClosedColor
+            default:
+                cell.statusView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            }
         }
+        
+        cell.selectionStyle = .none
         
         return cell
     }

@@ -57,4 +57,8 @@ class InventoryBrain {
         return [Inventory]()
     }
     
+    func getLocalInventoryById(_ id: String?) -> Inventory? {
+        return inventoryDatabase.getById(id)
+    }
+    
 }

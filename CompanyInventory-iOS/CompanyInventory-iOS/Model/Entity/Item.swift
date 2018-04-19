@@ -18,7 +18,7 @@ import RealmSwift
 
 class Item: Object {
     
-    @objc dynamic var itemId: String? //Required
+    @objc dynamic var itemId: String? = UUID().uuidString //Required
     @objc dynamic var name: String? //Required
     @objc dynamic var descriptionText: String? //Optional
     @objc dynamic var beaconId: String? //Required

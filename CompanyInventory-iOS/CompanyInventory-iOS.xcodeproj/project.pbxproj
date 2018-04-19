@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D35E52326FE1BF02BCD2291 /* Pods_CompanyInventory_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768B6F95FB2FDCC5CD091A49 /* Pods_CompanyInventory_iOS.framework */; };
 		3E22D239B9C6488FF3D8097A /* Pods_CompanyInventory_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADA62BDE7AB9FB653E4EB0E /* Pods_CompanyInventory_iOSTests.framework */; };
+		ED125D652089528800F15E4E /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED125D642089528800F15E4E /* DateHelper.swift */; };
 		ED4B57DB208143D0002734FD /* LoginBrain_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DA208143D0002734FD /* LoginBrain_iOSTests.swift */; };
 		ED4B57DD20814480002734FD /* LoginBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DC20814480002734FD /* LoginBrain.swift */; };
 		ED4B57DF20816ABD002734FD /* ShakeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DE20816ABD002734FD /* ShakeAnimation.swift */; };
@@ -82,6 +83,7 @@
 		768B6F95FB2FDCC5CD091A49 /* Pods_CompanyInventory_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CompanyInventory_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ADA62BDE7AB9FB653E4EB0E /* Pods_CompanyInventory_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CompanyInventory_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DF75217E6061AB96D9FEC5E /* Pods-CompanyInventory-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompanyInventory-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CompanyInventory-iOSTests/Pods-CompanyInventory-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		ED125D642089528800F15E4E /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		ED4B57DA208143D0002734FD /* LoginBrain_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBrain_iOSTests.swift; sourceTree = "<group>"; };
 		ED4B57DC20814480002734FD /* LoginBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBrain.swift; sourceTree = "<group>"; };
 		ED4B57DE20816ABD002734FD /* ShakeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeAnimation.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				EDA283BB206ACA40004B46F1 /* ThemeManager.swift */,
 				ED4B57E2208175C1002734FD /* NavigationManager.swift */,
 				ED51C5C22087F491000EB303 /* PopupManager.swift */,
+				ED125D642089528800F15E4E /* DateHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				ED4B57EA208228F8002734FD /* CIUserDatabaseProtocol.swift in Sources */,
 				ED4B57F4208295E7002734FD /* InventoryRealmDatabase.swift in Sources */,
 				ED51C5C32087F491000EB303 /* PopupManager.swift in Sources */,
+				ED125D652089528800F15E4E /* DateHelper.swift in Sources */,
 				EDD8F6DE2084078600563BD5 /* InventoryBrain.swift in Sources */,
 				ED51C5C720880BC7000EB303 /* GeneralRealmDatabase.swift in Sources */,
 				EDA283BE206AE867004B46F1 /* AnimationChainingFactory.swift in Sources */,
@@ -800,13 +804,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = TW98687ZKD;
+				DEVELOPMENT_TEAM = H2N6F5RHWC;
 				INFOPLIST_FILE = "CompanyInventory-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dorian.CompanyInventory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e6cc9631-b82a-4bc5-aadd-78f72cf6955e";
+				PROVISIONING_PROFILE_SPECIFIER = Generic_DevProfile;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
