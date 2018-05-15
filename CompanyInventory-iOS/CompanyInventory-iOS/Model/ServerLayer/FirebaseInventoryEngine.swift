@@ -32,7 +32,7 @@ class FirebaseInventoryEngine: InventoryEngineProtocol {
                 if let items = itemByDate.items {
                     var itemsDictionary = [String: Any]()
                     for item in items {
-                        guard let id = item.itemId, let name = item.name, let beaconId = item.beaconId, let locationName = item.locationName else {
+                        guard let id = item.itemId, let name = item.name, let beaconId = item.beaconId, let locationName = item.locationName, let longitude = item.longitude.value, let latitude = item.latitude.value else {
                             completion(.error)
                             return
                         }
@@ -42,8 +42,8 @@ class FirebaseInventoryEngine: InventoryEngineProtocol {
                                                 Constants.kFirebaseItemBeaconIdNodeName: beaconId,
                                                 Constants.kFirebaseItemStatusNodeName: item.status.rawValue,
                                                 Constants.kFirebaseItemLocationNameNodeName: locationName,
-                                                Constants.kFirebaseItemLongitudeNodeName: item.longitude,
-                                                Constants.kFirebaseItemLatitudeNodeName: item.latitude]
+                                                Constants.kFirebaseItemLongitudeNodeName: longitude,
+                                                Constants.kFirebaseItemLatitudeNodeName: latitude]
                     }
                     
                     guard let id = itemByDate.id, let date = itemByDate.date else {

@@ -61,7 +61,7 @@ struct Constants {
     static let kAudioExtension = "m4a"
     
     //Other
-    static let kBeaconId = "EDD1EBEA-C04E-5DEF-A017-C6799C0700BB"
+    static let kBeaconId = "88888888-4444-4444-4444-111111222222"
     static let kAnimationViewWidth = 200
     static let kAnimationViewHeight = 200
     static let kAnimationViewX = 200

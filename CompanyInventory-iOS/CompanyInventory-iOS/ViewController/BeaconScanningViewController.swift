@@ -11,13 +11,18 @@ import Lottie
 import AVFoundation
 import CoreLocation
 
+protocol BeaconScanningViewControllerDelegate: class {
+    func foundBeacon(withId id: String)
+}
+
 class BeaconScanningViewController: UIViewController {
 
     private var scanningAnimationView: LOTAnimationView?
     private var successAnimationView: LOTAnimationView?
     private var avPlayer: AVAudioPlayer?
-    let locationManager = CLLocationManager()
-
+    private var beaconManager: ESTBeaconManager!
+    private var regionToScan: CLBeaconRegion!
+    weak var delegate: BeaconScanningViewControllerDelegate?
     
     @IBOutlet weak var scanningLabel: UILabel!
     
@@ -25,12 +30,16 @@ class BeaconScanningViewController: UIViewController {
         super.viewDidLoad()
         configureAvPlayer()
         styleAnimationViews()
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        let beaconRegion = asBeaconRegion()
-        locationManager.startMonitoring(for: beaconRegion)
-        locationManager.startRangingBeacons(in: beaconRegion)
+        beaconManager = ESTBeaconManager()
+        regionToScan = asBeaconRegion()
+        beaconManager.delegate = self
+        beaconManager.requestWhenInUseAuthorization()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        beaconManager.startRangingBeacons(in: regionToScan)
     }
     
     private func configureAvPlayer() {
@@ -96,10 +105,8 @@ class BeaconScanningViewController: UIViewController {
         
     }
     
-    func asBeaconRegion() -> CLBeaconRegion {
+    private func asBeaconRegion() -> CLBeaconRegion {
         return CLBeaconRegion(proximityUUID: UUID(uuidString: Constants.kBeaconId)!,
-                              major: 0,
-                              minor: 0,
                               identifier: "Monitored region")
     }
 
@@ -108,11 +115,18 @@ class BeaconScanningViewController: UIViewController {
     }
 }
 
-extension BeaconScanningViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        
+extension BeaconScanningViewController: ESTBeaconManagerDelegate {
+
+    func beaconManager(_ manager: Any, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         for beacon in beacons {
-            print(beacon)
+            let minor = beacon.minor
+            print("\(minor)")
         }
+        finishScanningSuccessfully()
+        //FIXME: Mocking beacon data
+        let randomId = arc4random()
+        delegate?.foundBeacon(withId: "\(randomId)")
+        dismiss(animated: true, completion: nil)
     }
+    
 }

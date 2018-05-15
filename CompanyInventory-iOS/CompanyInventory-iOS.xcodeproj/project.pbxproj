@@ -83,6 +83,7 @@
 		768B6F95FB2FDCC5CD091A49 /* Pods_CompanyInventory_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CompanyInventory_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ADA62BDE7AB9FB653E4EB0E /* Pods_CompanyInventory_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CompanyInventory_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DF75217E6061AB96D9FEC5E /* Pods-CompanyInventory-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompanyInventory-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CompanyInventory-iOSTests/Pods-CompanyInventory-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		ED10C9F020AB4FA10053CD36 /* ObjCBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCBridge.h; sourceTree = "<group>"; };
 		ED125D642089528800F15E4E /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		ED4B57DA208143D0002734FD /* LoginBrain_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBrain_iOSTests.swift; sourceTree = "<group>"; };
 		ED4B57DC20814480002734FD /* LoginBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBrain.swift; sourceTree = "<group>"; };
@@ -361,6 +362,7 @@
 				ED8077C62086BE7100E8952D /* scanningBeacon.json */,
 				ED8077C72086BE7100E8952D /* successScanning.json */,
 				EDB975852036F45A00F79FBF /* Constants.swift */,
+				ED10C9F020AB4FA10053CD36 /* ObjCBridge.h */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -811,6 +813,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_NAME}/Resources/ObjCBridge.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -829,6 +832,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_NAME}/Resources/ObjCBridge.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

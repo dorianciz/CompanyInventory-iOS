@@ -9,20 +9,31 @@
 import UIKit
 import FirebaseCore
 import IQKeyboardManagerSwift
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate {
 
     var window: UIWindow?
 
+//    let beaconManager = ESTBeaconManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         IQKeyboardManager.sharedManager().enable = true
+//        self.beaconManager.delegate = self
+//        self.beaconManager.requestAlwaysAuthorization()
+//
+//        self.beaconManager.startMonitoring(for: CLBeaconRegion(
+//            proximityUUID: UUID(uuidString: Constants.kBeaconId)!, identifier: "monitored region"))
         
         return true
     }
+    
+//    func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
+//        print("Enters the area")
+//    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

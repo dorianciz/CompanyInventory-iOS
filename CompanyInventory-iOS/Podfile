@@ -14,6 +14,7 @@ target 'CompanyInventory-iOS' do
   pod 'GoogleMaps'
   pod 'IQKeyboardManagerSwift', '~> 5.0'
   pod 'lottie-ios'
+  pod 'EstimoteSDK'
 
   target 'CompanyInventory-iOSTests' do
     inherit! :search_paths

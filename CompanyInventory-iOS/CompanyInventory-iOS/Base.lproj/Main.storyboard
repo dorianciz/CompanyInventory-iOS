@@ -609,6 +609,9 @@
                                 <state key="normal" title="Add photo">
                                     <color key="titleColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
                                 </state>
+                                <connections>
+                                    <action selector="addPhoto:" destination="Fvy-te-LSo" eventType="touchUpInside" id="dCZ-1g-H4R"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="pkx-Rc-xDI">
                                 <rect key="frame" x="176.5" y="237" width="178.5" height="45"/>
@@ -642,7 +645,7 @@
                                     <constraint firstAttribute="height" constant="1" id="rCP-TA-pl5"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXl-du-uOk">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXl-du-uOk" userLabel="Potential Cancel Button">
                                 <rect key="frame" x="155.5" y="577" width="65" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="W1a-Q4-zzf"/>
@@ -661,7 +664,7 @@
                                 <color key="textColor" red="0.20000000000000001" green="0.0" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QII-WZ-0oG">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QII-WZ-0oG" userLabel="Scan Button">
                                 <rect key="frame" x="141" y="463" width="93.5" height="93.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="QII-WZ-0oG" secondAttribute="height" multiplier="1:1" id="jj7-gK-C0p"/>
@@ -736,6 +739,12 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="beaconIdentifiedImage" destination="RUA-Hf-Z6l" id="TSb-8p-fOq"/>
+                        <outlet property="beaconIdentifiedLabel" destination="Jqq-hY-shk" id="40o-lh-BoU"/>
+                        <outlet property="descriptionTextField" destination="T0E-0C-o9d" id="TY4-ju-mXQ"/>
+                        <outlet property="nameTextField" destination="pkx-Rc-xDI" id="p2v-um-9D7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXt-ZG-iiv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
