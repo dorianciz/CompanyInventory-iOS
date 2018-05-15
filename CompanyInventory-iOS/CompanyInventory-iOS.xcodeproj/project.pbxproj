@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2D35E52326FE1BF02BCD2291 /* Pods_CompanyInventory_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768B6F95FB2FDCC5CD091A49 /* Pods_CompanyInventory_iOS.framework */; };
 		3E22D239B9C6488FF3D8097A /* Pods_CompanyInventory_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADA62BDE7AB9FB653E4EB0E /* Pods_CompanyInventory_iOSTests.framework */; };
+		ED10C9F320AB90600053CD36 /* GenericPhotoMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED10C9F220AB90600053CD36 /* GenericPhotoMenu.swift */; };
+		ED10C9F520AB976F0053CD36 /* GenericPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED10C9F420AB976F0053CD36 /* GenericPhotoPicker.swift */; };
 		ED125D652089528800F15E4E /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED125D642089528800F15E4E /* DateHelper.swift */; };
 		ED4B57DB208143D0002734FD /* LoginBrain_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DA208143D0002734FD /* LoginBrain_iOSTests.swift */; };
 		ED4B57DD20814480002734FD /* LoginBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DC20814480002734FD /* LoginBrain.swift */; };
@@ -84,6 +86,8 @@
 		9ADA62BDE7AB9FB653E4EB0E /* Pods_CompanyInventory_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CompanyInventory_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DF75217E6061AB96D9FEC5E /* Pods-CompanyInventory-iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CompanyInventory-iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CompanyInventory-iOSTests/Pods-CompanyInventory-iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED10C9F020AB4FA10053CD36 /* ObjCBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCBridge.h; sourceTree = "<group>"; };
+		ED10C9F220AB90600053CD36 /* GenericPhotoMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPhotoMenu.swift; sourceTree = "<group>"; };
+		ED10C9F420AB976F0053CD36 /* GenericPhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPhotoPicker.swift; sourceTree = "<group>"; };
 		ED125D642089528800F15E4E /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		ED4B57DA208143D0002734FD /* LoginBrain_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBrain_iOSTests.swift; sourceTree = "<group>"; };
 		ED4B57DC20814480002734FD /* LoginBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBrain.swift; sourceTree = "<group>"; };
@@ -184,6 +188,15 @@
 				9DF75217E6061AB96D9FEC5E /* Pods-CompanyInventory-iOSTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		ED10C9F120AB90210053CD36 /* Generic */ = {
+			isa = PBXGroup;
+			children = (
+				ED10C9F220AB90600053CD36 /* GenericPhotoMenu.swift */,
+				ED10C9F420AB976F0053CD36 /* GenericPhotoPicker.swift */,
+			);
+			path = Generic;
 			sourceTree = "<group>";
 		};
 		ED4B57E62082257E002734FD /* DatabaseLayer */ = {
@@ -306,6 +319,7 @@
 		EDDF48B52036424300167991 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				ED10C9F120AB90210053CD36 /* Generic */,
 				EDD8F6E120841B8900563BD5 /* View */,
 				ED93CB5C206455CF00ABBDEF /* LoginViewController.swift */,
 				ED4B57E0208174E5002734FD /* LoaderViewController.swift */,
@@ -619,6 +633,7 @@
 				EDDF48BB2036451D00167991 /* Inventory.swift in Sources */,
 				ED4B57DF20816ABD002734FD /* ShakeAnimation.swift in Sources */,
 				EDB97567203648BD00F79FBF /* Item.swift in Sources */,
+				ED10C9F520AB976F0053CD36 /* GenericPhotoPicker.swift in Sources */,
 				EDB9756D20365F7100F79FBF /* ItemEngineProtocol.swift in Sources */,
 				ED689E6C20854D1300187584 /* ItemViewController.swift in Sources */,
 				EDD8F6E020840EB200563BD5 /* AddNewInventoryViewController.swift in Sources */,
@@ -644,6 +659,7 @@
 				ED689E6E2085572F00187584 /* ItemsByDateTableViewCell.swift in Sources */,
 				EDB975722036600F00F79FBF /* Response.swift in Sources */,
 				ED4B57E1208174E5002734FD /* LoaderViewController.swift in Sources */,
+				ED10C9F320AB90600053CD36 /* GenericPhotoMenu.swift in Sources */,
 				ED4B57EC208229EA002734FD /* CIUserRealmDatabase.swift in Sources */,
 				EDB975862036F45A00F79FBF /* Constants.swift in Sources */,
 			);

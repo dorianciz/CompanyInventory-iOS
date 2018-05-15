@@ -28,6 +28,8 @@
 	<string>Main</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Test location</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Test camera</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

@@ -20,12 +20,15 @@ class ItemViewController: UIViewController {
     var inventoryItemByDateId: String?
     
     private let inventoryBrain = InventoryBrain()
-    
+    private let photoMenu = GenericPhotoMenu()
+    private let photoPicker = GenericPhotoPicker()
     private var beaconId: String?
     private var image: UIImage? = #imageLiteral(resourceName: "no_image")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        photoMenu.delegate = self
+        photoPicker.delegate = self
         showBeaconIdentifiedViews(false)
         applyStyles()
         
@@ -42,7 +45,7 @@ class ItemViewController: UIViewController {
     }
     
     @IBAction func addPhoto(_ sender: Any) {
-        
+        present(photoMenu.photoAlert, animated: true, completion: nil)
     }
     
     @objc func saveTapped() {
@@ -109,6 +112,32 @@ extension ItemViewController: BeaconScanningViewControllerDelegate {
     func foundBeacon(withId id: String) {
         beaconId = id
         showBeaconIdentifiedViews(true)
+    }
+}
+
+extension ItemViewController: GenericPhotoMenuDelegate {
+    func takePhotoAction() {
+        photoPicker.changeSourceType(.camera)
+        present(photoPicker.picker, animated: true, completion: nil)
+    }
+    
+    func changePhotoAction() {
+        photoPicker.changeSourceType(.photoLibrary)
+        present(photoPicker.picker, animated: true, completion: nil)
+    }
+    
+    func cancelAction() {
+        
+    }
+    
+    func deleteAction() {
+        
+    }
+}
+
+extension ItemViewController: GenericPhotoPickerDelegate {
+    func photoHasBeenChoosen() {
+        print("Photo has been choosen - ItemViewController")
     }
     
     
