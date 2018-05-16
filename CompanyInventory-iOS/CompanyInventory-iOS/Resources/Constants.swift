@@ -60,8 +60,14 @@ struct Constants {
     static let kSuccessScanAudio = "successScanAudio"
     static let kAudioExtension = "m4a"
     
+    //Beacons
+    static let kBeaconProximityUid = "88888888-4444-4444-4444-111111222222"
+    static let kBeaconIdentifier = "Inventory Beacon Region"
+    static let kBeaconMinAccuracy = 0.4
+    static let kBeaconMinProximity: CLProximity = .immediate
+    static let kBeaconMinRSSI = -85
+    
     //Other
-    static let kBeaconId = "88888888-4444-4444-4444-111111222222"
     static let kAnimationViewWidth = 200
     static let kAnimationViewHeight = 200
     static let kAnimationViewX = 200
