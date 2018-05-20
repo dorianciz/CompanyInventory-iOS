@@ -24,9 +24,9 @@ final class ThemeManager {
     let middleAnimationGradientColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
     let endAnimationGradientColor = #colorLiteral(red: 0, green: 0.5008062124, blue: 1, alpha: 1)
     let itemResultTextColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-    let itemResultLabelSuccessColor = #colorLiteral(red: 0.2176683843, green: 0.8194433451, blue: 0.2584097683, alpha: 1)
-    let itemResultLabelExpiredColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
-    let itemResultLabelMissingColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+    let itemResultLabelSuccessColor = #colorLiteral(red: 0.2176683843, green: 0.8194433451, blue: 0.2584097683, alpha: 0.86)
+    let itemResultLabelExpiredColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0.86)
+    let itemResultLabelMissingColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 0.86)
     
     
     func addShadow(toView view: UIView) {

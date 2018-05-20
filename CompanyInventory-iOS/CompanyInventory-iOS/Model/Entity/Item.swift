@@ -11,7 +11,7 @@ import RealmSwift
 
 @objc enum ItemStatus: Int {
     case success = 1
-    case expended = 2
+    case expired = 2
     case nonExistent = 3
     case none = 4
 }

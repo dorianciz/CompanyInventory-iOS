@@ -122,7 +122,7 @@ class ItemScanningViewController: UIViewController {
     }
     
     @IBAction func expandedAction(_ sender: Any) {
-        delegate?.foundBeacon(withStatus: .expended)
+        delegate?.foundBeacon(withStatus: .expired)
         dismiss(animated: true, completion: nil)
     }
     

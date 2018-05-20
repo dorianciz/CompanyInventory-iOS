@@ -43,5 +43,12 @@ class InventoryRealmDatabase: InventoryDatabaseProtocol {
         return realm.objects(Inventory.self).filter("inventoryId = '\(idValue)'").first
     }
     
+    func clearAll() {
+        let realm = try! Realm()
+        let allInventories = realm.objects(Inventory.self)
+        try! realm.write {
+            realm.delete(allInventories)
+        }
+    }
     
 }

@@ -13,6 +13,8 @@
 		ED10C9F520AB976F0053CD36 /* GenericPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED10C9F420AB976F0053CD36 /* GenericPhotoPicker.swift */; };
 		ED125D652089528800F15E4E /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED125D642089528800F15E4E /* DateHelper.swift */; };
 		ED1E2D6A20B207B500DE24D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED1E2D6920B207B500DE24D6 /* Localizable.strings */; };
+		ED1E2D6C20B21F4300DE24D6 /* ItemDatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1E2D6B20B21F4300DE24D6 /* ItemDatabaseProtocol.swift */; };
+		ED1E2D6E20B21F9700DE24D6 /* ItemRealmDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1E2D6D20B21F9700DE24D6 /* ItemRealmDatabase.swift */; };
 		ED4B57DB208143D0002734FD /* LoginBrain_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DA208143D0002734FD /* LoginBrain_iOSTests.swift */; };
 		ED4B57DD20814480002734FD /* LoginBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DC20814480002734FD /* LoginBrain.swift */; };
 		ED4B57DF20816ABD002734FD /* ShakeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DE20816ABD002734FD /* ShakeAnimation.swift */; };
@@ -98,6 +100,8 @@
 		ED10C9F420AB976F0053CD36 /* GenericPhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPhotoPicker.swift; sourceTree = "<group>"; };
 		ED125D642089528800F15E4E /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		ED1E2D6920B207B500DE24D6 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		ED1E2D6B20B21F4300DE24D6 /* ItemDatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDatabaseProtocol.swift; sourceTree = "<group>"; };
+		ED1E2D6D20B21F9700DE24D6 /* ItemRealmDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRealmDatabase.swift; sourceTree = "<group>"; };
 		ED4B57DA208143D0002734FD /* LoginBrain_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBrain_iOSTests.swift; sourceTree = "<group>"; };
 		ED4B57DC20814480002734FD /* LoginBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBrain.swift; sourceTree = "<group>"; };
 		ED4B57DE20816ABD002734FD /* ShakeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeAnimation.swift; sourceTree = "<group>"; };
@@ -225,6 +229,8 @@
 				ED4B57F3208295E7002734FD /* InventoryRealmDatabase.swift */,
 				ED51C5C420880B8E000EB303 /* GeneralDatabaseProtocol.swift */,
 				ED51C5C620880BC7000EB303 /* GeneralRealmDatabase.swift */,
+				ED1E2D6B20B21F4300DE24D6 /* ItemDatabaseProtocol.swift */,
+				ED1E2D6D20B21F9700DE24D6 /* ItemRealmDatabase.swift */,
 			);
 			path = DatabaseLayer;
 			sourceTree = "<group>";
@@ -686,12 +692,14 @@
 				ED125D652089528800F15E4E /* DateHelper.swift in Sources */,
 				ED7C33CC20ACD2D500FA4144 /* BeaconScanner.swift in Sources */,
 				EDD8F6DE2084078600563BD5 /* InventoryBrain.swift in Sources */,
+				ED1E2D6C20B21F4300DE24D6 /* ItemDatabaseProtocol.swift in Sources */,
 				ED51C5C720880BC7000EB303 /* GeneralRealmDatabase.swift in Sources */,
 				EDA283BE206AE867004B46F1 /* AnimationChainingFactory.swift in Sources */,
 				EDB9757E2036DC1300F79FBF /* CIUser.swift in Sources */,
 				EDC7BD1620AFBD1200979E8B /* ItemScanningViewController.swift in Sources */,
 				ED93CB59206454B000ABBDEF /* CIUserBrain.swift in Sources */,
 				EDDF489520363FC000167991 /* AppDelegate.swift in Sources */,
+				ED1E2D6E20B21F9700DE24D6 /* ItemRealmDatabase.swift in Sources */,
 				EDC7BD1820B0E1F300979E8B /* MonitoringBeaconScanner.swift in Sources */,
 				ED4B57FA2082B584002734FD /* FirebaseInventoryEngine.swift in Sources */,
 				EDB975842036F42C00F79FBF /* FirebaseCIUserEngine.swift in Sources */,

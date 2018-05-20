@@ -12,4 +12,5 @@ protocol InventoryDatabaseProtocol {
     func saveInventory(_ inventory: Inventory?)
     func getAll() -> [Inventory]?
     func getById(_ id: String?) -> Inventory?
+    func clearAll()
 }

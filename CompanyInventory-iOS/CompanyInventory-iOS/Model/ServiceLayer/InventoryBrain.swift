@@ -11,14 +11,16 @@ import RealmSwift
 
 class InventoryBrain {
     
+    var itemDatabase: ItemDatabaseProtocol!
     var inventoryDatabase: InventoryDatabaseProtocol!
     var inventoryEngine: InventoryEngineProtocol!
     var documentManager = DocumentManager()
     
     
-    init(withInventoryDatabase database: InventoryDatabaseProtocol = InventoryRealmDatabase(), withInventoryEngine engine: InventoryEngineProtocol = FirebaseInventoryEngine()) {
+    init(withInventoryDatabase database: InventoryDatabaseProtocol = InventoryRealmDatabase(), withInventoryEngine engine: InventoryEngineProtocol = FirebaseInventoryEngine(), withItemDatabase itemDatabase: ItemDatabaseProtocol = ItemRealmDatabase()) {
         inventoryDatabase = database
         inventoryEngine = engine
+        self.itemDatabase = itemDatabase
     }
     
     func fetchAllInventories(_ completion: @escaping(Response, [Inventory]?) -> Void) {
@@ -142,6 +144,24 @@ class InventoryBrain {
         })
         
         return items
+    }
+    
+    func updateItem(_ item: Item?, withStatus status: ItemStatus?) {
+        itemDatabase.updateItem(item, withStatus: status)
+    }
+    
+    func checkIsInventoryFinished(_ items: [Item]?) -> Bool? {
+        guard let allItems = items else {
+            return nil
+        }
+        
+        for item in allItems {
+            if (item.status == .none) {
+                return false
+            }
+        }
+        
+        return true
     }
     
 }

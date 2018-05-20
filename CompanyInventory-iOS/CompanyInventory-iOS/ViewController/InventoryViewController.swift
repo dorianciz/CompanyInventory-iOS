@@ -115,6 +115,30 @@ class InventoryViewController: UIViewController {
         startButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kScanningInventory, comment: ""), for: .normal)
         ThemeManager.sharedInstance.addGradientWithAnimation(toView: startButton, withColors: [ThemeManager.sharedInstance.startAnimationGradientColor.cgColor, ThemeManager.sharedInstance.middleAnimationGradientColor.cgColor, ThemeManager.sharedInstance.endAnimationGradientColor.cgColor])
     }
+    
+    private func fillLabel(_ label: UILabel!, dependsOnItemStatus status: ItemStatus!) {
+        label.isHidden = false
+        switch status {
+        case .success:
+            label.backgroundColor = ThemeManager.sharedInstance.itemResultLabelSuccessColor
+            label.text = NSLocalizedString(Constants.LocalizationKeys.kItemSuccess, comment: "")
+        case .expired:
+            label.backgroundColor = ThemeManager.sharedInstance.itemResultLabelExpiredColor
+            label.text = NSLocalizedString(Constants.LocalizationKeys.kItemExpired, comment: "")
+        case .nonExistent:
+            label.backgroundColor = ThemeManager.sharedInstance.itemResultLabelMissingColor
+            label.text = NSLocalizedString(Constants.LocalizationKeys.kItemNotExisted, comment: "")
+        default:
+            label.isHidden = true
+            
+        }
+    }
+    
+    private func updateUIAfterFinishedInventory() {
+        startButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kStartInventory, comment: ""), for: .normal)
+        startButton.backgroundColor = ThemeManager.sharedInstance.inventoryOpenedColor
+        ThemeManager.sharedInstance.removeGradientLayerWithAnimation(fromView: startButton)
+    }
 }
 
 extension InventoryViewController: UITableViewDelegate {
@@ -178,6 +202,7 @@ extension InventoryViewController: UITableViewDataSource {
             if let photoLocalPath = leftItemValue.photoLocalPath {
                 cell.leftImageView.image = documentManager.getImageFromDocument(withName: photoLocalPath)
             }
+            fillLabel(cell.leftResultLabel, dependsOnItemStatus: leftItemValue.status)
         }
         
         if let centerItemValue = centerItem {
@@ -186,6 +211,7 @@ extension InventoryViewController: UITableViewDataSource {
             if let photoLocalPath = centerItemValue.photoLocalPath {
                 cell.centerImageView.image = documentManager.getImageFromDocument(withName: photoLocalPath)
             }
+            fillLabel(cell.centerResultLabel, dependsOnItemStatus: centerItemValue.status)
         }
         
         if let rightItemValue = rightItem {
@@ -194,6 +220,7 @@ extension InventoryViewController: UITableViewDataSource {
             if let photoLocalPath = rightItemValue.photoLocalPath {
                 cell.rightImageView.image = documentManager.getImageFromDocument(withName: photoLocalPath)
             }
+            fillLabel(cell.rightResultLabel, dependsOnItemStatus: rightItemValue.status)
         }
         
         cell.selectionStyle = .none
@@ -275,5 +302,16 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
 extension InventoryViewController: ItemScanningViewControllerDelegate {
     func foundBeacon(withStatus status: ItemStatus) {
         print("\(status.rawValue)")
+        inventoryBrain.updateItem(scanningItem, withStatus: status)
+        
+        if let realmItems = inventory?.items?.last?.items {
+            let items = Array(realmItems)
+            if let isInventoryFinished = inventoryBrain.checkIsInventoryFinished(items) {
+                if isInventoryFinished {
+                    updateUIAfterFinishedInventory()
+                }
+            }
+        }
+        tableView.reloadData()
     }
 }

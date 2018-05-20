@@ -91,6 +91,8 @@ class FirebaseInventoryEngine: InventoryEngineProtocol {
             return
         }
         
+        
+        
         firebaseDatabase.child(Constants.kFirebaseInventoriesNodeName).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
             print("\(snapshot)")
             var inventories = [Inventory]()

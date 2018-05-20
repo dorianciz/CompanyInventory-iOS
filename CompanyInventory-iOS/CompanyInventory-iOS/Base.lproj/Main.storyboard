@@ -444,9 +444,9 @@
                                                             <rect key="frame" x="5" y="15" width="114" height="154.5"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qko-Dp-RLu">
-                                                            <rect key="frame" x="5" y="15" width="114" height="25"/>
+                                                            <rect key="frame" x="5" y="15" width="114" height="35"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="25" id="WJO-eg-mOY"/>
+                                                                <constraint firstAttribute="height" constant="35" id="WJO-eg-mOY"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -482,9 +482,9 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgt-4I-Gvc">
-                                                            <rect key="frame" x="5" y="15" width="114" height="25"/>
+                                                            <rect key="frame" x="5" y="15" width="114" height="35"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="25" id="ObV-Fg-Vfq"/>
+                                                                <constraint firstAttribute="height" constant="35" id="ObV-Fg-Vfq"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -521,9 +521,9 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9c-ky-WWV">
-                                                            <rect key="frame" x="5" y="15" width="114" height="25"/>
+                                                            <rect key="frame" x="5" y="15" width="114" height="35"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="25" id="t03-2c-vtg"/>
+                                                                <constraint firstAttribute="height" constant="35" id="t03-2c-vtg"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
