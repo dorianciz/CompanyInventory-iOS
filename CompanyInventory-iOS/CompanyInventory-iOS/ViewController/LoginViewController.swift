@@ -12,8 +12,11 @@ import AudioToolbox
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginFieldsContainer: UIView!
+    @IBOutlet weak var smallTitle: UILabel!
+    @IBOutlet weak var largeTitle: UILabel!
     @IBOutlet weak var usernameTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
 
     @IBOutlet weak var launchScreen: UIView!
@@ -38,6 +41,7 @@ class LoginViewController: UIViewController {
         usernameTextfield.text = "testuser4@companyinventory.com"
         passwordTextfield.text = "Test123"
         applyStyles()
+        fillStaticLabels()
         
     }
     
@@ -84,6 +88,15 @@ class LoginViewController: UIViewController {
         errorLabel.isHidden = true
         usernameTextfield.keyboardType = .emailAddress
         passwordTextfield.isSecureTextEntry = true
+    }
+    
+    private func fillStaticLabels() {
+        smallTitle.text = NSLocalizedString(Constants.LocalizationKeys.kLoginSmallLabel, comment: "")
+        largeTitle.text = NSLocalizedString(Constants.LocalizationKeys.kLoginLargeLabel, comment: "")
+        usernameTextfield.placeholder = NSLocalizedString(Constants.LocalizationKeys.kLoginUsernamePlaceholder, comment: "")
+        passwordTextfield.placeholder = NSLocalizedString(Constants.LocalizationKeys.kLoginPasswordPlaceholder, comment: "")
+        loginButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kLoginButtonTitle, comment: ""), for: .normal)
+        errorLabel.text = NSLocalizedString(Constants.LocalizationKeys.kLoginError, comment: "")
     }
     
     private func applyStylesAfterSettingsFrames() {

@@ -9,33 +9,38 @@
 import UIKit
 
 protocol ItemsByDateTableViewCellDelegate: class {
-    func leftItemTouched()
-    func centerItemTouched()
-    func rightItemTouched()
+    func leftItemTouched(_ sender: ItemsByDateTableViewCell)
+    func centerItemTouched(_ sender: ItemsByDateTableViewCell)
+    func rightItemTouched(_ sender: ItemsByDateTableViewCell)
 }
 
 class ItemsByDateTableViewCell: UITableViewCell {
 
     weak var delegate: ItemsByDateTableViewCellDelegate?
+    var indexPath: IndexPath!
     
     @IBOutlet weak var cellContentView: UIView!
     
     @IBOutlet weak var leftViewContainer: UIView!
     @IBOutlet weak var leftInfoLabel: UILabel!
     @IBOutlet weak var leftImageView: UIImageView!
+    @IBOutlet weak var leftResultLabel: UILabel!
     
     @IBOutlet weak var centerViewContainer: UIView!
     @IBOutlet weak var centerImageView: UIImageView!
     @IBOutlet weak var centerInfoLabel: UILabel!
+    @IBOutlet weak var centerResultLabel: UILabel!
     
     @IBOutlet weak var rightViewContainer: UIView!
     @IBOutlet weak var rightImageView: UIImageView!
     @IBOutlet weak var rightInfoLabel: UILabel!
+    @IBOutlet weak var rightResultLabel: UILabel!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        applyStyles()
         hideAllItems()
         addGestures()
     }
@@ -67,18 +72,36 @@ class ItemsByDateTableViewCell: UITableViewCell {
     }
     
     @objc func leftTapped() {
-        delegate?.leftItemTouched()
+        delegate?.leftItemTouched(self)
     }
     
     @objc func centerTapped() {
-        delegate?.centerItemTouched()
+        delegate?.centerItemTouched(self)
     }
     
     @objc func rightTapped() {
-        delegate?.rightItemTouched()
+        delegate?.rightItemTouched(self)
     }
     
     private func applyStyles() {
+        leftImageView.layer.masksToBounds = true
+        leftImageView.layer.cornerRadius = ThemeManager.sharedInstance.itemCornerRadius
+        leftResultLabel.textColor = ThemeManager.sharedInstance.itemResultTextColor
+        
+        centerImageView.layer.masksToBounds = true
+        centerImageView.layer.cornerRadius = ThemeManager.sharedInstance.itemCornerRadius
+        centerResultLabel.textColor = ThemeManager.sharedInstance.itemResultTextColor
+        
+        rightImageView.layer.masksToBounds = true
+        rightImageView.layer.cornerRadius = ThemeManager.sharedInstance.itemCornerRadius
+        rightResultLabel.textColor = ThemeManager.sharedInstance.itemResultTextColor
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        ThemeManager.sharedInstance.roundCustomCorners(forView: leftResultLabel, withCorners: [.topLeft, .topRight], withCornerRadius: ThemeManager.sharedInstance.itemCornerRadius)
+        ThemeManager.sharedInstance.roundCustomCorners(forView: centerResultLabel, withCorners: [.topLeft, .topRight], withCornerRadius: ThemeManager.sharedInstance.itemCornerRadius)
+        ThemeManager.sharedInstance.roundCustomCorners(forView: rightResultLabel, withCorners: [.topLeft, .topRight], withCornerRadius: ThemeManager.sharedInstance.itemCornerRadius)
     }
     
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constants {
     
@@ -51,6 +52,7 @@ struct Constants {
     static let kShowLoggedInAppSegue = "showLoggedInAppSegue"
     static let kShowInventorySegue = "showInventorySegue"
     static let kShowAddItemSegue = "showAddItemSegue"
+    static let kShowScanningItemSegue = "showScanningItemSegue"
     
     //Animations files names
     static let kScanningBeaconAnimation = "scanningBeacon"
@@ -66,6 +68,13 @@ struct Constants {
     static let kBeaconMinAccuracy = 0.4
     static let kBeaconMinProximity: CLProximity = .immediate
     static let kBeaconMinRSSI = -85
+    static let kBeaconMonitoringForbiddenProximity: CLProximity = .unknown
+    static let kBeaconMonitoringMinAccuracy = 0.8
+    
+    //Photo
+    static let kDefaultItemSmallPhotoSize = CGSize(width: 100, height: 300)
+    static let kDefaultItemLargePhotoSize = CGSize(width: 300, height: 300)
+    static let kDefaultItemImageName = "defaultItem"
     
     //Other
     static let kAnimationViewWidth = 200
@@ -73,4 +82,52 @@ struct Constants {
     static let kAnimationViewX = 200
     static let kAnimationViewY = 50
     static let kDefaultDateFormat = "yyyy/MM/dd"
+    static let kAnimationLayerName = "AnimationLayerId"
+    
+    struct LocalizationKeys {
+        static let kLoginSmallLabel = "login_top_label"
+        static let kLoginLargeLabel = "login_app_name"
+        static let kLoginUsernamePlaceholder = "login_username_placeholder"
+        static let kLoginPasswordPlaceholder = "login_password_placeholder"
+        static let kLoginButtonTitle = "login_button_title"
+        static let kLoginError = "login_error_label"
+        static let kInventoriesTab = "inventories_tab"
+        static let kProfileTab = "profile_tab"
+        static let kLocationsTab = "locations_tab"
+        static let kMoreTab = "more_tab"
+        static let kInventoriesTitle = "inventories_title"
+        static let kCreateInventoryTitle = "create_inventory_title"
+        static let kCreateInventoryDescription = "create_inventory_description"
+        static let kGeneralNamePlaceholder = "general_name_placeholder"
+        static let kGeneralDescriptionPlaceholder = "general_description_placeholder"
+        static let kGeneralCancel = "general_cancel"
+        static let kGeneralOk = "general_ok"
+        static let kInventoryAddButton = "inventory_add_button"
+        static let kStartInventory = "start_inventory_button_title"
+        static let kScanningInventory = "scanning_inventory_button_title"
+        static let kGeneralSave = "general_save"
+        static let kNewItemTitle = "new_item_title"
+        static let kNewItemAddPhoto = "new_item_add_photo"
+        static let kNewItemChangePhoto = "new_item_change_photo"
+        static let kNewItemLocationNamePlaceholder = "new_item_location_name_placeholder"
+        static let kBeaconScannedSuccessfully = "beacon_scanned_successfully"
+        static let kNewItemScan = "new_item_scan"
+        static let kGeneralScanning = "general_scanning"
+        static let kInventoryTitle = "inventory_title"
+        static let kScanningItemExpired = "scanning_item_expired"
+        static let kScanningItemMissing = "scanning_item_missing"
+        static let kItemSuccess = "itemSuccess"
+        static let kItemExpired = "itemExpired"
+        static let kItemNotExisted = "itemNotExisted"
+        static let kGeneralErrorTitle = "general_error_title"
+        static let kGeneralErrorMessage = "general_error_message"
+        static let kSavingItemErrorMessage = "saving_item_error_message"
+        static let kMissingItemInfoTitle = "missing_item_informations_title"
+        static let kMissingItemInfoMessage = "missing_item_informations_message"
+        static let kTakePhoto = "take_photo";
+        static let kChoosePhoto = "choose_photo";
+        static let kDeletePhoto = "delete_photo";
+        static let kReportTitle = "report_title";
+    }
+    
 }

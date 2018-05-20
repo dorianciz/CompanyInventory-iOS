@@ -11,10 +11,15 @@ import RealmSwift
 
 class ItemViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var locationNameTextField: UITextField!
     @IBOutlet weak var beaconIdentifiedLabel: UILabel!
     @IBOutlet weak var beaconIdentifiedImage: UIImageView!
+    @IBOutlet weak var itemImage: UIImageView!
+    @IBOutlet weak var addPhotoButton: UIButton!
+    @IBOutlet weak var scanLabel: UILabel!
     
     var inventoryId: String?
     var inventoryItemByDateId: String?
@@ -23,7 +28,10 @@ class ItemViewController: UIViewController {
     private let photoMenu = GenericPhotoMenu()
     private let photoPicker = GenericPhotoPicker()
     private var beaconId: String?
-    private var image: UIImage? = #imageLiteral(resourceName: "no_image")
+    private var image: UIImage! = ThemeManager.sharedInstance.defaultItemImage
+    private var imageChanged = false
+    private let locationManager = CLLocationManager()
+    private var currentLocation: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +39,29 @@ class ItemViewController: UIViewController {
         photoPicker.delegate = self
         showBeaconIdentifiedViews(false)
         applyStyles()
+        fillStaticLabels()
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.startUpdatingLocation()
         
     }
 
     private func applyStyles() {
         navigationItem.hidesBackButton = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveTapped))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancelTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString(Constants.LocalizationKeys.kGeneralSave, comment: ""), style: .done, target: self, action: #selector(saveTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString(Constants.LocalizationKeys.kGeneralCancel, comment: ""), style: .done, target: self, action: #selector(cancelTapped))
+        itemImage.layer.cornerRadius = ThemeManager.sharedInstance.itemCornerRadius
+    }
+    
+    private func fillStaticLabels() {
+        titleLabel.text = NSLocalizedString(Constants.LocalizationKeys.kNewItemTitle, comment: "")
+        nameTextField.placeholder = NSLocalizedString(Constants.LocalizationKeys.kGeneralNamePlaceholder, comment: "")
+        descriptionTextField.placeholder = NSLocalizedString(Constants.LocalizationKeys.kGeneralDescriptionPlaceholder, comment: "")
+        locationNameTextField.placeholder = NSLocalizedString(Constants.LocalizationKeys.kNewItemLocationNamePlaceholder, comment: "")
+        addPhotoButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kNewItemAddPhoto, comment: ""), for: .normal)
+        beaconIdentifiedLabel.text = NSLocalizedString(Constants.LocalizationKeys.kBeaconScannedSuccessfully, comment: "")
+        scanLabel.text = NSLocalizedString(Constants.LocalizationKeys.kNewItemScan, comment: "")
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {
@@ -53,40 +77,25 @@ class ItemViewController: UIViewController {
         item.beaconId = beaconId
         item.descriptionText = descriptionTextField.text
         item.name = nameTextField.text
-        item.latitude = RealmOptional<Float>(12.0)
-        item.longitude = RealmOptional<Float>(15.0)
-        item.locationName = "Location name" // Should add text field for location name
+        item.locationName = locationNameTextField.text
+        item.photoLocalPath = imageChanged ? item.itemId : Constants.kDefaultItemImageName
+        item.image = image
         
-        if let inventoryId = inventoryId {
-            inventoryBrain.getAndUpdateLocalInventoryById(inventoryId, withRealmCompletion: { inventory in
-                var foundInventoryByDate = false
-                if let items = inventory?.items {
-                    items.forEach { (inventoryByDate) in
-                        if let id = inventoryByDate.id, let inventoryItemByDateId = self.inventoryItemByDateId {
-                            if id == inventoryItemByDateId {
-                                foundInventoryByDate = true
-                                inventoryByDate.items?.append(item)
-                            }
-                        }
-                    }
-                    
-                    if !foundInventoryByDate {
-                        // Create new InventoryByDate
-                        let inventoryByDate = InventoryItemByDate()
-                        inventoryByDate.date = Date()
-                        inventoryByDate.items!.append(item)
-                        inventory!.items!.append(inventoryByDate)
-                    }
-                }
-                
-                self.inventoryBrain.saveInventory(inventory) { (response) in
-                    if response == .success {
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                }
-            })
-            
-            
+        if let location = currentLocation {
+            item.latitude = RealmOptional<Float>(Float(location.latitude))
+            item.longitude = RealmOptional<Float>(Float(location.longitude))
+        }
+
+        inventoryBrain.saveItem(item, toInventoryByDate: inventoryItemByDateId, toInventoryWithId: inventoryId) { (response) in
+            if response == .success {
+                self.navigationController?.popViewController(animated: true)
+            } else if response == .missingInformations {
+                self.present(PopupManager.sharedInstance.showInfoPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kMissingItemInfoTitle, comment: ""), withMessage: NSLocalizedString(Constants.LocalizationKeys.kMissingItemInfoMessage, comment: "")), animated: true, completion: nil)
+            } else if response == .error {
+                self.present(PopupManager.sharedInstance.showInfoPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kGeneralErrorTitle, comment: ""), withMessage: NSLocalizedString(Constants.LocalizationKeys.kSavingItemErrorMessage, comment: "")), animated: true, completion: nil)
+            } else {
+                self.present(PopupManager.sharedInstance.showInfoPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kGeneralErrorTitle, comment: ""), withMessage: NSLocalizedString(Constants.LocalizationKeys.kGeneralErrorMessage, comment: "")), animated: true, completion: nil)
+            }
         }
         
     }
@@ -98,6 +107,8 @@ class ItemViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationViewController = segue.destination as? BeaconScanningViewController {
             destinationViewController.delegate = self
+            destinationViewController.inventoryId = inventoryId
+            destinationViewController.inventoryByDateId = inventoryItemByDateId
         }
     }
     
@@ -131,14 +142,31 @@ extension ItemViewController: GenericPhotoMenuDelegate {
     }
     
     func deleteAction() {
-        
+        self.image = ThemeManager.sharedInstance.defaultItemImage
+        itemImage.image = ThemeManager.sharedInstance.defaultItemImage
+        imageChanged = false
+        addPhotoButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kNewItemAddPhoto, comment: ""), for: .normal)
     }
 }
 
 extension ItemViewController: GenericPhotoPickerDelegate {
-    func photoHasBeenChoosen() {
+    func photoHasBeenChoosen(_ image: UIImage?) {
         print("Photo has been choosen - ItemViewController")
+        if let choosenImage = image {
+            self.image = choosenImage
+            itemImage.image = choosenImage
+            imageChanged = true
+            addPhotoButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kNewItemChangePhoto, comment: ""), for: .normal)
+        } else {
+            self.image = ThemeManager.sharedInstance.defaultItemImage
+            itemImage.image = ThemeManager.sharedInstance.defaultItemImage
+            imageChanged = false
+        }
     }
-    
-    
+}
+
+extension ItemViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLocation = manager.location!.coordinate
+    }
 }

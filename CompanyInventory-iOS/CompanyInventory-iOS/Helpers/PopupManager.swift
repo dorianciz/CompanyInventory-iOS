@@ -15,7 +15,7 @@ class PopupManager {
     func showGenericPopup(withTitle title: String, withMessage message: String, withTextFieldsPlaceholders placeholders: [String]?, withOkCompletion completion:@escaping([String]) -> Void) -> UIAlertController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-        let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
+        let addAction = UIAlertAction(title: NSLocalizedString(Constants.LocalizationKeys.kInventoryAddButton, comment: ""), style: .default) { (action) in
             var result = [String]()
             if let textFieldPlaceholders = placeholders {
                 for index in 0..<textFieldPlaceholders.count {
@@ -25,7 +25,7 @@ class PopupManager {
             completion(result)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: NSLocalizedString(Constants.LocalizationKeys.kGeneralCancel, comment: ""), style: .cancel, handler: nil)
         
         placeholders?.forEach {
             let title = $0
@@ -43,7 +43,7 @@ class PopupManager {
     func showInfoPopup(withTitle title: String, withMessage message: String) -> UIAlertController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
     
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: NSLocalizedString(Constants.LocalizationKeys.kGeneralOk, comment: ""), style: .default, handler: nil)
         alertController.addAction(okAction)
         
         return alertController

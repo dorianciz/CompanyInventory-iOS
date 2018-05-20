@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "GenericPhotoPicker.imagePickerController(_:didFinishPickingMediaWithInfo:):GenericPhotoPicker.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "info[&quot;UIImagePickerControllerOriginalImage&quot;]! as! UIImage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "InventoryViewController.tableView(_:cellForRowAt:):InventoryViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "documentManager.getImageFromDocument(withName: photoLocalPath)">
+            </PersistentString>
+            <PersistentString
+               value = "cell.leftImageView.image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ItemViewController.saveTapped():ItemViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "InventoryBrain.saveItem(_:toInventoryByDate:toInventoryWithId:_:):InventoryBrain.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "item!.image!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

@@ -15,10 +15,13 @@ class InventoryViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     
     var inventoryBrain: InventoryBrain = InventoryBrain()
-    private var dateHelper: DateHelper!
+    var dateHelper: DateHelper!
+    var documentManager: DocumentManager! = DocumentManager()
     
     var inventoryId: String?
     private var inventory: Inventory?
+    private var scanningItem: Item?
+    private var isScanning: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +33,6 @@ class InventoryViewController: UIViewController {
         
         applyStyles()
         fillStaticLabels()
-//        showItems(false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,7 +51,8 @@ class InventoryViewController: UIViewController {
     }
     
     private func fillStaticLabels() {
-        navigationItem.title = "Inventory"
+        navigationItem.title = NSLocalizedString(Constants.LocalizationKeys.kInventoryTitle, comment: "")
+        startButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kStartInventory, comment: ""), for: .normal)
     }
     
     private func addRightBarButton() {
@@ -89,15 +92,29 @@ class InventoryViewController: UIViewController {
             if segueId == Constants.kShowAddItemSegue {
                 let controller = segue.destination as! ItemViewController
                 controller.inventoryId = inventoryId
+                //FIXME: Change to get last active inventory by date
                 if let items = inventory?.items {
                     if items.count != 0 {
                         controller.inventoryItemByDateId = items.first!.id
                     }
                 }
+            } else if segueId == Constants.kShowScanningItemSegue {
+                let controller = segue.destination as! ItemScanningViewController
+                controller.delegate = self
+                if let item = scanningItem {
+                    controller.itemName = item.name
+                    controller.beaconId = item.beaconId
+                }
             }
         }
     }
     
+    @IBAction func startScanningAction(_ sender: Any) {
+        isScanning = true
+        startButton.isEnabled = false
+        startButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kScanningInventory, comment: ""), for: .normal)
+        ThemeManager.sharedInstance.addGradientWithAnimation(toView: startButton, withColors: [ThemeManager.sharedInstance.startAnimationGradientColor.cgColor, ThemeManager.sharedInstance.middleAnimationGradientColor.cgColor, ThemeManager.sharedInstance.endAnimationGradientColor.cgColor])
+    }
 }
 
 extension InventoryViewController: UITableViewDelegate {
@@ -158,35 +175,105 @@ extension InventoryViewController: UITableViewDataSource {
         if let leftItemValue = leftItem {
             cell.leftViewContainer.isHidden = false
             cell.leftInfoLabel.text = leftItemValue.name
+            if let photoLocalPath = leftItemValue.photoLocalPath {
+                cell.leftImageView.image = documentManager.getImageFromDocument(withName: photoLocalPath)
+            }
         }
         
         if let centerItemValue = centerItem {
             cell.centerViewContainer.isHidden = false
             cell.centerInfoLabel.text = centerItemValue.name
+            if let photoLocalPath = centerItemValue.photoLocalPath {
+                cell.centerImageView.image = documentManager.getImageFromDocument(withName: photoLocalPath)
+            }
         }
         
         if let rightItemValue = rightItem {
             cell.rightViewContainer.isHidden = false
             cell.rightInfoLabel.text = rightItemValue.name
+            if let photoLocalPath = rightItemValue.photoLocalPath {
+                cell.rightImageView.image = documentManager.getImageFromDocument(withName: photoLocalPath)
+            }
         }
         
         cell.selectionStyle = .none
         cell.delegate = self
+        cell.indexPath = indexPath
         
         return cell
     }
 }
 
 extension InventoryViewController: ItemsByDateTableViewCellDelegate {
-    func leftItemTouched() {
-        NSLog("Left")
+    func leftItemTouched(_ sender: ItemsByDateTableViewCell) {
+        let indexPath: IndexPath! = sender.indexPath
+        
+        guard let items = inventory?.items?[indexPath.section].items else {
+            return
+        }
+        let item = items.indices.contains((indexPath.row) * 3) ? items[(indexPath.row) * 3] : nil
+        
+        if let item = item {
+            NSLog("Item: \(item.name!)")
+            if let isScanning = isScanning {
+                if isScanning {
+                    scanningItem = item
+                    performSegue(withIdentifier: Constants.kShowScanningItemSegue, sender: self)
+                    return
+                }
+            }
+            
+            //If scanning is off, show edit item screen
+        }
     }
     
-    func centerItemTouched() {
-        NSLog("Center")
+    func centerItemTouched(_ sender: ItemsByDateTableViewCell) {
+        let indexPath: IndexPath! = sender.indexPath
+        
+        guard let items = inventory?.items?[indexPath.section].items else {
+            return
+        }
+        let item = items.indices.contains(((indexPath.row) * 3) + 1) ? items[((indexPath.row) * 3) + 1] : nil
+        
+        if let item = item {
+            NSLog("Item: \(item.name!)")
+            if let isScanning = isScanning {
+                if isScanning {
+                    scanningItem = item
+                    performSegue(withIdentifier: Constants.kShowScanningItemSegue, sender: self)
+                    return
+                }
+            }
+            
+            //If scanning is off, show edit item screen
+        }
     }
     
-    func rightItemTouched() {
-        NSLog("Right")
+    func rightItemTouched(_ sender: ItemsByDateTableViewCell) {
+        let indexPath: IndexPath! = sender.indexPath
+        
+        guard let items = inventory?.items?[indexPath.section].items else {
+            return
+        }
+        let item = items.indices.contains(((indexPath.row) * 3) + 2) ? items[((indexPath.row) * 3) + 2] : nil
+        
+        if let item = item {
+            NSLog("Item: \(item.name!)")
+            if let isScanning = isScanning {
+                if isScanning {
+                    scanningItem = item
+                    performSegue(withIdentifier: Constants.kShowScanningItemSegue, sender: self)
+                    return
+                }
+            }
+            
+            //If scanning is off, show edit item screen
+        }
+    }
+}
+
+extension InventoryViewController: ItemScanningViewControllerDelegate {
+    func foundBeacon(withStatus status: ItemStatus) {
+        print("\(status.rawValue)")
     }
 }

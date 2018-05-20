@@ -29,6 +29,9 @@ class Item: Object {
     var latitude = RealmOptional<Float>() //Required
     var longitude = RealmOptional<Float>() //Required
     
+    var image: UIImage?
+    
+    
     override static func primaryKey() -> String? {
         return "itemId"
     }

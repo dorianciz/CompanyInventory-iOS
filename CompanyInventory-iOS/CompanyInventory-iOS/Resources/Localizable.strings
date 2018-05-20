@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  CompanyInventory-iOS
+
+  Created by Dorian Cizmar on 5/20/18.
+  Copyright © 2018 Dorian Cizmar. All rights reserved.
+*/
+
+"login_top_label" = "Log in to";
+"login_app_name" = "Company Inventory";
+"login_password_placeholder" = "Password";
+"login_username_placeholder" = "Username";
+"login_error_label" = "Wrong username or password. Please try again.";
+"login_button_title" = "Log in";
+"inventories_tab" = "Inventories";
+"profile_tab" = "Profile";
+"locations_tab" = "Locations";
+"more_tab" = "More";
+"inventories_title" = "Inventories";
+"create_inventory_title" = "Create new inventory";
+"create_inventory_description" = "Add name of inventory with short description";
+"general_name_placeholder" = "Name";
+"general_description_placeholder" = "Description";
+"general_cancel" = "Cancel";
+"general_ok" = "Ok";
+"inventory_add_button" = "Add";
+"start_inventory_button_title" = "Start inventory";
+"scanning_inventory_button_title" = "Select item to start scan";
+"general_save" = "Save";
+"new_item_title" = "New item details";
+"new_item_add_photo" = "Add photo";
+"new_item_change_photo" = "Change photo";
+"new_item_location_name_placeholder" = "Location name";
+"beacon_scanned_successfully" = "Beacon identifier added";
+"new_item_scan" = "Scan";
+"general_scanning" = "Scanning";
+"inventory_title" = "Inventory";
+"scanning_item_expired" = "Expired";
+"scanning_item_missing" = "Not exist";
+"itemSuccess" = "Listed";
+"itemExpired" = "Expired";
+"itemNotExisted" = "Not exist";
+"general_error_title" = "Something went wrong";
+"general_error_message" = "General error";
+"saving_item_error_message" = "We have trouble to save current item";
+"missing_item_informations_title" = "Missing informations";
+"missing_item_informations_message" = "You have to enter all required data";
+"take_photo" = "Take photo";
+"choose_photo" = "Choose photo";
+"delete_photo" = "Delete photo";
+"report_title" = "Report";
+

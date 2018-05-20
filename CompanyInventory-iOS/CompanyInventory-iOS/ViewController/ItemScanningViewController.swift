@@ -1,54 +1,59 @@
 //
-//  BeaconScanningViewController.swift
+//  ItemScanningViewController.swift
 //  CompanyInventory-iOS
 //
-//  Created by Dorian Cizmar on 4/18/18.
+//  Created by Dorian Cizmar on 5/19/18.
 //  Copyright © 2018 Dorian Cizmar. All rights reserved.
 //
 
 import UIKit
 import Lottie
 import AVFoundation
-import CoreLocation
 
-protocol BeaconScanningViewControllerDelegate: class {
-    func foundBeacon(withId id: String)
+protocol ItemScanningViewControllerDelegate: class {
+    func foundBeacon(withStatus status: ItemStatus)
 }
 
-class BeaconScanningViewController: UIViewController {
-
-    var inventoryId: String?
-    var inventoryByDateId: String?
+class ItemScanningViewController: UIViewController {
+    
+    var itemName: String?
+    var beaconId: String?
     
     private var scanningAnimationView: LOTAnimationView?
     private var successAnimationView: LOTAnimationView?
     private var avPlayer: AVAudioPlayer?
-    private var beaconScanner: BeaconScanner!
-    weak var delegate: BeaconScanningViewControllerDelegate?
+    var beaconScanner: BeaconScanner?
+    weak var delegate: ItemScanningViewControllerDelegate?
+    
     
     @IBOutlet weak var scanningLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var expiredButton: UIButton!
+    @IBOutlet weak var notExistButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureAvPlayer()
-        styleAnimationViews()
+        beaconScanner = MonitoringBeaconScanner(forBeaconId: beaconId)
+        beaconScanner?.delegate = self
         fillStaticLabels()
-        beaconScanner = NearestBeaconScanner(withInventoryId: inventoryId, withInventoryByDateId: inventoryByDateId)
-        beaconScanner.delegate = self
+        styleAnimationViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        beaconScanner.startRanging()
+        titleLabel.text = itemName
+        beaconScanner?.startRanging()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        beaconScanner.stopRanging()
+        beaconScanner?.stopRanging()
     }
     
     private func fillStaticLabels() {
         scanningLabel.text = NSLocalizedString(Constants.LocalizationKeys.kGeneralScanning, comment: "")
+        expiredButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kScanningItemExpired, comment: ""), for: .normal)
+            notExistButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kScanningItemMissing, comment: ""), for: .normal)
     }
     
     private func configureAvPlayer() {
@@ -61,7 +66,7 @@ class BeaconScanningViewController: UIViewController {
             print(error)
         }
     }
-
+    
     private func styleAnimationViews() {
         successAnimationView = LOTAnimationView(name: Constants.kSuccessScanningAnimation)
         if let successView = successAnimationView {
@@ -106,17 +111,28 @@ class BeaconScanningViewController: UIViewController {
             }
         }
     }
-
-    @IBAction func cancelAction(_ sender: Any) {
+    
+    @IBAction func cancelButtonAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func notExistentAction(_ sender: Any) {
+        delegate?.foundBeacon(withStatus: .nonExistent)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func expandedAction(_ sender: Any) {
+        delegate?.foundBeacon(withStatus: .expended)
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
-extension BeaconScanningViewController: BeaconScannerDelegate {
+extension ItemScanningViewController: BeaconScannerDelegate {
     func foundBeacon(withId id: String) {
         print("Scanned beacon ID: \(id)")
         finishScanningSuccessfully()
-        delegate?.foundBeacon(withId: id)
+        delegate?.foundBeacon(withStatus: .success)
         dismiss(animated: true, completion: nil)
     }
 }

@@ -20,6 +20,7 @@ class InventoriesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         fetchInventories()
+        fillStaticLabels()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,6 +33,10 @@ class InventoriesViewController: UIViewController {
         } else {
             self.tableView.isHidden = true
         }
+    }
+    
+    private func fillStaticLabels() {
+        navigationItem.title = NSLocalizedString(Constants.LocalizationKeys.kInventoriesTitle, comment: "")
     }
     
     private func fetchInventories() {
@@ -63,7 +68,7 @@ class InventoriesViewController: UIViewController {
     }
     
     @IBAction func createNewInventoryAction(_ sender: Any) {
-        let alertController = PopupManager.sharedInstance.showGenericPopup(withTitle: "Create new inventory", withMessage: "Add name of inventory with short description", withTextFieldsPlaceholders: ["Name", "Description"]) { results in
+        let alertController = PopupManager.sharedInstance.showGenericPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kCreateInventoryTitle, comment: ""), withMessage: NSLocalizedString(Constants.LocalizationKeys.kCreateInventoryDescription, comment: ""), withTextFieldsPlaceholders: [NSLocalizedString(Constants.LocalizationKeys.kGeneralNamePlaceholder, comment: ""), NSLocalizedString(Constants.LocalizationKeys.kGeneralDescriptionPlaceholder, comment: "")]) { results in
             results.forEach{print($0)}
             NavigationManager.sharedInstance.showLoader {
                 self.inventoryBrain.createNewInventory(results[0], results[1], { (response) in
@@ -115,10 +120,10 @@ extension InventoriesViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let report = UITableViewRowAction(style: .normal, title: "Report") { action, index in
+        let report = UITableViewRowAction(style: .normal, title: NSLocalizedString(Constants.LocalizationKeys.kReportTitle, comment: "")) { action, index in
             print("Creating report")
         }
-        report.backgroundColor = ThemeManager.sharedInstance.reportActionColor
+        report.backgroundColor = ThemeManager.sharedInstance.generalBlueColor
         // Check if inventory is finished
         
         return [report]

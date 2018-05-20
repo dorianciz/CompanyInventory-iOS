@@ -12,6 +12,7 @@
 		ED10C9F320AB90600053CD36 /* GenericPhotoMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED10C9F220AB90600053CD36 /* GenericPhotoMenu.swift */; };
 		ED10C9F520AB976F0053CD36 /* GenericPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED10C9F420AB976F0053CD36 /* GenericPhotoPicker.swift */; };
 		ED125D652089528800F15E4E /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED125D642089528800F15E4E /* DateHelper.swift */; };
+		ED1E2D6A20B207B500DE24D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED1E2D6920B207B500DE24D6 /* Localizable.strings */; };
 		ED4B57DB208143D0002734FD /* LoginBrain_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DA208143D0002734FD /* LoginBrain_iOSTests.swift */; };
 		ED4B57DD20814480002734FD /* LoginBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DC20814480002734FD /* LoginBrain.swift */; };
 		ED4B57DF20816ABD002734FD /* ShakeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DE20816ABD002734FD /* ShakeAnimation.swift */; };
@@ -61,6 +62,10 @@
 		EDB975822036F05400F79FBF /* CIUserEngine_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB975812036F05400F79FBF /* CIUserEngine_iOSTests.swift */; };
 		EDB975842036F42C00F79FBF /* FirebaseCIUserEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB975832036F42C00F79FBF /* FirebaseCIUserEngine.swift */; };
 		EDB975862036F45A00F79FBF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB975852036F45A00F79FBF /* Constants.swift */; };
+		EDC7BD1220AF72CF00979E8B /* PhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7BD1120AF72CF00979E8B /* PhotoHelper.swift */; };
+		EDC7BD1420AF806100979E8B /* DocumentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7BD1320AF806100979E8B /* DocumentManager.swift */; };
+		EDC7BD1620AFBD1200979E8B /* ItemScanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7BD1520AFBD1200979E8B /* ItemScanningViewController.swift */; };
+		EDC7BD1820B0E1F300979E8B /* MonitoringBeaconScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7BD1720B0E1F300979E8B /* MonitoringBeaconScanner.swift */; };
 		EDD8F6DE2084078600563BD5 /* InventoryBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD8F6DD2084078600563BD5 /* InventoryBrain.swift */; };
 		EDD8F6E020840EB200563BD5 /* AddNewInventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD8F6DF20840EB200563BD5 /* AddNewInventoryViewController.swift */; };
 		EDD8F6E320841BA000563BD5 /* InventoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD8F6E220841BA000563BD5 /* InventoryTableViewCell.swift */; };
@@ -92,6 +97,7 @@
 		ED10C9F220AB90600053CD36 /* GenericPhotoMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPhotoMenu.swift; sourceTree = "<group>"; };
 		ED10C9F420AB976F0053CD36 /* GenericPhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPhotoPicker.swift; sourceTree = "<group>"; };
 		ED125D642089528800F15E4E /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		ED1E2D6920B207B500DE24D6 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		ED4B57DA208143D0002734FD /* LoginBrain_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBrain_iOSTests.swift; sourceTree = "<group>"; };
 		ED4B57DC20814480002734FD /* LoginBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBrain.swift; sourceTree = "<group>"; };
 		ED4B57DE20816ABD002734FD /* ShakeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeAnimation.swift; sourceTree = "<group>"; };
@@ -142,6 +148,10 @@
 		EDB975812036F05400F79FBF /* CIUserEngine_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIUserEngine_iOSTests.swift; sourceTree = "<group>"; };
 		EDB975832036F42C00F79FBF /* FirebaseCIUserEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCIUserEngine.swift; sourceTree = "<group>"; };
 		EDB975852036F45A00F79FBF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EDC7BD1120AF72CF00979E8B /* PhotoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoHelper.swift; sourceTree = "<group>"; };
+		EDC7BD1320AF806100979E8B /* DocumentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentManager.swift; sourceTree = "<group>"; };
+		EDC7BD1520AFBD1200979E8B /* ItemScanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemScanningViewController.swift; sourceTree = "<group>"; };
+		EDC7BD1720B0E1F300979E8B /* MonitoringBeaconScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoringBeaconScanner.swift; sourceTree = "<group>"; };
 		EDD8F6DD2084078600563BD5 /* InventoryBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryBrain.swift; sourceTree = "<group>"; };
 		EDD8F6DF20840EB200563BD5 /* AddNewInventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewInventoryViewController.swift; sourceTree = "<group>"; };
 		EDD8F6E220841BA000563BD5 /* InventoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -208,6 +218,7 @@
 		ED4B57E62082257E002734FD /* DatabaseLayer */ = {
 			isa = PBXGroup;
 			children = (
+				EDC7BD1320AF806100979E8B /* DocumentManager.swift */,
 				ED4B57E9208228F8002734FD /* CIUserDatabaseProtocol.swift */,
 				ED4B57EB208229EA002734FD /* CIUserRealmDatabase.swift */,
 				ED4B57EF20824DD8002734FD /* InventoryDatabaseProtocol.swift */,
@@ -223,6 +234,7 @@
 			children = (
 				ED7C33CB20ACD2D500FA4144 /* BeaconScanner.swift */,
 				ED7C33D220ACED3E00FA4144 /* NearestBeaconScanner.swift */,
+				EDC7BD1720B0E1F300979E8B /* MonitoringBeaconScanner.swift */,
 			);
 			path = BeaconScanners;
 			sourceTree = "<group>";
@@ -244,13 +256,6 @@
 			path = Animations;
 			sourceTree = "<group>";
 		};
-		EDB975682036567700F79FBF /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		EDB9756E20365FF400F79FBF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +264,7 @@
 				ED4B57E2208175C1002734FD /* NavigationManager.swift */,
 				ED51C5C22087F491000EB303 /* PopupManager.swift */,
 				ED125D642089528800F15E4E /* DateHelper.swift */,
+				EDC7BD1120AF72CF00979E8B /* PhotoHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -303,7 +309,6 @@
 				EDDF48B9203642E300167991 /* Resources */,
 				EDDF48B42036423900167991 /* Model */,
 				EDDF48B52036424300167991 /* ViewController */,
-				EDB975682036567700F79FBF /* ViewModel */,
 				EDDF489420363FC000167991 /* AppDelegate.swift */,
 				EDDF489820363FC000167991 /* Main.storyboard */,
 				EDDF489B20363FC000167991 /* Assets.xcassets */,
@@ -353,6 +358,7 @@
 				ED689E6920854D0400187584 /* InventoryViewController.swift */,
 				ED689E6B20854D1300187584 /* ItemViewController.swift */,
 				ED8077B62086B2C100E8952D /* BeaconScanningViewController.swift */,
+				EDC7BD1520AFBD1200979E8B /* ItemScanningViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -402,6 +408,7 @@
 				ED8077C72086BE7100E8952D /* successScanning.json */,
 				EDB975852036F45A00F79FBF /* Constants.swift */,
 				ED10C9F020AB4FA10053CD36 /* ObjCBridge.h */,
+				ED1E2D6920B207B500DE24D6 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -500,6 +507,7 @@
 				ED8077C92086BE7200E8952D /* successScanning.json in Resources */,
 				ED8077CC2086C9AE00E8952D /* success_pulse.json in Resources */,
 				EDDF489F20363FC000167991 /* LaunchScreen.storyboard in Resources */,
+				ED1E2D6A20B207B500DE24D6 /* Localizable.strings in Resources */,
 				EDB975762036BBC700F79FBF /* GoogleService-Info.plist in Resources */,
 				EDDF489C20363FC000167991 /* Assets.xcassets in Resources */,
 				ED8077C82086BE7200E8952D /* scanningBeacon.json in Resources */,
@@ -657,6 +665,7 @@
 				ED4B57DD20814480002734FD /* LoginBrain.swift in Sources */,
 				ED689E6A20854D0400187584 /* InventoryViewController.swift in Sources */,
 				ED4B57F82082B529002734FD /* InventoryEngineProtocol.swift in Sources */,
+				EDC7BD1220AF72CF00979E8B /* PhotoHelper.swift in Sources */,
 				EDDF48BB2036451D00167991 /* Inventory.swift in Sources */,
 				ED4B57DF20816ABD002734FD /* ShakeAnimation.swift in Sources */,
 				EDB97567203648BD00F79FBF /* Item.swift in Sources */,
@@ -667,6 +676,7 @@
 				EDB9757A2036CF8E00F79FBF /* LoginEngineProtocol.swift in Sources */,
 				ED4B57E3208175C1002734FD /* NavigationManager.swift in Sources */,
 				ED4B57E520821D3D002734FD /* InventoriesViewController.swift in Sources */,
+				EDC7BD1420AF806100979E8B /* DocumentManager.swift in Sources */,
 				EDB9757C2036D00600F79FBF /* FirebaseLoginEngine.swift in Sources */,
 				EDB97574203660BA00F79FBF /* FirebaseItemEngine.swift in Sources */,
 				EDD8F6E320841BA000563BD5 /* InventoryTableViewCell.swift in Sources */,
@@ -679,8 +689,10 @@
 				ED51C5C720880BC7000EB303 /* GeneralRealmDatabase.swift in Sources */,
 				EDA283BE206AE867004B46F1 /* AnimationChainingFactory.swift in Sources */,
 				EDB9757E2036DC1300F79FBF /* CIUser.swift in Sources */,
+				EDC7BD1620AFBD1200979E8B /* ItemScanningViewController.swift in Sources */,
 				ED93CB59206454B000ABBDEF /* CIUserBrain.swift in Sources */,
 				EDDF489520363FC000167991 /* AppDelegate.swift in Sources */,
+				EDC7BD1820B0E1F300979E8B /* MonitoringBeaconScanner.swift in Sources */,
 				ED4B57FA2082B584002734FD /* FirebaseInventoryEngine.swift in Sources */,
 				EDB975842036F42C00F79FBF /* FirebaseCIUserEngine.swift in Sources */,
 				ED4B57F020824DD8002734FD /* InventoryDatabaseProtocol.swift in Sources */,

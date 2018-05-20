@@ -38,28 +38,28 @@ class GenericPhotoMenu: NSObject {
     }
     
     private func takePhotoAction() -> UIAlertAction {
-        let takePhotoAction = UIAlertAction(title: "Take photo", style: .default) { (action) in
+        let takePhotoAction = UIAlertAction(title: NSLocalizedString(Constants.LocalizationKeys.kTakePhoto, comment: ""), style: .default) { (action) in
             self.delegate?.takePhotoAction()
         }
         return takePhotoAction
     }
     
     private func changePhotoAction() -> UIAlertAction {
-        let changePhotoAction = UIAlertAction(title: "Change photo", style: .default) { (action) in
+        let changePhotoAction = UIAlertAction(title: NSLocalizedString(Constants.LocalizationKeys.kChoosePhoto, comment: ""), style: .default) { (action) in
             self.delegate?.changePhotoAction()
         }
         return changePhotoAction
     }
     
     private func cancelAction() -> UIAlertAction {
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+        let cancelAction = UIAlertAction(title: NSLocalizedString(Constants.LocalizationKeys.kGeneralCancel, comment: ""), style: .cancel) { (action) in
             self.delegate?.cancelAction()
         }
         return cancelAction
     }
     
     private func deletePhotoAction() -> UIAlertAction {
-        let deletePhotoAction = UIAlertAction(title: "Delete photo", style: .destructive) { (action) in
+        let deletePhotoAction = UIAlertAction(title: NSLocalizedString(Constants.LocalizationKeys.kDeletePhoto, comment: ""), style: .destructive) { (action) in
             self.delegate?.deleteAction()
         }
         return deletePhotoAction

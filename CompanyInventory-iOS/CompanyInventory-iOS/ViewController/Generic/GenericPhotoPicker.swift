@@ -10,18 +10,19 @@ import Foundation
 import UIKit
 
 protocol GenericPhotoPickerDelegate: class {
-    func photoHasBeenChoosen()
+    func photoHasBeenChoosen(_ image: UIImage?)
 }
 
 class GenericPhotoPicker: NSObject {
 
     var picker: UIImagePickerController!
     weak var delegate: GenericPhotoPickerDelegate?
+    private var photoHelper = PhotoHelper()
     
     override init() {
         super.init()
         picker = UIImagePickerController()
-        picker.allowsEditing = true
+        picker.allowsEditing = false
         picker.sourceType = .camera
         picker.delegate = self
     }
@@ -34,6 +35,17 @@ class GenericPhotoPicker: NSObject {
 
 extension GenericPhotoPicker: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        self.delegate?.photoHasBeenChoosen()
+        NavigationManager.sharedInstance.showLoader {
+            let smallImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+            let largeImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+            self.photoHelper.prepare(image: smallImage, withSize: Constants.kDefaultItemSmallPhotoSize)
+            self.photoHelper.prepare(image: largeImage, withSize: Constants.kDefaultItemLargePhotoSize)
+            picker.dismiss(animated: true, completion: {
+                NavigationManager.sharedInstance.hideLoader {
+                    self.delegate?.photoHasBeenChoosen(smallImage)
+                }
+            })
+        }
+        
     }
 }

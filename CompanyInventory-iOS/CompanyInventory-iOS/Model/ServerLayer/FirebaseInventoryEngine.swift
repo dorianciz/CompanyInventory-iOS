@@ -133,6 +133,7 @@ class FirebaseInventoryEngine: InventoryEngineProtocol {
                                             if let itemDictionary = item as? NSDictionary {
                                                 let itemToSave = Item()
                                                 itemToSave.itemId = id as? String
+                                                itemToSave.name = itemDictionary.value(forKey: Constants.kFirebaseItemNameNodeName) as? String
                                                 itemToSave.descriptionText = itemDictionary.value(forKey: Constants.kFirebaseItemDescriptionNodeName) as? String
                                                 itemToSave.beaconId = itemDictionary.value(forKey: Constants.kFirebaseItemBeaconIdNodeName) as? String
                                                 
