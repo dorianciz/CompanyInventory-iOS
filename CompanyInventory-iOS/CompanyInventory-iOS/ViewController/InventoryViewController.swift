@@ -41,10 +41,6 @@ class InventoryViewController: UIViewController {
         fetchInventory()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    
     private func applyStyles() {
         tableView.separatorStyle = .none
         addRightBarButton()
@@ -110,10 +106,24 @@ class InventoryViewController: UIViewController {
     }
     
     @IBAction func startScanningAction(_ sender: Any) {
-        isScanning = true
-        startButton.isEnabled = false
-        startButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kScanningInventory, comment: ""), for: .normal)
-        ThemeManager.sharedInstance.addGradientWithAnimation(toView: startButton, withColors: [ThemeManager.sharedInstance.startAnimationGradientColor.cgColor, ThemeManager.sharedInstance.middleAnimationGradientColor.cgColor, ThemeManager.sharedInstance.endAnimationGradientColor.cgColor])
+        inventoryBrain.checkBluetoothConnection { (response) in
+            if response == .bluetoothOn {
+                self.isScanning = true
+                self.startButton.isEnabled = false
+                self.startButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kScanningInventory, comment: ""), for: .normal)
+                ThemeManager.sharedInstance.addGradientWithAnimation(toView: self.startButton, withColors: [ThemeManager.sharedInstance.startAnimationGradientColor.cgColor, ThemeManager.sharedInstance.middleAnimationGradientColor.cgColor, ThemeManager.sharedInstance.endAnimationGradientColor.cgColor])
+            } else if response == .bluetoothError {
+                PopupManager.sharedInstance.showPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kBluetoothErrorTitle, comment: ""), withDescription: NSLocalizedString(Constants.LocalizationKeys.kBluetoothErrorDescription, comment: ""), withOkButtonText: NSLocalizedString(Constants.LocalizationKeys.kRetryButtonTitle, comment: ""), withCancelButtonText: NSLocalizedString(Constants.LocalizationKeys.kGeneralCancel, comment: ""), withPopupType: .error, withOkCompletion: {
+                        NavigationManager.sharedInstance.showLoader {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + Constants.kWaitAfterBluetoothRetry, execute: {
+                                NavigationManager.sharedInstance.hideLoader {
+                                    self.startScanningAction(sender)
+                                }
+                            })
+                        }
+                    }, withCancelCompletion:nil)
+            }
+        }
     }
     
     private func fillLabel(_ label: UILabel!, dependsOnItemStatus status: ItemStatus!) {

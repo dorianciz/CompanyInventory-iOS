@@ -49,4 +49,7 @@
 "choose_photo" = "Choose photo";
 "delete_photo" = "Delete photo";
 "report_title" = "Report";
-
+"no_internet_connection" = "There is no internet connection. For offline mode, click Cancel.";
+"general_retry" = "Retry";
+"bluetooth_error_title" = "Bluetooth connection issue";
+"bluetooth_error_description" = "Please, turn on your bluetooth to be able to scan beacon for new item.";

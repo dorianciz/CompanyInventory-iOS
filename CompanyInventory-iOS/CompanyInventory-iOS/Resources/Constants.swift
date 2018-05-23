@@ -47,12 +47,14 @@ struct Constants {
     static let kInventoryReuseIdentifier = "InventoryIdentifier"
     static let kItemsByDateCellIdentifier = "ItemsByDateCellIdentifier"
     static let kItemsByDateCellHeaderIdentifier = "ItemsByDateCellHeaderIdentifier"
+    static let kGenericPopupIdentifier = "GenericPopupIdentifier"
     
     //Segue ids
     static let kShowLoggedInAppSegue = "showLoggedInAppSegue"
     static let kShowInventorySegue = "showInventorySegue"
     static let kShowAddItemSegue = "showAddItemSegue"
     static let kShowScanningItemSegue = "showScanningItemSegue"
+    static let kShowBeaconScanningSegue = "showBeaconScanningSegue"
     
     //Animations files names
     static let kScanningBeaconAnimation = "scanningBeacon"
@@ -76,6 +78,14 @@ struct Constants {
     static let kDefaultItemLargePhotoSize = CGSize(width: 300, height: 300)
     static let kDefaultItemImageName = "defaultItem"
     
+    //ThemeManager
+    static let kTitleFontSize:CGFloat = 15.0
+    static let kDefaultFontSize:CGFloat = 13.0
+    static let kHeaderFontSize:CGFloat = 23.0
+    static let kDescriptionFontSize = 13.0
+    static let kDefaultFontName = "Helvetica"
+    static let kDefaultBoldFontName = "Helvetica Bold"
+    
     //Other
     static let kAnimationViewWidth = 200
     static let kAnimationViewHeight = 200
@@ -83,6 +93,7 @@ struct Constants {
     static let kAnimationViewY = 50
     static let kDefaultDateFormat = "yyyy/MM/dd"
     static let kAnimationLayerName = "AnimationLayerId"
+    static let kWaitAfterBluetoothRetry = 1.0
     
     struct LocalizationKeys {
         static let kLoginSmallLabel = "login_top_label"
@@ -128,6 +139,10 @@ struct Constants {
         static let kChoosePhoto = "choose_photo";
         static let kDeletePhoto = "delete_photo";
         static let kReportTitle = "report_title";
+        static let kNoInternetConnection = "no_internet_connection";
+        static let kRetryButtonTitle = "general_retry";
+        static let kBluetoothErrorTitle = "bluetooth_error_title";
+        static let kBluetoothErrorDescription = "bluetooth_error_description";
     }
     
 }

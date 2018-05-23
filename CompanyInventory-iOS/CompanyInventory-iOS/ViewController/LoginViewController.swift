@@ -128,6 +128,10 @@ class LoginViewController: UIViewController {
                     case .missingPassword:
                         self.passwordTextfield.shake()
                         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                    case .noInternetConnection:
+                        PopupManager.sharedInstance.showPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kGeneralErrorTitle, comment: ""), withDescription: NSLocalizedString(Constants.LocalizationKeys.kNoInternetConnection, comment: ""), withOkButtonText: NSLocalizedString(Constants.LocalizationKeys.kRetryButtonTitle, comment: ""), withCancelButtonText: NSLocalizedString(Constants.LocalizationKeys.kGeneralCancel, comment: ""), withPopupType: .error, withOkCompletion: {
+                            self.perform(#selector(self.loginAction(_:)))
+                        }, withCancelCompletion: nil)
                     default: break
                     }
                 }

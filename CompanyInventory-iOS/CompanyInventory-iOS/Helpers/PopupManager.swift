@@ -49,4 +49,33 @@ class PopupManager {
         return alertController
     }
     
+    func showPopup(withTitle title: String?, withDescription description: String?, withOkButtonText ok: String? = NSLocalizedString(Constants.LocalizationKeys.kGeneralOk, comment: ""), withCancelButtonText cancel: String? = NSLocalizedString(Constants.LocalizationKeys.kGeneralCancel, comment: ""), withPopupType type: PopupType?, withOkCompletion okCompletion: (() -> Void)?, withCancelCompletion cancelCompletion: (() -> Void)?) {
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            let storyboard = UIStoryboard(name: Constants.kStoryboardName, bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: Constants.kGenericPopupIdentifier) as! GenericPopupViewController
+            controller.titleString = title
+            controller.descriptionString = description
+            controller.okButtonString = ok
+            controller.cancelButtonString = cancel
+            controller.okCompletion = okCompletion
+            controller.cancelCompletion = cancelCompletion
+            controller.popupType = type
+            controller.modalPresentationStyle = .overCurrentContext
+            topController.present(controller, animated: false, completion:nil)
+        }
+    }
+    
+    func hidePopup() {
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            topController.dismiss(animated: true, completion: nil)
+        }
+    }
+    
 }

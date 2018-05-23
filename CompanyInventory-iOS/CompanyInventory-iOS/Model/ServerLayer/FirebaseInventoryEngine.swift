@@ -10,7 +10,7 @@ import Foundation
 import FirebaseDatabase
 import RealmSwift
 
-class FirebaseInventoryEngine: InventoryEngineProtocol {
+class FirebaseInventoryEngine: GenericEngine, InventoryEngineProtocol {
     
     var firebaseDatabase = Database.database().reference()
     private var userRealmDatabase: CIUserDatabaseProtocol!
@@ -52,7 +52,6 @@ class FirebaseInventoryEngine: InventoryEngineProtocol {
                     }
                     
                     let formatter = DateFormatter()
-//                    formatter.dateFormat = "yyyy/MM/dd, H:mm:ss"
                     formatter.dateFormat = "yyyy/MM/dd"
                     let defaultTimeZoneStr = formatter.string(from: date)
                     
@@ -78,9 +77,14 @@ class FirebaseInventoryEngine: InventoryEngineProtocol {
             return
         }
         
-        self.firebaseDatabase.child(Constants.kFirebaseInventoriesNodeName).child(userId).child(id).setValue(dictionary)
-        
-        completion(.success)
+        performRequest { (response) in
+            if response == .noInternetConnection {
+                completion(.noInternetConnection)
+                return
+            }
+            self.firebaseDatabase.child(Constants.kFirebaseInventoriesNodeName).child(userId).child(id).setValue(dictionary)
+            completion(.success)
+        }
     }
     
     func getAllInventories(withCompletion completion: @escaping (Response, [Inventory]?) -> Void) {
@@ -91,80 +95,84 @@ class FirebaseInventoryEngine: InventoryEngineProtocol {
             return
         }
         
-        
-        
-        firebaseDatabase.child(Constants.kFirebaseInventoriesNodeName).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
-            print("\(snapshot)")
-            var inventories = [Inventory]()
-            let inventoriesResult = snapshot.value as? NSDictionary
-            
-            if let inventoriesDictionary = inventoriesResult {
-                for (id, inventory) in inventoriesDictionary {
-                    let inventoryToSave = Inventory()
-                    
-                    let inventoryId = id as? String
-                    var name: String?
-                    var descriptionText: String?
-                    var inventoryStatus: InventoryStatus = .none
-                    
-                    if let inventoryDictionary = inventory as? NSDictionary {
-                        name = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryNameNodeName) as? String
-                        descriptionText = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryDescriptionNodeName) as? String
-                        let statusInt = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryStatusNodeName) as? Int
-                        let status = InventoryStatus(rawValue: statusInt ?? 0)
-                        inventoryStatus = status ?? .none
+        performRequest { (response) in
+            if response == .noInternetConnection {
+                completion(.noInternetConnection, nil)
+                return
+            }
+            self.firebaseDatabase.child(Constants.kFirebaseInventoriesNodeName).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+                print("\(snapshot)")
+                var inventories = [Inventory]()
+                let inventoriesResult = snapshot.value as? NSDictionary
+                
+                if let inventoriesDictionary = inventoriesResult {
+                    for (id, inventory) in inventoriesDictionary {
+                        let inventoryToSave = Inventory()
                         
+                        let inventoryId = id as? String
+                        var name: String?
+                        var descriptionText: String?
+                        var inventoryStatus: InventoryStatus = .none
                         
-                        let itemsByDate = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryItemsByDateNodeName) as? NSDictionary
-                        
-                        if let itemsByDateDictionary = itemsByDate {
-                            for (id, itemByDate) in itemsByDateDictionary {
-                                if let itemByDateDictionary = itemByDate as? NSDictionary {
-                                    let itemByDateToSave = InventoryItemByDate()
-                                    itemByDateToSave.id = id as? String
-                                    
-                                    let dateString = itemByDateDictionary.value(forKey: Constants.kFirebaseItemByDateDateNodeName) as? String
-                                    let dateFormatter = DateFormatter()
-                                    dateFormatter.dateFormat = "yyyy/MM/dd"
-                                    let date = dateFormatter.date(from: dateString!)
-                                    
-                                    itemByDateToSave.date = date
-                                    
-                                    if let itemsDictionary = itemByDateDictionary.value(forKey: Constants.kFirebaseItemByDateItemsNodeName) as? NSDictionary {
-                                        for (id, item) in itemsDictionary {
-                                            if let itemDictionary = item as? NSDictionary {
-                                                let itemToSave = Item()
-                                                itemToSave.itemId = id as? String
-                                                itemToSave.name = itemDictionary.value(forKey: Constants.kFirebaseItemNameNodeName) as? String
-                                                itemToSave.descriptionText = itemDictionary.value(forKey: Constants.kFirebaseItemDescriptionNodeName) as? String
-                                                itemToSave.beaconId = itemDictionary.value(forKey: Constants.kFirebaseItemBeaconIdNodeName) as? String
-                                                
-                                                let statusInt = itemDictionary.value(forKey: Constants.kFirebaseItemStatusNodeName) as? Int
-                                                let status = ItemStatus(rawValue: statusInt ?? 4)
-                                                
-                                                itemToSave.status = status ?? .none
-                                                itemToSave.locationName = itemDictionary.value(forKey: Constants.kFirebaseItemLocationNameNodeName) as? String
-                                                itemToSave.longitude = RealmOptional(itemDictionary.value(forKey: Constants.kFirebaseItemLongitudeNodeName) as? Float)
-                                                itemToSave.latitude = RealmOptional(itemDictionary.value(forKey: Constants.kFirebaseItemLatitudeNodeName) as? Float)
-                                                itemByDateToSave.items?.append(itemToSave)
+                        if let inventoryDictionary = inventory as? NSDictionary {
+                            name = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryNameNodeName) as? String
+                            descriptionText = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryDescriptionNodeName) as? String
+                            let statusInt = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryStatusNodeName) as? Int
+                            let status = InventoryStatus(rawValue: statusInt ?? 0)
+                            inventoryStatus = status ?? .none
+                            
+                            
+                            let itemsByDate = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryItemsByDateNodeName) as? NSDictionary
+                            
+                            if let itemsByDateDictionary = itemsByDate {
+                                for (id, itemByDate) in itemsByDateDictionary {
+                                    if let itemByDateDictionary = itemByDate as? NSDictionary {
+                                        let itemByDateToSave = InventoryItemByDate()
+                                        itemByDateToSave.id = id as? String
+                                        
+                                        let dateString = itemByDateDictionary.value(forKey: Constants.kFirebaseItemByDateDateNodeName) as? String
+                                        let dateFormatter = DateFormatter()
+                                        dateFormatter.dateFormat = "yyyy/MM/dd"
+                                        let date = dateFormatter.date(from: dateString!)
+                                        
+                                        itemByDateToSave.date = date
+                                        
+                                        if let itemsDictionary = itemByDateDictionary.value(forKey: Constants.kFirebaseItemByDateItemsNodeName) as? NSDictionary {
+                                            for (id, item) in itemsDictionary {
+                                                if let itemDictionary = item as? NSDictionary {
+                                                    let itemToSave = Item()
+                                                    itemToSave.itemId = id as? String
+                                                    itemToSave.name = itemDictionary.value(forKey: Constants.kFirebaseItemNameNodeName) as? String
+                                                    itemToSave.descriptionText = itemDictionary.value(forKey: Constants.kFirebaseItemDescriptionNodeName) as? String
+                                                    itemToSave.beaconId = itemDictionary.value(forKey: Constants.kFirebaseItemBeaconIdNodeName) as? String
+                                                    
+                                                    let statusInt = itemDictionary.value(forKey: Constants.kFirebaseItemStatusNodeName) as? Int
+                                                    let status = ItemStatus(rawValue: statusInt ?? 4)
+                                                    
+                                                    itemToSave.status = status ?? .none
+                                                    itemToSave.locationName = itemDictionary.value(forKey: Constants.kFirebaseItemLocationNameNodeName) as? String
+                                                    itemToSave.longitude = RealmOptional(itemDictionary.value(forKey: Constants.kFirebaseItemLongitudeNodeName) as? Float)
+                                                    itemToSave.latitude = RealmOptional(itemDictionary.value(forKey: Constants.kFirebaseItemLatitudeNodeName) as? Float)
+                                                    itemByDateToSave.items?.append(itemToSave)
+                                                }
                                             }
                                         }
+                                        inventoryToSave.items?.append(itemByDateToSave)
                                     }
-                                    inventoryToSave.items?.append(itemByDateToSave)
                                 }
                             }
                         }
+                        inventoryToSave.inventoryId = inventoryId
+                        inventoryToSave.name = name
+                        inventoryToSave.descriptionText = descriptionText
+                        inventoryToSave.status = inventoryStatus
+                        inventories.append(inventoryToSave)
                     }
-                    inventoryToSave.inventoryId = inventoryId
-                    inventoryToSave.name = name
-                    inventoryToSave.descriptionText = descriptionText
-                    inventoryToSave.status = inventoryStatus
-                    inventories.append(inventoryToSave)
+                    completion(.success, inventories)
+                } else {
+                    completion(.success, nil)
                 }
-                completion(.success, inventories)
-            } else {
-                completion(.success, nil)
-            }
-        })
+            })
+        }
     }
 }

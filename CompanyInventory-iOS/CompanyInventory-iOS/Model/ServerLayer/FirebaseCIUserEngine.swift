@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
-class FirebaseCIUserEngine: CIUserEngineProtocol {
+class FirebaseCIUserEngine: GenericEngine, CIUserEngineProtocol {
     
     var firebaseDatabase = Database.database().reference()
     
@@ -22,12 +22,17 @@ class FirebaseCIUserEngine: CIUserEngineProtocol {
             completion(.error)
             return
         }
-    
-        self.firebaseDatabase.child(Constants.kFirebaseCIUserNodeName).child(uid).setValue([Constants.kFirebaseUsernameNodeName: username,
-                                                                                            Constants.kFirebaseNameNodeName: name,
-                                                                                            Constants.kFirebaseSurnameNodeName: surname,
-                                                                                            Constants.kFirebasePhotoFileName: photoName])
-    
-        completion(.success)
+        
+        performRequest { (response) in
+            if response == .noInternetConnection {
+                completion(.noInternetConnection)
+                return
+            }
+            self.firebaseDatabase.child(Constants.kFirebaseCIUserNodeName).child(uid).setValue([Constants.kFirebaseUsernameNodeName: username,
+                                                                                                Constants.kFirebaseNameNodeName: name,
+                                                                                                Constants.kFirebaseSurnameNodeName: surname,
+                                                                                                Constants.kFirebasePhotoFileName: photoName])
+            completion(.success)
+        }
     }
 }

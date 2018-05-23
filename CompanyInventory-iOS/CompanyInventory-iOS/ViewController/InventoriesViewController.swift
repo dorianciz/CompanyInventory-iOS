@@ -59,6 +59,10 @@ class InventoriesViewController: UIViewController {
                         } else {
                             self.tableView.isHidden = true
                         }
+                    } else if response == .noInternetConnection {
+                        PopupManager.sharedInstance.showPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kGeneralErrorTitle, comment: ""), withDescription: NSLocalizedString(Constants.LocalizationKeys.kNoInternetConnection, comment: ""), withOkButtonText: NSLocalizedString(Constants.LocalizationKeys.kRetryButtonTitle, comment: ""), withCancelButtonText: NSLocalizedString(Constants.LocalizationKeys.kGeneralCancel, comment: ""), withPopupType: .error, withOkCompletion: {
+                            self.fetchInventories()
+                        }, withCancelCompletion: nil)
                     } else {
                         //Error
                     }
@@ -71,23 +75,7 @@ class InventoriesViewController: UIViewController {
         let alertController = PopupManager.sharedInstance.showGenericPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kCreateInventoryTitle, comment: ""), withMessage: NSLocalizedString(Constants.LocalizationKeys.kCreateInventoryDescription, comment: ""), withTextFieldsPlaceholders: [NSLocalizedString(Constants.LocalizationKeys.kGeneralNamePlaceholder, comment: ""), NSLocalizedString(Constants.LocalizationKeys.kGeneralDescriptionPlaceholder, comment: "")]) { results in
             results.forEach{print($0)}
             NavigationManager.sharedInstance.showLoader {
-                self.inventoryBrain.createNewInventory(results[0], results[1], { (response) in
-                    NavigationManager.sharedInstance.hideLoader {
-                        switch response {
-                        case .success:
-                            if self.tableView.isHidden {
-                                self.tableView.isHidden = false
-                            }
-                            self.inventories = self.inventoryBrain.getAllLocalInventories()
-                            self.tableView.reloadData()
-                        case .error:
-                            //Show error
-                            break
-                        default:
-                            break
-                        }
-                    }
-                })
+                self.createNewInventory(results[0], results[1])
             }
             
         }
@@ -111,6 +99,29 @@ class InventoriesViewController: UIViewController {
         }
     }
     
+    private func createNewInventory(_ name: String?, _ description: String?) {
+        self.inventoryBrain.createNewInventory(name, description, { (response) in
+            NavigationManager.sharedInstance.hideLoader {
+                switch response {
+                case .success:
+                    if self.tableView.isHidden {
+                        self.tableView.isHidden = false
+                    }
+                    self.inventories = self.inventoryBrain.getAllLocalInventories()
+                    self.tableView.reloadData()
+                case .error:
+                    //Show error
+                    break
+                case .noInternetConnection:
+                    PopupManager.sharedInstance.showPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kGeneralErrorTitle, comment: ""), withDescription: NSLocalizedString(Constants.LocalizationKeys.kNoInternetConnection, comment: ""), withOkButtonText: NSLocalizedString(Constants.LocalizationKeys.kRetryButtonTitle, comment: ""), withCancelButtonText: NSLocalizedString(Constants.LocalizationKeys.kGeneralCancel, comment: ""), withPopupType: .error, withOkCompletion: {
+                        self.createNewInventory(name, description)
+                    }, withCancelCompletion: nil)
+                default:
+                    break
+                }
+            }
+        })
+    }
 }
 
 extension InventoriesViewController: UITableViewDelegate {

@@ -212,6 +212,88 @@
             </objects>
             <point key="canvasLocation" x="137" y="837"/>
         </scene>
+        <!--Generic Popup View Controller-->
+        <scene sceneID="kvv-RY-bFF">
+            <objects>
+                <viewController storyboardIdentifier="GenericPopupIdentifier" id="NYL-Gj-wPT" customClass="GenericPopupViewController" customModule="CompanyInventory_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iaa-IE-Vea">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8C-XF-fuj">
+                                <rect key="frame" x="37.5" y="182" width="300.5" height="151.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkD-KR-bta">
+                                        <rect key="frame" x="25" y="51.5" width="250.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Kv-kV-Uzq">
+                                        <rect key="frame" x="25" y="15.5" width="250.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hX-7b-SCO">
+                                        <rect key="frame" x="25" y="87" width="120" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Sbh-4o-nfA"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="cancelButtonAction:" destination="NYL-Gj-wPT" eventType="touchUpInside" id="oXv-gp-cau"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Vy-Em-s00">
+                                        <rect key="frame" x="155" y="87" width="120" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="SaM-hx-JBB"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="okButtonAction:" destination="NYL-Gj-wPT" eventType="touchUpInside" id="nPi-GP-vaE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="vkD-KR-bta" firstAttribute="top" secondItem="9Kv-kV-Uzq" secondAttribute="bottom" constant="15" id="GmR-WY-6m1"/>
+                                    <constraint firstItem="9Kv-kV-Uzq" firstAttribute="top" secondItem="L8C-XF-fuj" secondAttribute="top" constant="15" id="VTi-Bw-Kxd"/>
+                                    <constraint firstAttribute="bottom" secondItem="0Vy-Em-s00" secondAttribute="bottom" constant="25" id="X4J-dW-lJz"/>
+                                    <constraint firstAttribute="trailing" secondItem="vkD-KR-bta" secondAttribute="trailing" constant="25" id="XQA-jW-CRE"/>
+                                    <constraint firstAttribute="trailing" secondItem="0Vy-Em-s00" secondAttribute="trailing" constant="25" id="XVL-Il-bip"/>
+                                    <constraint firstItem="2hX-7b-SCO" firstAttribute="leading" secondItem="L8C-XF-fuj" secondAttribute="leading" constant="25" id="Xu9-Bx-ITb"/>
+                                    <constraint firstItem="9Kv-kV-Uzq" firstAttribute="leading" secondItem="L8C-XF-fuj" secondAttribute="leading" constant="25" id="aY2-Cb-YnI"/>
+                                    <constraint firstItem="2hX-7b-SCO" firstAttribute="width" secondItem="L8C-XF-fuj" secondAttribute="width" multiplier="0.4" id="eiC-az-qXa"/>
+                                    <constraint firstItem="0Vy-Em-s00" firstAttribute="width" secondItem="L8C-XF-fuj" secondAttribute="width" multiplier="0.4" id="ga8-t6-MAp"/>
+                                    <constraint firstAttribute="bottom" secondItem="2hX-7b-SCO" secondAttribute="bottom" constant="25" id="jrb-ag-ZIL"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Kv-kV-Uzq" secondAttribute="trailing" constant="25" id="ot1-L5-zVp"/>
+                                    <constraint firstItem="vkD-KR-bta" firstAttribute="leading" secondItem="L8C-XF-fuj" secondAttribute="leading" constant="25" id="vIf-66-hue"/>
+                                    <constraint firstItem="2hX-7b-SCO" firstAttribute="top" secondItem="vkD-KR-bta" secondAttribute="bottom" constant="15" id="yyR-ft-LP9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="L8C-XF-fuj" firstAttribute="centerY" secondItem="A3a-43-Mg5" secondAttribute="centerY" multiplier="0.75" id="4zL-1j-SKX"/>
+                            <constraint firstItem="L8C-XF-fuj" firstAttribute="centerX" secondItem="A3a-43-Mg5" secondAttribute="centerX" id="92B-op-uEG"/>
+                            <constraint firstItem="L8C-XF-fuj" firstAttribute="width" secondItem="iaa-IE-Vea" secondAttribute="width" multiplier="0.8" id="Eb8-rD-Gk3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="A3a-43-Mg5"/>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="2hX-7b-SCO" id="unH-nL-OIw"/>
+                        <outlet property="descriptionLabel" destination="vkD-KR-bta" id="L0W-aJ-t4b"/>
+                        <outlet property="okButton" destination="0Vy-Em-s00" id="uql-qD-e9n"/>
+                        <outlet property="popupContainerView" destination="L8C-XF-fuj" id="iq6-Jy-8Go"/>
+                        <outlet property="titleLabel" destination="9Kv-kV-Uzq" id="yCT-Dc-G01"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pph-ip-rkU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="133" y="1558"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="abl-mo-Vcr">
             <objects>
@@ -804,7 +886,7 @@
                                     <color key="titleColor" name="shadowColor" catalog="System" colorSpace="catalog"/>
                                 </state>
                                 <connections>
-                                    <segue destination="KDp-IM-ONC" kind="presentation" modalPresentationStyle="overCurrentContext" id="9XE-ab-lF5"/>
+                                    <action selector="scanAction:" destination="Fvy-te-LSo" eventType="touchUpInside" id="dzv-8n-jWn"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beacon identifier added" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqq-hY-shk">
@@ -902,6 +984,7 @@
                         <outlet property="nameTextField" destination="pkx-Rc-xDI" id="p2v-um-9D7"/>
                         <outlet property="scanLabel" destination="T0z-GR-1h8" id="AQp-xS-tbP"/>
                         <outlet property="titleLabel" destination="T0g-wx-ON8" id="6KL-oc-A4b"/>
+                        <segue destination="KDp-IM-ONC" kind="presentation" identifier="showBeaconScanningSegue" modalPresentationStyle="overCurrentContext" id="bf0-4I-tVP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXt-ZG-iiv" userLabel="First Responder" sceneMemberID="firstResponder"/>

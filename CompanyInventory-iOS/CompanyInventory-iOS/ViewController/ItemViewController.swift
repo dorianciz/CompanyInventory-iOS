@@ -44,7 +44,6 @@ class ItemViewController: UIViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.startUpdatingLocation()
-        
     }
 
     private func applyStyles() {
@@ -102,6 +101,24 @@ class ItemViewController: UIViewController {
     
     @objc func cancelTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func scanAction(_ sender: Any) {
+        inventoryBrain.checkBluetoothConnection { (response) in
+            if response == .bluetoothOn {
+                self.performSegue(withIdentifier: Constants.kShowBeaconScanningSegue, sender: self)
+            } else if response == .bluetoothError {
+                PopupManager.sharedInstance.showPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kBluetoothErrorTitle, comment: ""), withDescription: NSLocalizedString(Constants.LocalizationKeys.kBluetoothErrorDescription, comment: ""), withOkButtonText: NSLocalizedString(Constants.LocalizationKeys.kRetryButtonTitle, comment: ""), withCancelButtonText: NSLocalizedString(Constants.LocalizationKeys.kGeneralCancel, comment: ""), withPopupType: .error, withOkCompletion: {
+                        NavigationManager.sharedInstance.showLoader {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + Constants.kWaitAfterBluetoothRetry, execute: {
+                                NavigationManager.sharedInstance.hideLoader {
+                                    self.scanAction(sender)
+                                }
+                            })
+                        }
+                    }, withCancelCompletion:nil)
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

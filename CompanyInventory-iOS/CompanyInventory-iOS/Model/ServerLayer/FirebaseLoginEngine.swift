@@ -9,32 +9,43 @@
 import Foundation
 import FirebaseAuth
 
-class FirebaseLoginEngine: LoginEngineProtocol {
+class FirebaseLoginEngine: GenericEngine, LoginEngineProtocol {
     func loginUser(withUsername username: String, withPassword password: String, withCompletion completion: @escaping (Response, CIUser?) -> Void) {
-        Auth.auth().signIn(withEmail: username, password: password) { (user, error) in
-            if error == nil {
-                let ciUser = CIUser()
-                ciUser.uid = user?.uid
-                ciUser.username = user?.email
-                completion(Response.success, ciUser)
-            } else {
-                completion(Response.error, nil)
+        performRequest { (response) in
+            if response == .noInternetConnection {
+                completion(.noInternetConnection, nil)
+                return
+            }
+            Auth.auth().signIn(withEmail: username, password: password) { (user, error) in
+                if error == nil {
+                    let ciUser = CIUser()
+                    ciUser.uid = user?.uid
+                    ciUser.username = user?.email
+                    completion(Response.success, ciUser)
+                } else {
+                    completion(Response.error, nil)
+                }
             }
         }
     }
     
     func signInUser(withUsername username: String, withPassword password: String, withCompletion completion: @escaping (CIUser?, Response) -> Void) {
-        Auth.auth().createUser(withEmail: username, password: password, completion: { (firUser, error) in
-            let newUser = CIUser()
-            
-            if let user = firUser {
-                newUser.username = user.email
-                newUser.uid = user.uid
-                completion(newUser, Response.success)
-            } else {
-                completion(nil, Response.error)
+        performRequest { (response) in
+            if response == .noInternetConnection {
+                completion(nil, .noInternetConnection)
+                return
             }
-            
-        })
+            Auth.auth().createUser(withEmail: username, password: password, completion: { (firUser, error) in
+                let newUser = CIUser()
+                
+                if let user = firUser {
+                    newUser.username = user.email
+                    newUser.uid = user.uid
+                    completion(newUser, Response.success)
+                } else {
+                    completion(nil, Response.error)
+                }  
+            })
+        }
     }
 }

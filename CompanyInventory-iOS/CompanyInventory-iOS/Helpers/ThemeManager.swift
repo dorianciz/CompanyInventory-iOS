@@ -16,10 +16,14 @@ final class ThemeManager {
     let brandColor = #colorLiteral(red: 1, green: 0.9865267873, blue: 0.4715276957, alpha: 1)
     let generalGrayColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
     let generalBlueColor = #colorLiteral(red: 0, green: 0.5008062124, blue: 1, alpha: 1)
+    let errorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+    let textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    let inverseTextColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     let inventoryOpenedColor = #colorLiteral(red: 0.2176683843, green: 0.8194433451, blue: 0.2584097683, alpha: 1)
     let inventoryClosedColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
     let defaultItemImage = #imageLiteral(resourceName: "no_image")
     let itemCornerRadius: CGFloat = 4.0
+    let buttonDefaultCornerRadius: CGFloat = 5.0
     let startAnimationGradientColor = #colorLiteral(red: 0, green: 0.5008062124, blue: 1, alpha: 1)
     let middleAnimationGradientColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
     let endAnimationGradientColor = #colorLiteral(red: 0, green: 0.5008062124, blue: 1, alpha: 1)
@@ -27,6 +31,9 @@ final class ThemeManager {
     let itemResultLabelSuccessColor = #colorLiteral(red: 0.2176683843, green: 0.8194433451, blue: 0.2584097683, alpha: 0.86)
     let itemResultLabelExpiredColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0.86)
     let itemResultLabelMissingColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 0.86)
+    let titleFont = UIFont(name: Constants.kDefaultBoldFontName, size: Constants.kTitleFontSize)
+    let defaultFont = UIFont(name: Constants.kDefaultFontName, size: Constants.kDefaultFontSize)
+    
     
     
     func addShadow(toView view: UIView) {

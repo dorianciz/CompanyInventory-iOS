@@ -15,6 +15,7 @@ class InventoryBrain {
     var inventoryDatabase: InventoryDatabaseProtocol!
     var inventoryEngine: InventoryEngineProtocol!
     var documentManager = DocumentManager()
+    var bluetoothManager = BluetoothConnection()
     
     
     init(withInventoryDatabase database: InventoryDatabaseProtocol = InventoryRealmDatabase(), withInventoryEngine engine: InventoryEngineProtocol = FirebaseInventoryEngine(), withItemDatabase itemDatabase: ItemDatabaseProtocol = ItemRealmDatabase()) {
@@ -162,6 +163,17 @@ class InventoryBrain {
         }
         
         return true
+    }
+    
+    func checkBluetoothConnection(_ completion: @escaping(Response) -> Void) {
+        if let state = bluetoothManager.currentBluetoothState {
+            switch state {
+            case .poweredOn:
+                completion(.bluetoothOn)
+            default:
+                completion(.bluetoothError)
+            }
+        }
     }
     
 }

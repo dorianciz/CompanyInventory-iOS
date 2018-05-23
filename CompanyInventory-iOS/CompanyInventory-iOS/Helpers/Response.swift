@@ -16,4 +16,7 @@ enum Response: Int {
     case missingUsername = -2001
     case missingPassword = -2002
     case invalidUsername = -2003
+    case noInternetConnection = -5003
+    case bluetoothOn = 201
+    case bluetoothError = -4001
 }
