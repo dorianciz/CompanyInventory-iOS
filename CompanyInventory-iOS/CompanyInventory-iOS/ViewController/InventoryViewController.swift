@@ -22,6 +22,7 @@ class InventoryViewController: UIViewController {
     private var scanningItem: Item?
     private var isScanning: Bool?
     private var imagesOfItems: [String:UIImage]?
+    private var selectedItem: Item?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,11 +85,17 @@ class InventoryViewController: UIViewController {
         }
         
         if let count = inventory?.items?.count {
-            showItems(true)
-            tableView.reloadData()
-            DispatchQueue.main.asyncAfter(deadline: .now() + Constants.kWaitBeforeTableViewScrollToBottom) {
-                let indexPath = IndexPath(row: 0, section: count - 1)
-                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            if count != 0 {
+                showItems(true)
+                startButton.isHidden = inventory!.status == .closed
+                startButton.isUserInteractionEnabled = inventory!.status != .closed
+                tableView.reloadData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + Constants.kWaitBeforeTableViewScrollToBottom) {
+                    let indexPath = IndexPath(row: 0, section: count - 1)
+                    self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                }
+            } else {
+                showItems(false)
             }
         } else {
             showItems(false)
@@ -119,6 +126,9 @@ class InventoryViewController: UIViewController {
                     controller.itemName = item.name
                     controller.beaconId = item.beaconId
                 }
+            } else if segueId == Constants.kShowItemDetailsSegue {
+                let controller = segue.destination as! ItemDetailsViewController
+                controller.item = selectedItem
             }
         }
     }
@@ -136,13 +146,13 @@ class InventoryViewController: UIViewController {
                                             self.inventoryBrain.addNewInventoryByDate(toInventory: self.inventory, { (inventory, response) in
                                                 if response == .success {
                                                     self.inventory = inventory
-                                                    self.updateUI()
                                                 }
                                                 
                                             })
                                         }
                                     }
                                 }
+                                self.updateUI()
                                 self.isScanning = true
                                 NavigationManager.sharedInstance.hideLoader {
                                     self.startButton.isEnabled = false
@@ -194,6 +204,7 @@ class InventoryViewController: UIViewController {
         startButton.backgroundColor = ThemeManager.sharedInstance.inventoryOpenedColor
         startButton.isEnabled = true
         ThemeManager.sharedInstance.removeGradientLayerWithAnimation(fromView: startButton)
+        updateUI()
     }
 }
 
@@ -327,6 +338,7 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
         
         if let item = item {
             NSLog("Item: \(item.name!)")
+            selectedItem = item
             if let isScanning = isScanning {
                 if isScanning {
                     scanningItem = item
@@ -336,6 +348,7 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
             }
             
             //If scanning is off, show edit item screen
+            performSegue(withIdentifier: Constants.kShowItemDetailsSegue, sender: nil)
         }
     }
     
@@ -349,6 +362,7 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
         
         if let item = item {
             NSLog("Item: \(item.name!)")
+            selectedItem = item
             if let isScanning = isScanning {
                 if isScanning {
                     scanningItem = item
@@ -358,6 +372,7 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
             }
             
             //If scanning is off, show edit item screen
+            performSegue(withIdentifier: Constants.kShowItemDetailsSegue, sender: nil)
         }
     }
     
@@ -371,6 +386,7 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
         
         if let item = item {
             NSLog("Item: \(item.name!)")
+            selectedItem = item
             if let isScanning = isScanning {
                 if isScanning {
                     scanningItem = item
@@ -380,6 +396,7 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
             }
             
             //If scanning is off, show edit item screen
+            performSegue(withIdentifier: Constants.kShowItemDetailsSegue, sender: nil)
         }
     }
 }

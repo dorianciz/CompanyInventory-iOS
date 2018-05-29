@@ -56,6 +56,7 @@ struct Constants {
     static let kShowAddItemSegue = "showAddItemSegue"
     static let kShowScanningItemSegue = "showScanningItemSegue"
     static let kShowBeaconScanningSegue = "showBeaconScanningSegue"
+    static let kShowItemDetailsSegue = "showItemDetailsSegue"
     
     //Animations files names
     static let kScanningBeaconAnimation = "scanningBeacon"
@@ -80,10 +81,10 @@ struct Constants {
     static let kDefaultItemImageName = "defaultItem"
     
     //ThemeManager
-    static let kTitleFontSize:CGFloat = 15.0
-    static let kDefaultFontSize:CGFloat = 13.0
+    static let kTitleFontSize:CGFloat = 17.0
+    static let kDefaultFontSize:CGFloat = 15.0
     static let kHeaderFontSize:CGFloat = 23.0
-    static let kDescriptionFontSize = 13.0
+    static let kDescriptionFontSize = 15.0
     static let kDefaultFontName = "Helvetica"
     static let kDefaultBoldFontName = "Helvetica Bold"
     
@@ -137,15 +138,21 @@ struct Constants {
         static let kSavingItemErrorMessage = "saving_item_error_message"
         static let kMissingItemInfoTitle = "missing_item_informations_title"
         static let kMissingItemInfoMessage = "missing_item_informations_message"
-        static let kTakePhoto = "take_photo";
-        static let kChoosePhoto = "choose_photo";
-        static let kDeletePhoto = "delete_photo";
-        static let kReportTitle = "report_title";
-        static let kNoInternetConnection = "no_internet_connection";
-        static let kRetryButtonTitle = "general_retry";
-        static let kBluetoothErrorTitle = "bluetooth_error_title";
-        static let kBluetoothErrorDescription = "bluetooth_error_description";
-        static let kInventoryByDateFinished = "inventory_by_date_finished";
+        static let kTakePhoto = "take_photo"
+        static let kChoosePhoto = "choose_photo"
+        static let kDeletePhoto = "delete_photo"
+        static let kReportTitle = "report_title"
+        static let kNoInternetConnection = "no_internet_connection"
+        static let kRetryButtonTitle = "general_retry"
+        static let kBluetoothErrorTitle = "bluetooth_error_title"
+        static let kBluetoothErrorDescription = "bluetooth_error_description"
+        static let kInventoryByDateFinished = "inventory_by_date_finished"
+        static let kGeneralWarning = "general_warning"
+        static let kOpenedInventoryError = "opened_inventory_error"
+        static let kItemDetails = "item_details_title"
+        static let kDescriptionLabel = "description_label_title";
+        static let kLocationLabel = "location_label_title";
+        static let kBeaconIdLabel = "beacon_id_label_title";
     }
     
 }

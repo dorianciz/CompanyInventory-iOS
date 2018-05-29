@@ -54,3 +54,9 @@
 "bluetooth_error_title" = "Bluetooth connection issue";
 "bluetooth_error_description" = "Please, turn on your bluetooth to be able to scan beacon for new item.";
 "inventory_by_date_finished" = "Finished";
+"general_warning" = "Warning";
+"opened_inventory_error" = "You have started previous inventory. Please, finish it first and create new inventory again.";
+"item_details_title" = "Item details";
+"description_label_title" = "Description:";
+"location_label_title" = "Location name:";
+"beacon_id_label_title" = "Beacon ID:";

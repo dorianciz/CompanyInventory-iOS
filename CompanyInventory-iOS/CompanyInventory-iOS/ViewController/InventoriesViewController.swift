@@ -72,15 +72,43 @@ class InventoriesViewController: UIViewController {
     }
     
     @IBAction func createNewInventoryAction(_ sender: Any) {
-        let alertController = PopupManager.sharedInstance.showGenericPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kCreateInventoryTitle, comment: ""), withMessage: NSLocalizedString(Constants.LocalizationKeys.kCreateInventoryDescription, comment: ""), withTextFieldsPlaceholders: [NSLocalizedString(Constants.LocalizationKeys.kGeneralNamePlaceholder, comment: ""), NSLocalizedString(Constants.LocalizationKeys.kGeneralDescriptionPlaceholder, comment: "")]) { results in
-            results.forEach{print($0)}
-            NavigationManager.sharedInstance.showLoader {
-                self.createNewInventory(results[0], results[1])
+        if let lastInventoryStatus = inventories?.last?.status {
+            switch lastInventoryStatus {
+            case .open, .closed:
+                PopupManager.sharedInstance.showPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kGeneralWarning, comment: ""), withDescription: NSLocalizedString(Constants.LocalizationKeys.kOpenedInventoryError, comment: ""), withOkButtonText: NSLocalizedString(Constants.LocalizationKeys.kGeneralOk, comment: ""), withCancelButtonText: nil, withPopupType: .success, withOkCompletion: nil, withCancelCompletion: nil)
+            case .inProgress:
+                NavigationManager.sharedInstance.showLoader {
+                    self.inventoryBrain.updateInventoryStatus(self.inventories!.last, .closed) { (response) in
+                        if response == .success {
+                            let alertController = PopupManager.sharedInstance.showGenericPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kCreateInventoryTitle, comment: ""), withMessage: NSLocalizedString(Constants.LocalizationKeys.kCreateInventoryDescription, comment: ""), withTextFieldsPlaceholders: [NSLocalizedString(Constants.LocalizationKeys.kGeneralNamePlaceholder, comment: ""), NSLocalizedString(Constants.LocalizationKeys.kGeneralDescriptionPlaceholder, comment: "")]) { results in
+                                results.forEach{print($0)}
+                                NavigationManager.sharedInstance.showLoader {
+                                    self.createNewInventory(results[0], results[1])
+                                }
+                                
+                            }
+                            NavigationManager.sharedInstance.hideLoader {
+                                self.present(alertController, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                }
+                
+            default:
+                break
+            }
+        } else {
+            let alertController = PopupManager.sharedInstance.showGenericPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kCreateInventoryTitle, comment: ""), withMessage: NSLocalizedString(Constants.LocalizationKeys.kCreateInventoryDescription, comment: ""), withTextFieldsPlaceholders: [NSLocalizedString(Constants.LocalizationKeys.kGeneralNamePlaceholder, comment: ""), NSLocalizedString(Constants.LocalizationKeys.kGeneralDescriptionPlaceholder, comment: "")]) { results in
+                results.forEach{print($0)}
+                NavigationManager.sharedInstance.showLoader {
+                    self.createNewInventory(results[0], results[1])
+                }
+                
             }
             
+            present(alertController, animated: true, completion: nil)
         }
         
-        present(alertController, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -100,7 +128,7 @@ class InventoriesViewController: UIViewController {
     }
     
     private func createNewInventory(_ name: String?, _ description: String?) {
-        self.inventoryBrain.createNewInventory(name, description, { (response) in
+        self.inventoryBrain.createNewInventory(self.inventories?.last, name, description, { (response) in
             NavigationManager.sharedInstance.hideLoader {
                 switch response {
                 case .success:
@@ -166,6 +194,8 @@ extension InventoriesViewController: UITableViewDataSource {
                 cell.statusView.backgroundColor = ThemeManager.sharedInstance.inventoryOpenedColor
             case .closed:
                 cell.statusView.backgroundColor = ThemeManager.sharedInstance.inventoryClosedColor
+            case .inProgress:
+                cell.statusView.backgroundColor = ThemeManager.sharedInstance.inventoryInProgressColor
             default:
                 cell.statusView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             }

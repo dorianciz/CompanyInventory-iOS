@@ -19,3 +19,19 @@ class InventoryItemByDate: Object {
     }
     
 }
+
+extension InventoryItemByDate: NSCopying {
+    func copy(with zone: NSZone? = nil) -> Any {
+        let inventoryItemByDate = InventoryItemByDate()
+        inventoryItemByDate.date = Date()
+        
+        let copiedItems = List<Item>()
+        for item in items! {
+            let itemToCopy = item.copy() as! Item
+            itemToCopy.status = .none
+            copiedItems.append(itemToCopy)
+        }
+        inventoryItemByDate.items = copiedItems
+        return inventoryItemByDate
+    }
+}

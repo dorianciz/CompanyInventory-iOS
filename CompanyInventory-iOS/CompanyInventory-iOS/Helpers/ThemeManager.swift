@@ -20,6 +20,7 @@ final class ThemeManager {
     let textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     let inverseTextColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     let inventoryOpenedColor = #colorLiteral(red: 0.2176683843, green: 0.8194433451, blue: 0.2584097683, alpha: 1)
+    let inventoryInProgressColor = #colorLiteral(red: 0, green: 0.5008062124, blue: 1, alpha: 1)
     let inventoryClosedColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
     let defaultItemImage = #imageLiteral(resourceName: "no_image")
     let itemCornerRadius: CGFloat = 4.0
@@ -31,6 +32,7 @@ final class ThemeManager {
     let itemResultLabelSuccessColor = #colorLiteral(red: 0.2176683843, green: 0.8194433451, blue: 0.2584097683, alpha: 0.86)
     let itemResultLabelExpiredColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0.86)
     let itemResultLabelMissingColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 0.86)
+    let headerFont = UIFont(name: Constants.kDefaultBoldFontName, size: Constants.kHeaderFontSize)
     let titleFont = UIFont(name: Constants.kDefaultBoldFontName, size: Constants.kTitleFontSize)
     let defaultFont = UIFont(name: Constants.kDefaultFontName, size: Constants.kDefaultFontSize)
     let clearButtonColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
@@ -116,4 +118,18 @@ final class ThemeManager {
         button.layer.borderColor = color.cgColor
     }
     
+    func styleDefaultLabel(_ label: UILabel!) {
+        label.font = ThemeManager.sharedInstance.defaultFont
+        label.textColor = ThemeManager.sharedInstance.textColor
+    }
+    
+    func styleBoldLabel(_ label: UILabel!) {
+        label.font = ThemeManager.sharedInstance.titleFont
+        label.textColor = ThemeManager.sharedInstance.textColor
+    }
+    
+    func styleHeaderLabel(_ label: UILabel!) {
+        label.font = ThemeManager.sharedInstance.headerFont
+        label.textColor = ThemeManager.sharedInstance.textColor
+    }
 }

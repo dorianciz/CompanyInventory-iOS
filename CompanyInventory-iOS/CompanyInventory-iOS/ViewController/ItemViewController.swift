@@ -50,6 +50,7 @@ class ItemViewController: UIViewController {
         navigationItem.hidesBackButton = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString(Constants.LocalizationKeys.kGeneralSave, comment: ""), style: .done, target: self, action: #selector(saveTapped))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString(Constants.LocalizationKeys.kGeneralCancel, comment: ""), style: .done, target: self, action: #selector(cancelTapped))
+        itemImage.clipsToBounds = true
         itemImage.layer.cornerRadius = ThemeManager.sharedInstance.itemCornerRadius
     }
     

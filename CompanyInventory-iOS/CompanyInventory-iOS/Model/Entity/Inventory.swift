@@ -33,3 +33,17 @@ class Inventory: Object {
     }
     
 }
+
+extension Inventory: NSCopying {
+    func copy(with zone: NSZone? = nil) -> Any {
+        let inventory = Inventory()
+        inventory.name = name
+        inventory.descriptionText = descriptionText
+        inventory.privateStatus = InventoryStatus.open.rawValue
+        
+        let lastInventoryByDate = self.items?.last?.copy() as! InventoryItemByDate
+        inventory.items?.append(lastInventoryByDate)
+        
+        return inventory
+    }
+}
