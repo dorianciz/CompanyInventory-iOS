@@ -464,7 +464,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="O6A-jj-tRf">
-                                <rect key="frame" x="0.0" y="84" width="375" height="583"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="538"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemsByDateCellHeaderIdentifier" rowHeight="91" id="uFM-oY-Dpa" customClass="ItemsByDateHeaderSectionTableViewCell" customModule="CompanyInventory_iOS" customModuleProvider="target">
@@ -659,6 +659,36 @@
                                             <outlet property="rightViewContainer" destination="FNm-SL-Sc9" id="lpO-qu-7Tm"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemsByDateCellFooterIdentifier" id="Vg2-O6-Y5s" customClass="ItemsByDateFooterTableViewCell" customModule="CompanyInventory_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="367.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vg2-O6-Y5s" id="YNT-zL-Jvj">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qr5-dh-BU8">
+                                                    <rect key="frame" x="121.5" y="2" width="131" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="6Sz-4s-00d"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="reportButtonAction:" destination="Vg2-O6-Y5s" eventType="touchUpInside" id="8VW-xG-KWj"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Qr5-dh-BU8" firstAttribute="centerY" secondItem="YNT-zL-Jvj" secondAttribute="centerY" id="6CZ-SB-Jek"/>
+                                                <constraint firstItem="Qr5-dh-BU8" firstAttribute="centerX" secondItem="YNT-zL-Jvj" secondAttribute="centerX" id="SDS-2k-uYR"/>
+                                                <constraint firstItem="Qr5-dh-BU8" firstAttribute="width" secondItem="YNT-zL-Jvj" secondAttribute="width" multiplier="0.35" id="SmH-Jq-R4z"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="reportButton" destination="Qr5-dh-BU8" id="jMa-nk-nCS"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRi-gb-529">
@@ -680,10 +710,10 @@
                             <constraint firstItem="VXZ-2o-Wcy" firstAttribute="trailing" secondItem="O6A-jj-tRf" secondAttribute="trailing" id="92T-9k-XhE"/>
                             <constraint firstItem="NRi-gb-529" firstAttribute="leading" secondItem="VXZ-2o-Wcy" secondAttribute="leading" id="OQV-FO-g0L"/>
                             <constraint firstItem="O6A-jj-tRf" firstAttribute="leading" secondItem="VXZ-2o-Wcy" secondAttribute="leading" id="cEr-HX-IMK"/>
-                            <constraint firstItem="VXZ-2o-Wcy" firstAttribute="bottom" secondItem="O6A-jj-tRf" secondAttribute="bottom" id="hXC-qM-3Ve"/>
                             <constraint firstItem="VXZ-2o-Wcy" firstAttribute="trailing" secondItem="NRi-gb-529" secondAttribute="trailing" id="jKK-uY-POy"/>
                             <constraint firstItem="P0D-Oa-Q2H" firstAttribute="centerX" secondItem="VXZ-2o-Wcy" secondAttribute="centerX" id="liM-LH-niW"/>
-                            <constraint firstItem="O6A-jj-tRf" firstAttribute="top" secondItem="VXZ-2o-Wcy" secondAttribute="top" constant="20" id="van-XR-xL5"/>
+                            <constraint firstItem="NRi-gb-529" firstAttribute="top" secondItem="O6A-jj-tRf" secondAttribute="bottom" id="vKu-Uw-4hs"/>
+                            <constraint firstItem="O6A-jj-tRf" firstAttribute="top" secondItem="VXZ-2o-Wcy" secondAttribute="top" id="van-XR-xL5"/>
                             <constraint firstItem="P0D-Oa-Q2H" firstAttribute="centerY" secondItem="VXZ-2o-Wcy" secondAttribute="centerY" id="xeN-FF-cvY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VXZ-2o-Wcy"/>

@@ -47,6 +47,7 @@ struct Constants {
     static let kInventoryReuseIdentifier = "InventoryIdentifier"
     static let kItemsByDateCellIdentifier = "ItemsByDateCellIdentifier"
     static let kItemsByDateCellHeaderIdentifier = "ItemsByDateCellHeaderIdentifier"
+    static let kItemsByDateCellFooterIdentifier = "ItemsByDateCellFooterIdentifier"
     static let kGenericPopupIdentifier = "GenericPopupIdentifier"
     
     //Segue ids
@@ -94,6 +95,7 @@ struct Constants {
     static let kDefaultDateFormat = "yyyy/MM/dd"
     static let kAnimationLayerName = "AnimationLayerId"
     static let kWaitAfterBluetoothRetry = 1.0
+    static let kWaitBeforeTableViewScrollToBottom = 0.7
     
     struct LocalizationKeys {
         static let kLoginSmallLabel = "login_top_label"
@@ -143,6 +145,7 @@ struct Constants {
         static let kRetryButtonTitle = "general_retry";
         static let kBluetoothErrorTitle = "bluetooth_error_title";
         static let kBluetoothErrorDescription = "bluetooth_error_description";
+        static let kInventoryByDateFinished = "inventory_by_date_finished";
     }
     
 }

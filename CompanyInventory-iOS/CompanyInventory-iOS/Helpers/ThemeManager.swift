@@ -33,6 +33,9 @@ final class ThemeManager {
     let itemResultLabelMissingColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 0.86)
     let titleFont = UIFont(name: Constants.kDefaultBoldFontName, size: Constants.kTitleFontSize)
     let defaultFont = UIFont(name: Constants.kDefaultFontName, size: Constants.kDefaultFontSize)
+    let clearButtonColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
+    let clearButtonBorderWidth:CGFloat = 2.0
+    let clearButtonBorderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     
     
     
@@ -42,6 +45,14 @@ final class ThemeManager {
         view.layer.shadowOffset = CGSize(width: -3, height: 3)
         view.layer.shadowRadius = 3
         view.layer.shadowPath = UIBezierPath(rect: view.bounds).cgPath
+    }
+    
+    func addShadowToButton(button: UIButton) {
+        button.layer.shadowColor = UIColor.gray.cgColor
+        button.layer.shadowOpacity = 0.5
+        button.layer.shadowOffset = CGSize(width: -1, height: 1)
+        button.layer.shadowRadius = 2
+        button.layer.shadowPath = UIBezierPath(rect: button.bounds).cgPath
     }
     
     func createWhiteGradientLayer(_ view: UIView) {
@@ -87,6 +98,22 @@ final class ThemeManager {
         rectShape.position = view.center
         rectShape.path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath
         view.layer.mask = rectShape
+    }
+    
+    func styleDefaultButton(button: UIButton!) {
+        button.layer.cornerRadius = buttonDefaultCornerRadius
+        button.backgroundColor = generalBlueColor
+        button.setTitleColor(inverseTextColor, for: .normal)
+        button.titleLabel?.font = titleFont
+    }
+    
+    func styleClearButton(button: UIButton!, color: UIColor = ThemeManager.sharedInstance.clearButtonBorderColor) {
+        button.layer.cornerRadius = buttonDefaultCornerRadius
+        button.backgroundColor = clearButtonColor
+        button.setTitleColor(color, for: .normal)
+        button.titleLabel?.font = titleFont
+        button.layer.borderWidth = clearButtonBorderWidth
+        button.layer.borderColor = color.cgColor
     }
     
 }

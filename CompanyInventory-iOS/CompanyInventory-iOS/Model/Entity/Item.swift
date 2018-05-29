@@ -37,3 +37,19 @@ class Item: Object {
     }
     
 }
+
+extension Item: NSCopying {
+    func copy(with zone: NSZone? = nil) -> Any {
+        let item = Item()
+        item.name = name
+        item.descriptionText = descriptionText
+        item.beaconId = beaconId
+        item.status = status
+        item.locationName = locationName
+        item.photoLocalPath = photoLocalPath
+        item.photoFirebasePath = photoFirebasePath
+        item.latitude.value = latitude.value
+        item.longitude.value = longitude.value
+        return item
+    }
+}

@@ -81,6 +81,7 @@
 		EDDF489C20363FC000167991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDDF489B20363FC000167991 /* Assets.xcassets */; };
 		EDDF489F20363FC000167991 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDDF489D20363FC000167991 /* LaunchScreen.storyboard */; };
 		EDDF48BB2036451D00167991 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDF48BA2036451D00167991 /* Inventory.swift */; };
+		EDE0E2BC20B71E2700F97990 /* ItemsByDateFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE0E2BB20B71E2700F97990 /* ItemsByDateFooterTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +180,7 @@
 		EDDF48A520363FC000167991 /* CompanyInventory-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CompanyInventory-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDDF48AB20363FC000167991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDDF48BA2036451D00167991 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
+		EDE0E2BB20B71E2700F97990 /* ItemsByDateFooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsByDateFooterTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +313,7 @@
 				EDD8F6E220841BA000563BD5 /* InventoryTableViewCell.swift */,
 				ED689E6D2085572F00187584 /* ItemsByDateTableViewCell.swift */,
 				ED8077B42086848E00E8952D /* ItemsByDateHeaderSectionTableViewCell.swift */,
+				EDE0E2BB20B71E2700F97990 /* ItemsByDateFooterTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 				EDB9757E2036DC1300F79FBF /* CIUser.swift in Sources */,
 				EDC7BD1620AFBD1200979E8B /* ItemScanningViewController.swift in Sources */,
 				ED93CB59206454B000ABBDEF /* CIUserBrain.swift in Sources */,
+				EDE0E2BC20B71E2700F97990 /* ItemsByDateFooterTableViewCell.swift in Sources */,
 				EDDF489520363FC000167991 /* AppDelegate.swift in Sources */,
 				ED1E2D6E20B21F9700DE24D6 /* ItemRealmDatabase.swift in Sources */,
 				EDC7BD1820B0E1F300979E8B /* MonitoringBeaconScanner.swift in Sources */,

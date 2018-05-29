@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CompanyInventory-iOS/ViewController/Generic/GenericPopupViewController.swift"
-            timestampString = "548716091.898068"
+            filePath = "CompanyInventory-iOS/ViewController/InventoryViewController.swift"
+            timestampString = "549241082.906281"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "applyStyles()"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "fillPersistanceData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CompanyInventory-iOS/ViewController/ItemViewController.swift"
-            timestampString = "548803753.142508"
+            filePath = "CompanyInventory-iOS/ViewController/InventoryViewController.swift"
+            timestampString = "549241082.90692"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "scanAction(_:)"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "startScanningAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CompanyInventory-iOS/ViewController/InventoryViewController.swift"
+            timestampString = "549241082.907194"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "startScanningAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

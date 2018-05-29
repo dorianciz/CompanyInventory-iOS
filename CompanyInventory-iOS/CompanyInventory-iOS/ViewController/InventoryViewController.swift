@@ -16,12 +16,12 @@ class InventoryViewController: UIViewController {
     
     var inventoryBrain: InventoryBrain = InventoryBrain()
     var dateHelper: DateHelper!
-    var documentManager: DocumentManager! = DocumentManager()
     
     var inventoryId: String?
     private var inventory: Inventory?
     private var scanningItem: Item?
     private var isScanning: Bool?
+    private var imagesOfItems: [String:UIImage]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,6 @@ class InventoryViewController: UIViewController {
     
     private func applyStyles() {
         tableView.separatorStyle = .none
-        addRightBarButton()
     }
     
     private func fillStaticLabels() {
@@ -55,12 +54,17 @@ class InventoryViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
     }
     
+    private func cleanRightBarButton() {
+        navigationItem.rightBarButtonItem = nil
+    }
+    
     @objc func addTapped() {
         performSegue(withIdentifier: Constants.kShowAddItemSegue, sender: nil)
     }
     
     private func fillPersistanceData() {
         inventory = inventoryBrain.getLocalInventoryById(inventoryId)
+        imagesOfItems = inventoryBrain.getImagesForInventory(inventory)
         updateUI()
     }
     
@@ -69,9 +73,23 @@ class InventoryViewController: UIViewController {
     }
     
     private func updateUI() {
-        if inventory?.items?.count != 0 {
+        if let status = inventory?.status {
+            if status == .open {
+                addRightBarButton()
+            } else {
+                cleanRightBarButton()
+            }
+        } else {
+            cleanRightBarButton()
+        }
+        
+        if let count = inventory?.items?.count {
             showItems(true)
             tableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + Constants.kWaitBeforeTableViewScrollToBottom) {
+                let indexPath = IndexPath(row: 0, section: count - 1)
+                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }
         } else {
             showItems(false)
         }
@@ -108,10 +126,37 @@ class InventoryViewController: UIViewController {
     @IBAction func startScanningAction(_ sender: Any) {
         inventoryBrain.checkBluetoothConnection { (response) in
             if response == .bluetoothOn {
-                self.isScanning = true
-                self.startButton.isEnabled = false
-                self.startButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kScanningInventory, comment: ""), for: .normal)
-                ThemeManager.sharedInstance.addGradientWithAnimation(toView: self.startButton, withColors: [ThemeManager.sharedInstance.startAnimationGradientColor.cgColor, ThemeManager.sharedInstance.middleAnimationGradientColor.cgColor, ThemeManager.sharedInstance.endAnimationGradientColor.cgColor])
+                if let inventory = self.inventory {
+                    NavigationManager.sharedInstance.showLoader {
+                        self.inventoryBrain.updateInventoryStatus(inventory, .inProgress, { (response) in
+                            if response == .success {
+                                if let items = self.inventory?.items?.last?.items {
+                                    if let isFinishedLastInventoryByDate = self.inventoryBrain.checkIsInventoryFinished(Array(items)) {
+                                        if isFinishedLastInventoryByDate {
+                                            self.inventoryBrain.addNewInventoryByDate(toInventory: self.inventory, { (inventory, response) in
+                                                if response == .success {
+                                                    self.inventory = inventory
+                                                    self.updateUI()
+                                                }
+                                                
+                                            })
+                                        }
+                                    }
+                                }
+                                self.isScanning = true
+                                NavigationManager.sharedInstance.hideLoader {
+                                    self.startButton.isEnabled = false
+                                    self.startButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kScanningInventory, comment: ""), for: .normal)
+                                    ThemeManager.sharedInstance.addGradientWithAnimation(toView: self.startButton, withColors: [ThemeManager.sharedInstance.startAnimationGradientColor.cgColor, ThemeManager.sharedInstance.middleAnimationGradientColor.cgColor, ThemeManager.sharedInstance.endAnimationGradientColor.cgColor])
+                                }
+                                return
+                            }
+                            NavigationManager.sharedInstance.hideLoader {
+                                PopupManager.sharedInstance.showPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kGeneralErrorTitle, comment: ""), withDescription: NSLocalizedString(Constants.LocalizationKeys.kGeneralErrorMessage, comment: ""), withPopupType: .error, withOkCompletion: nil, withCancelCompletion: nil)
+                            }
+                        })
+                    }
+                }
             } else if response == .bluetoothError {
                 PopupManager.sharedInstance.showPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kBluetoothErrorTitle, comment: ""), withDescription: NSLocalizedString(Constants.LocalizationKeys.kBluetoothErrorDescription, comment: ""), withOkButtonText: NSLocalizedString(Constants.LocalizationKeys.kRetryButtonTitle, comment: ""), withCancelButtonText: NSLocalizedString(Constants.LocalizationKeys.kGeneralCancel, comment: ""), withPopupType: .error, withOkCompletion: {
                         NavigationManager.sharedInstance.showLoader {
@@ -147,6 +192,7 @@ class InventoryViewController: UIViewController {
     private func updateUIAfterFinishedInventory() {
         startButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kStartInventory, comment: ""), for: .normal)
         startButton.backgroundColor = ThemeManager.sharedInstance.inventoryOpenedColor
+        startButton.isEnabled = true
         ThemeManager.sharedInstance.removeGradientLayerWithAnimation(fromView: startButton)
     }
 }
@@ -182,17 +228,46 @@ extension InventoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.kItemsByDateCellHeaderIdentifier) as! ItemsByDateHeaderSectionTableViewCell
         
-        guard let date = inventory?.items?[section].date else {
+        guard let date = inventory?.items?[section].date, let items = inventory?.items?[section].items else {
             cell.titleLabel.text = "No items"
             return cell
         }
         
         cell.titleLabel.text = dateHelper.getStringFromDate(date)
+        
+        if let isFinished = inventoryBrain.checkIsInventoryFinished(Array(items)) {
+            if isFinished {
+                cell.titleLabel.text = "\(cell.titleLabel.text!) - \(NSLocalizedString(Constants.LocalizationKeys.kInventoryByDateFinished, comment: ""))"
+            }
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 45
+        return 65
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.kItemsByDateCellFooterIdentifier) as! ItemsByDateFooterTableViewCell
+
+        guard let items = inventory?.items?[section].items else {
+            return nil
+        }
+
+        if let isFinished = inventoryBrain.checkIsInventoryFinished(Array(items)) {
+            if isFinished {
+                cell.delegate = self
+                cell.reportButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kReportTitle, comment: ""), for: .normal)
+                return cell
+            }
+        }
+
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 46
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -210,7 +285,7 @@ extension InventoryViewController: UITableViewDataSource {
             cell.leftViewContainer.isHidden = false
             cell.leftInfoLabel.text = leftItemValue.name
             if let photoLocalPath = leftItemValue.photoLocalPath {
-                cell.leftImageView.image = documentManager.getImageFromDocument(withName: photoLocalPath)
+                cell.leftImageView.image = imagesOfItems?[photoLocalPath]
             }
             fillLabel(cell.leftResultLabel, dependsOnItemStatus: leftItemValue.status)
         }
@@ -219,7 +294,7 @@ extension InventoryViewController: UITableViewDataSource {
             cell.centerViewContainer.isHidden = false
             cell.centerInfoLabel.text = centerItemValue.name
             if let photoLocalPath = centerItemValue.photoLocalPath {
-                cell.centerImageView.image = documentManager.getImageFromDocument(withName: photoLocalPath)
+                cell.centerImageView.image = imagesOfItems?[photoLocalPath]
             }
             fillLabel(cell.centerResultLabel, dependsOnItemStatus: centerItemValue.status)
         }
@@ -228,7 +303,7 @@ extension InventoryViewController: UITableViewDataSource {
             cell.rightViewContainer.isHidden = false
             cell.rightInfoLabel.text = rightItemValue.name
             if let photoLocalPath = rightItemValue.photoLocalPath {
-                cell.rightImageView.image = documentManager.getImageFromDocument(withName: photoLocalPath)
+                cell.rightImageView.image = imagesOfItems?[photoLocalPath]
             }
             fillLabel(cell.rightResultLabel, dependsOnItemStatus: rightItemValue.status)
         }
@@ -323,5 +398,11 @@ extension InventoryViewController: ItemScanningViewControllerDelegate {
             }
         }
         tableView.reloadData()
+    }
+}
+
+extension InventoryViewController: ItemsByDateFooterTableViewCellDelegate {
+    func reportAction(_ sender: Any) {
+        print("Report button action")
     }
 }

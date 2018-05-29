@@ -176,4 +176,58 @@ class InventoryBrain {
         }
     }
     
+    func addNewInventoryByDate(toInventory inventory: Inventory?, _ completion: @escaping(Inventory?, Response) -> Void) {
+        if let items = inventory?.items?.last?.items {
+            let inventoryByDate = InventoryItemByDate()
+            inventoryByDate.date = Date()
+            
+            for item in items {
+                let copiedItem = item.copy() as! Item
+                copiedItem.status = .none
+                inventoryByDate.items?.append(copiedItem)
+            }
+            
+            let realm = try! Realm()
+            try! realm.write {
+                inventory?.items?.append(inventoryByDate)
+            }
+            inventoryEngine.createInventory(withInventory: inventory) { (response) in
+                completion(inventory, response)
+            }
+            
+            return
+        }
+        completion(nil, .error)
+    }
+    
+    func getImagesForInventory(_ inventory: Inventory?) -> [String:UIImage]? {
+        var images = [String:UIImage]()
+        
+        if let inventoriesByDate = inventory?.items {
+            for inventoryByDate in inventoriesByDate {
+                if let items = inventoryByDate.items {
+                    for item in items {
+                        if let imagePath = item.photoLocalPath {
+                            if images[imagePath] == nil, let image = documentManager.getImageFromDocument(withName: imagePath) {
+                                images[imagePath] = image
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        return images
+    }
+    
+    func updateInventoryStatus(_ inventory: Inventory!, _ status: InventoryStatus!,_ completion: @escaping(Response) -> Void) {
+        let realm = try! Realm()
+        try! realm.write {
+            inventory.status = status
+        }
+        inventoryEngine.createInventory(withInventory: inventory) { (response) in
+            completion(response)
+        }
+    }
+    
 }

@@ -53,3 +53,4 @@
 "general_retry" = "Retry";
 "bluetooth_error_title" = "Bluetooth connection issue";
 "bluetooth_error_description" = "Please, turn on your bluetooth to be able to scan beacon for new item.";
+"inventory_by_date_finished" = "Finished";

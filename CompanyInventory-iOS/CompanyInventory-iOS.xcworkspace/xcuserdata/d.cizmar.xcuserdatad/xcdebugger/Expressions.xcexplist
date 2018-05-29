@@ -11,6 +11,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "InventoryViewController.fillPersistanceData():InventoryViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "imagesOfItems">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "InventoryBrain.addNewInventoryByDate(toInventory:_:):InventoryBrain.swift">
+      </ContextState>
+      <ContextState
          contextName = "InventoryViewController.tableView(_:cellForRowAt:):InventoryViewController.swift">
          <PersistentStrings>
             <PersistentString
