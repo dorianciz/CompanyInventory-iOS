@@ -153,6 +153,7 @@ struct Constants {
         static let kDescriptionLabel = "description_label_title";
         static let kLocationLabel = "location_label_title";
         static let kBeaconIdLabel = "beacon_id_label_title";
+        static let kDeleteItemButtonTitle = "delete_item_button_title";
     }
     
 }

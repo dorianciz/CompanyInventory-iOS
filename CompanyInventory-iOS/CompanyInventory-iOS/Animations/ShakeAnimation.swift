@@ -11,6 +11,7 @@ import UIKit
 import CoreGraphics
 
 extension UIView {
+    
     func shake() {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
@@ -27,5 +28,15 @@ extension UIView {
         animation.fromValue = NSValue(cgPoint: CGPoint(x: self.center.x - 10, y: self.center.y))
         animation.toValue = NSValue(cgPoint: CGPoint(x: self.center.x + 10,y: self.center.y))
         self.layer.add(animation, forKey: "position")
+    }
+    
+    func wiggle(withDuration duration: Double! = 0.105) {
+        
+        let transformAnim  = CAKeyframeAnimation(keyPath:"transform")
+        transformAnim.values  = [NSValue(caTransform3D: CATransform3DMakeRotation(0.03, 0.0, 0.0, 0.6)),NSValue(caTransform3D: CATransform3DMakeRotation(-0.03 , 0, 0, 0.6))]
+        transformAnim.autoreverses = true
+        transformAnim.duration  = duration
+        transformAnim.repeatCount = Float.infinity
+        self.layer.add(transformAnim, forKey: "transform")
     }
 }

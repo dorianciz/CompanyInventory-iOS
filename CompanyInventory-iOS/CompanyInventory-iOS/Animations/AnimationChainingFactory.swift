@@ -74,6 +74,7 @@ class AnimationChainingFactory {
             if let block = finallyBlock {
                 block()
             }
+            animationBlocks = [AnimationBlock]()
         }
     }
     

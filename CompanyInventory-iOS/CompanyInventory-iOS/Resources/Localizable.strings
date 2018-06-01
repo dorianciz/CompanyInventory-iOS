@@ -60,3 +60,4 @@
 "description_label_title" = "Description:";
 "location_label_title" = "Location name:";
 "beacon_id_label_title" = "Beacon ID:";
+"delete_item_button_title" = "Finish";

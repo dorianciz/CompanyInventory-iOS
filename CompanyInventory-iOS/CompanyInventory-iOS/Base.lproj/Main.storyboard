@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -681,18 +681,29 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gfi-tm-Au2">
+                                                            <rect key="frame" x="115" y="17" width="0.0" height="0.0"/>
+                                                            <state key="normal" image="delete"/>
+                                                            <connections>
+                                                                <action selector="leftDeleteAction:" destination="lbM-EA-E6W" eventType="touchUpInside" id="AJQ-EW-Txe"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="Qko-Dp-RLu" firstAttribute="top" secondItem="YuT-5D-fS3" secondAttribute="top" id="1yd-4Q-VpV"/>
+                                                        <constraint firstItem="Gfi-tm-Au2" firstAttribute="leading" secondItem="YuT-5D-fS3" secondAttribute="trailing" constant="-4" id="8nj-Tb-gIk"/>
                                                         <constraint firstItem="Qko-Dp-RLu" firstAttribute="centerX" secondItem="YuT-5D-fS3" secondAttribute="centerX" id="E1z-zZ-VQF"/>
                                                         <constraint firstItem="GFt-g1-6MB" firstAttribute="top" secondItem="YuT-5D-fS3" secondAttribute="bottom" constant="15" id="YBa-zd-xJb"/>
+                                                        <constraint firstItem="Gfi-tm-Au2" firstAttribute="top" secondItem="YuT-5D-fS3" secondAttribute="top" constant="2" id="ZQ5-j9-kka"/>
                                                         <constraint firstAttribute="trailing" secondItem="YuT-5D-fS3" secondAttribute="trailing" constant="5" id="dRo-1k-D6d"/>
                                                         <constraint firstAttribute="trailing" secondItem="GFt-g1-6MB" secondAttribute="trailing" constant="5" id="dsI-KO-GOj"/>
                                                         <constraint firstItem="YuT-5D-fS3" firstAttribute="leading" secondItem="xat-yU-Fvb" secondAttribute="leading" constant="5" id="hhZ-xL-WFr"/>
+                                                        <constraint firstItem="Gfi-tm-Au2" firstAttribute="bottom" secondItem="YuT-5D-fS3" secondAttribute="top" constant="2" id="iAM-Am-rhU"/>
                                                         <constraint firstAttribute="bottom" secondItem="GFt-g1-6MB" secondAttribute="bottom" constant="15" id="js1-8U-pr6"/>
                                                         <constraint firstItem="Qko-Dp-RLu" firstAttribute="width" secondItem="YuT-5D-fS3" secondAttribute="width" id="l11-rg-ra9"/>
                                                         <constraint firstItem="GFt-g1-6MB" firstAttribute="leading" secondItem="xat-yU-Fvb" secondAttribute="leading" constant="5" id="tX4-ke-pT2"/>
+                                                        <constraint firstItem="Gfi-tm-Au2" firstAttribute="trailing" secondItem="YuT-5D-fS3" secondAttribute="trailing" constant="-4" id="xF6-dG-g1z"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fw1-ki-2VI">
@@ -719,15 +730,26 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fj-Vi-y6p">
+                                                            <rect key="frame" x="115" y="17" width="0.0" height="0.0"/>
+                                                            <state key="normal" image="delete"/>
+                                                            <connections>
+                                                                <action selector="centerDeleteAction:" destination="lbM-EA-E6W" eventType="touchUpInside" id="2Zx-KC-sFY"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="WQS-iZ-eX5" secondAttribute="bottom" constant="15" id="6ML-TJ-FrP"/>
+                                                        <constraint firstItem="3fj-Vi-y6p" firstAttribute="leading" secondItem="y7u-F6-u9j" secondAttribute="trailing" constant="-4" id="IRx-Cf-K5X"/>
+                                                        <constraint firstItem="3fj-Vi-y6p" firstAttribute="bottom" secondItem="y7u-F6-u9j" secondAttribute="top" constant="2" id="O6r-cQ-CSU"/>
                                                         <constraint firstItem="WQS-iZ-eX5" firstAttribute="top" secondItem="y7u-F6-u9j" secondAttribute="bottom" constant="15" id="QmG-MF-rfl"/>
                                                         <constraint firstItem="Qgt-4I-Gvc" firstAttribute="width" secondItem="y7u-F6-u9j" secondAttribute="width" id="RUc-EP-mRD"/>
+                                                        <constraint firstItem="3fj-Vi-y6p" firstAttribute="top" secondItem="y7u-F6-u9j" secondAttribute="top" constant="2" id="XWD-WW-Nfx"/>
                                                         <constraint firstAttribute="trailing" secondItem="y7u-F6-u9j" secondAttribute="trailing" constant="5" id="Xz0-P6-cK9"/>
                                                         <constraint firstItem="WQS-iZ-eX5" firstAttribute="leading" secondItem="Fw1-ki-2VI" secondAttribute="leading" constant="5" id="YDl-hs-OGg"/>
                                                         <constraint firstItem="Qgt-4I-Gvc" firstAttribute="centerX" secondItem="y7u-F6-u9j" secondAttribute="centerX" id="ahA-4l-mVi"/>
+                                                        <constraint firstItem="3fj-Vi-y6p" firstAttribute="trailing" secondItem="y7u-F6-u9j" secondAttribute="trailing" constant="-4" id="fPp-Cf-xvo"/>
                                                         <constraint firstItem="y7u-F6-u9j" firstAttribute="top" secondItem="Fw1-ki-2VI" secondAttribute="top" constant="15" id="fT8-cu-bN7"/>
                                                         <constraint firstAttribute="trailing" secondItem="WQS-iZ-eX5" secondAttribute="trailing" constant="5" id="kO1-JV-vjq"/>
                                                         <constraint firstItem="Qgt-4I-Gvc" firstAttribute="top" secondItem="y7u-F6-u9j" secondAttribute="top" id="kZj-cH-kZV"/>
@@ -758,18 +780,29 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMX-BW-kol">
+                                                            <rect key="frame" x="115" y="17" width="0.0" height="0.0"/>
+                                                            <state key="normal" image="delete"/>
+                                                            <connections>
+                                                                <action selector="rightDeleteAction:" destination="lbM-EA-E6W" eventType="touchUpInside" id="Ii3-rF-Xeb"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="Ue2-md-NRm" secondAttribute="bottom" constant="15" id="0hd-QR-uS4"/>
                                                         <constraint firstItem="Qwc-fz-rbx" firstAttribute="leading" secondItem="FNm-SL-Sc9" secondAttribute="leading" constant="5" id="3b1-zQ-FOR"/>
                                                         <constraint firstAttribute="trailing" secondItem="Qwc-fz-rbx" secondAttribute="trailing" constant="5" id="M9u-0N-SoZ"/>
                                                         <constraint firstItem="Ue2-md-NRm" firstAttribute="leading" secondItem="FNm-SL-Sc9" secondAttribute="leading" constant="5" id="PFn-jx-fE8"/>
                                                         <constraint firstItem="F9c-ky-WWV" firstAttribute="width" secondItem="Qwc-fz-rbx" secondAttribute="width" id="Y84-fp-nYw"/>
+                                                        <constraint firstItem="yMX-BW-kol" firstAttribute="top" secondItem="Qwc-fz-rbx" secondAttribute="top" constant="2" id="a0O-lE-1hJ"/>
+                                                        <constraint firstItem="yMX-BW-kol" firstAttribute="leading" secondItem="Qwc-fz-rbx" secondAttribute="trailing" constant="-4" id="ac4-WH-zPt"/>
                                                         <constraint firstItem="F9c-ky-WWV" firstAttribute="top" secondItem="Qwc-fz-rbx" secondAttribute="top" id="fkq-za-KeT"/>
+                                                        <constraint firstItem="yMX-BW-kol" firstAttribute="trailing" secondItem="Qwc-fz-rbx" secondAttribute="trailing" constant="-4" id="nvn-wr-p5Z"/>
                                                         <constraint firstAttribute="trailing" secondItem="Ue2-md-NRm" secondAttribute="trailing" constant="5" id="oGq-e6-UkA"/>
                                                         <constraint firstItem="Qwc-fz-rbx" firstAttribute="top" secondItem="FNm-SL-Sc9" secondAttribute="top" constant="15" id="oe6-w6-mc1"/>
                                                         <constraint firstItem="F9c-ky-WWV" firstAttribute="centerX" secondItem="Qwc-fz-rbx" secondAttribute="centerX" id="qH7-4p-yWT"/>
+                                                        <constraint firstItem="yMX-BW-kol" firstAttribute="bottom" secondItem="Qwc-fz-rbx" secondAttribute="top" constant="2" id="vy3-Ju-kso"/>
                                                         <constraint firstItem="Ue2-md-NRm" firstAttribute="top" secondItem="Qwc-fz-rbx" secondAttribute="bottom" constant="15" id="xTt-To-9MB"/>
                                                     </constraints>
                                                 </view>
@@ -792,14 +825,29 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="cellContentView" destination="sP4-sF-HlD" id="anO-55-pJm"/>
+                                            <outlet property="centerDeleteBottom" destination="O6r-cQ-CSU" id="i8q-aZ-VZs"/>
+                                            <outlet property="centerDeleteButton" destination="3fj-Vi-y6p" id="dAP-gB-neL"/>
+                                            <outlet property="centerDeleteLeading" destination="IRx-Cf-K5X" id="MYz-zf-PsP"/>
+                                            <outlet property="centerDeleteTop" destination="XWD-WW-Nfx" id="WlQ-0d-aX1"/>
+                                            <outlet property="centerDeleteTrailing" destination="fPp-Cf-xvo" id="IfE-5A-oZ9"/>
                                             <outlet property="centerImageView" destination="y7u-F6-u9j" id="fgn-P1-GIb"/>
                                             <outlet property="centerInfoLabel" destination="WQS-iZ-eX5" id="vFa-CI-Xbd"/>
                                             <outlet property="centerResultLabel" destination="Qgt-4I-Gvc" id="zrR-p4-VmX"/>
                                             <outlet property="centerViewContainer" destination="Fw1-ki-2VI" id="uVd-ok-1QQ"/>
+                                            <outlet property="leftDeleteBottom" destination="iAM-Am-rhU" id="cbj-0p-HDC"/>
+                                            <outlet property="leftDeleteButton" destination="Gfi-tm-Au2" id="fj4-Xi-ATl"/>
+                                            <outlet property="leftDeleteLeading" destination="8nj-Tb-gIk" id="T4T-az-3Pj"/>
+                                            <outlet property="leftDeleteTop" destination="ZQ5-j9-kka" id="3nR-vk-kWr"/>
+                                            <outlet property="leftDeleteTrailing" destination="xF6-dG-g1z" id="S4J-T6-vcp"/>
                                             <outlet property="leftImageView" destination="YuT-5D-fS3" id="kAb-vv-bVd"/>
                                             <outlet property="leftInfoLabel" destination="GFt-g1-6MB" id="3Wg-Ld-QWl"/>
                                             <outlet property="leftResultLabel" destination="Qko-Dp-RLu" id="mbr-fA-YmG"/>
                                             <outlet property="leftViewContainer" destination="xat-yU-Fvb" id="LQv-9y-0Lg"/>
+                                            <outlet property="rightDeleteBottom" destination="vy3-Ju-kso" id="UXW-p0-i6f"/>
+                                            <outlet property="rightDeleteButton" destination="yMX-BW-kol" id="WjD-jY-4Gf"/>
+                                            <outlet property="rightDeleteLeading" destination="ac4-WH-zPt" id="2Yg-n3-Xpa"/>
+                                            <outlet property="rightDeleteTop" destination="a0O-lE-1hJ" id="M6C-ne-gxU"/>
+                                            <outlet property="rightDeleteTrailing" destination="nvn-wr-p5Z" id="Jf4-j7-xBD"/>
                                             <outlet property="rightImageView" destination="Qwc-fz-rbx" id="eeh-tw-gNT"/>
                                             <outlet property="rightInfoLabel" destination="Ue2-md-NRm" id="LEW-8e-SFi"/>
                                             <outlet property="rightResultLabel" destination="F9c-ky-WWV" id="aVa-US-aFA"/>
@@ -1261,6 +1309,7 @@
         <image name="cancel_scan" width="50" height="50"/>
         <image name="check" width="25" height="25"/>
         <image name="create_new" width="30" height="30"/>
+        <image name="delete" width="37" height="37"/>
         <image name="inventories" width="30" height="30"/>
         <image name="locations" width="30" height="30"/>
         <image name="no_image" width="300" height="700"/>

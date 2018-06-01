@@ -19,6 +19,7 @@
 		ED1E2D6A20B207B500DE24D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED1E2D6920B207B500DE24D6 /* Localizable.strings */; };
 		ED1E2D6C20B21F4300DE24D6 /* ItemDatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1E2D6B20B21F4300DE24D6 /* ItemDatabaseProtocol.swift */; };
 		ED1E2D6E20B21F9700DE24D6 /* ItemRealmDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1E2D6D20B21F9700DE24D6 /* ItemRealmDatabase.swift */; };
+		ED2AB75620C0D38500C52D8B /* ItemBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2AB75520C0D38500C52D8B /* ItemBrain.swift */; };
 		ED4B57DB208143D0002734FD /* LoginBrain_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DA208143D0002734FD /* LoginBrain_iOSTests.swift */; };
 		ED4B57DD20814480002734FD /* LoginBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DC20814480002734FD /* LoginBrain.swift */; };
 		ED4B57DF20816ABD002734FD /* ShakeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B57DE20816ABD002734FD /* ShakeAnimation.swift */; };
@@ -114,6 +115,7 @@
 		ED1E2D6920B207B500DE24D6 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		ED1E2D6B20B21F4300DE24D6 /* ItemDatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDatabaseProtocol.swift; sourceTree = "<group>"; };
 		ED1E2D6D20B21F9700DE24D6 /* ItemRealmDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRealmDatabase.swift; sourceTree = "<group>"; };
+		ED2AB75520C0D38500C52D8B /* ItemBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBrain.swift; sourceTree = "<group>"; };
 		ED4B57DA208143D0002734FD /* LoginBrain_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBrain_iOSTests.swift; sourceTree = "<group>"; };
 		ED4B57DC20814480002734FD /* LoginBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBrain.swift; sourceTree = "<group>"; };
 		ED4B57DE20816ABD002734FD /* ShakeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeAnimation.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				ED4B57DC20814480002734FD /* LoginBrain.swift */,
 				EDD8F6DD2084078600563BD5 /* InventoryBrain.swift */,
 				ED80071F20BE0A9E000AD92C /* ItemDetailsBrain.swift */,
+				ED2AB75520C0D38500C52D8B /* ItemBrain.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -730,6 +733,7 @@
 				ED4B57EA208228F8002734FD /* CIUserDatabaseProtocol.swift in Sources */,
 				ED4B57F4208295E7002734FD /* InventoryRealmDatabase.swift in Sources */,
 				ED0C672420B4B640006B9E56 /* GenericEngine.swift in Sources */,
+				ED2AB75620C0D38500C52D8B /* ItemBrain.swift in Sources */,
 				ED51C5C32087F491000EB303 /* PopupManager.swift in Sources */,
 				ED125D652089528800F15E4E /* DateHelper.swift in Sources */,
 				ED80072020BE0A9E000AD92C /* ItemDetailsBrain.swift in Sources */,

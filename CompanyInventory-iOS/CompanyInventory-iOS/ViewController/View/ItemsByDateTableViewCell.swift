@@ -8,10 +8,19 @@
 
 import UIKit
 
+enum ItemPosition {
+    case left
+    case center
+    case right
+}
+
 protocol ItemsByDateTableViewCellDelegate: class {
     func leftItemTouched(_ sender: ItemsByDateTableViewCell)
     func centerItemTouched(_ sender: ItemsByDateTableViewCell)
     func rightItemTouched(_ sender: ItemsByDateTableViewCell)
+    
+    func itemLongPressed(_ position: ItemPosition!)
+    func deleteButtonTouched(_ position: ItemPosition!, _ indexPath: IndexPath!)
 }
 
 class ItemsByDateTableViewCell: UITableViewCell {
@@ -36,19 +45,36 @@ class ItemsByDateTableViewCell: UITableViewCell {
     @IBOutlet weak var rightInfoLabel: UILabel!
     @IBOutlet weak var rightResultLabel: UILabel!
     
+    @IBOutlet weak var leftDeleteButton: UIButton!
+    @IBOutlet weak var centerDeleteButton: UIButton!
+    @IBOutlet weak var rightDeleteButton: UIButton!
+    
+    @IBOutlet weak var leftDeleteLeading: NSLayoutConstraint!
+    @IBOutlet weak var leftDeleteTop: NSLayoutConstraint!
+    @IBOutlet weak var leftDeleteBottom: NSLayoutConstraint!
+    @IBOutlet weak var leftDeleteTrailing: NSLayoutConstraint!
+    
+    @IBOutlet weak var centerDeleteLeading: NSLayoutConstraint!
+    @IBOutlet weak var centerDeleteBottom: NSLayoutConstraint!
+    @IBOutlet weak var centerDeleteTrailing: NSLayoutConstraint!
+    @IBOutlet weak var centerDeleteTop: NSLayoutConstraint!
+    
+    @IBOutlet weak var rightDeleteTop: NSLayoutConstraint!
+    @IBOutlet weak var rightDeleteLeading: NSLayoutConstraint!
+    @IBOutlet weak var rightDeleteTrailing: NSLayoutConstraint!
+    @IBOutlet weak var rightDeleteBottom: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         applyStyles()
         hideAllItems()
+        enableDeleteButtons(false)
         addGestures()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     private func addGestures() {
@@ -63,6 +89,15 @@ class ItemsByDateTableViewCell: UITableViewCell {
         let tap3 = UITapGestureRecognizer(target: self, action: #selector(rightTapped))
         rightImageView.addGestureRecognizer(tap3)
         rightImageView.isUserInteractionEnabled = true
+        
+        let longPress1 = UILongPressGestureRecognizer(target: self, action: #selector(leftLongPressed))
+        leftImageView.addGestureRecognizer(longPress1)
+        
+        let longPress2 = UILongPressGestureRecognizer(target: self, action: #selector(centerLongPressed))
+        centerImageView.addGestureRecognizer(longPress2)
+        
+        let longPress3 = UILongPressGestureRecognizer(target: self, action: #selector(rightLongPressed))
+        rightImageView.addGestureRecognizer(longPress3)
     }
     
     private func hideAllItems() {
@@ -83,6 +118,87 @@ class ItemsByDateTableViewCell: UITableViewCell {
         delegate?.rightItemTouched(self)
     }
     
+    @objc func leftLongPressed() {
+        delegate?.itemLongPressed(.left)
+    }
+    
+    @objc func centerLongPressed() {
+        delegate?.itemLongPressed(.center)
+    }
+    
+    @objc func rightLongPressed() {
+        delegate?.itemLongPressed(.right)
+    }
+    
+    @IBAction func leftDeleteAction(_ sender: Any) {
+        delegate?.deleteButtonTouched(.left, indexPath)
+    }
+    
+    @IBAction func centerDeleteAction(_ sender: Any) {
+        delegate?.deleteButtonTouched(.center, indexPath)
+    }
+    
+    @IBAction func rightDeleteAction(_ sender: Any) {
+        delegate?.deleteButtonTouched(.right, indexPath)
+    }
+    
+    func hideItem(_ position: ItemPosition) {
+        
+        switch position {
+        case .left:
+            self.leftViewContainer.layer.removeAllAnimations()
+        case .center:
+            self.centerViewContainer.layer.removeAllAnimations()
+        case .right:
+            self.rightViewContainer.layer.removeAllAnimations()
+        }
+
+        AnimationChainingFactory.sharedInstance.animation(withDuration: 0.5, withDelay: 0, withAnimations: {
+            switch position {
+            case .left:
+                self.leftViewContainer.alpha = 0
+            case .center:
+                self.centerViewContainer.alpha = 0
+            case .right:
+                self.rightViewContainer.alpha = 0
+            }
+        }, withCompletion: {
+            switch position {
+            case .left:
+                self.leftViewContainer.isHidden = true
+            case .center:
+                self.centerViewContainer.isHidden = true
+            case .right:
+                self.rightViewContainer.isHidden = true
+            }
+        }, withOptions: .transitionCrossDissolve).run()
+    }
+    
+    func showDeleteButtons(_ show: Bool!) {
+        print("test")
+        AnimationChainingFactory.sharedInstance.animation(withDuration: 0.5, withDelay: 0, withAnimations: {
+            self.leftDeleteLeading.constant = show ? -15 : -4
+            self.leftDeleteTrailing.constant = show ? 7 : -4
+            self.leftDeleteTop.constant = show ? -9 : 2
+            self.leftDeleteBottom.constant = show ? 13 : 2
+            self.leftViewContainer.layoutIfNeeded()
+            
+            self.centerDeleteLeading.constant = show ? -15 : -4
+            self.centerDeleteTrailing.constant = show ? 7 : -4
+            self.centerDeleteTop.constant = show ? -9 : 2
+            self.centerDeleteBottom.constant = show ? 13 : 2
+            self.centerViewContainer.layoutIfNeeded()
+            
+            self.rightDeleteLeading.constant = show ? -15 : -4
+            self.rightDeleteTrailing.constant = show ? 7 : -4
+            self.rightDeleteTop.constant = show ? -9 : 2
+            self.rightDeleteBottom.constant = show ? 13 : 2
+            self.rightViewContainer.layoutIfNeeded()
+        }, withCompletion: {
+            self.enableDeleteButtons(show)
+        }, withOptions: UIViewAnimationOptions(rawValue: 0)).run()
+    }
+    
     private func applyStyles() {
         leftImageView.layer.masksToBounds = true
         leftImageView.layer.cornerRadius = ThemeManager.sharedInstance.itemCornerRadius
@@ -95,6 +211,12 @@ class ItemsByDateTableViewCell: UITableViewCell {
         rightImageView.layer.masksToBounds = true
         rightImageView.layer.cornerRadius = ThemeManager.sharedInstance.itemCornerRadius
         rightResultLabel.textColor = ThemeManager.sharedInstance.itemResultTextColor
+    }
+    
+    private func enableDeleteButtons(_ enable: Bool! = true) {
+        leftDeleteButton.isEnabled = enable
+        centerDeleteButton.isEnabled = enable
+        rightDeleteButton.isEnabled = enable
     }
     
     override func layoutSubviews() {

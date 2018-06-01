@@ -15,6 +15,7 @@ class InventoryViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     
     var inventoryBrain: InventoryBrain = InventoryBrain()
+    var itemBrain: ItemBrain = ItemBrain()
     var dateHelper: DateHelper!
     
     var inventoryId: String?
@@ -23,6 +24,7 @@ class InventoryViewController: UIViewController {
     private var isScanning: Bool?
     private var imagesOfItems: [String:UIImage]?
     private var selectedItem: Item?
+    private var isDeleteMode = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +46,7 @@ class InventoryViewController: UIViewController {
     
     private func applyStyles() {
         tableView.separatorStyle = .none
+        startButton.titleLabel?.textAlignment = .center
     }
     
     private func fillStaticLabels() {
@@ -134,6 +137,17 @@ class InventoryViewController: UIViewController {
     }
     
     @IBAction func startScanningAction(_ sender: Any) {
+        if isDeleteMode {
+            wiggleAllCells(false)
+            AnimationChainingFactory.sharedInstance.animation(withDuration: 0.2, withDelay: 0, withAnimations: {
+                self.startButton.titleLabel?.text = NSLocalizedString(Constants.LocalizationKeys.kStartInventory, comment: "")
+                self.startButton.backgroundColor = ThemeManager.sharedInstance.inventoryOpenedColor
+            }, withCompletion: {
+                self.isDeleteMode = false
+            }, withOptions: UIViewAnimationOptions(rawValue: 0)).run()
+            return
+        }
+        
         inventoryBrain.checkBluetoothConnection { (response) in
             if response == .bluetoothOn {
                 if let inventory = self.inventory {
@@ -399,6 +413,68 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
             performSegue(withIdentifier: Constants.kShowItemDetailsSegue, sender: nil)
         }
     }
+    
+    func itemLongPressed(_ position: ItemPosition!) {
+        // User is able to delete item only if the status is open
+        if let inventoryStatus = inventory?.status, inventoryStatus != .open {
+                return
+        }
+        
+        isDeleteMode = true
+        AnimationChainingFactory.sharedInstance.animation(withDuration: 0.2, withDelay: 0, withAnimations: {
+            self.startButton.titleLabel?.text = NSLocalizedString(Constants.LocalizationKeys.kDeleteItemButtonTitle, comment: "")
+            self.startButton.backgroundColor = ThemeManager.sharedInstance.errorColor
+        }, withCompletion: {
+        }, withOptions: UIViewAnimationOptions(rawValue: 0)).run()
+        wiggleAllCells()
+    }
+    
+    func deleteButtonTouched(_ position: ItemPosition!, _ indexPath: IndexPath!) {
+        if let cell = tableView.cellForRow(at: indexPath) as? ItemsByDateTableViewCell {
+            cell.hideItem(position)
+        }
+        guard let items = inventory?.items?[indexPath.section].items else {
+            return
+        }
+        var item: Item!
+        
+        switch position {
+        case .left:
+             item = items.indices.contains(((indexPath.row) * 3)) ? items[((indexPath.row) * 3)] : nil
+        case .center:
+            item = items.indices.contains(((indexPath.row) * 3) + 1) ? items[((indexPath.row) * 3) + 1] : nil
+        case .right:
+            item = items.indices.contains(((indexPath.row) * 3) + 2) ? items[((indexPath.row) * 3) + 2] : nil
+        default:
+            break
+        }
+        itemBrain.deleteItem(item)
+        
+        tableView.reloadData()
+        wiggleAllCells()
+    }
+    
+    private func wiggleAllCells(_ wiggle: Bool! = true) {
+        var isOddyRow = true
+        tableView.visibleCells.forEach { (cell) in
+            if let cell = cell as? ItemsByDateTableViewCell {
+                if wiggle {
+                    cell.leftViewContainer.wiggle(withDuration: isOddyRow ? 0.105 : 0.115)
+                    cell.centerViewContainer.wiggle(withDuration: isOddyRow ? 0.115 : 0.105)
+                    cell.rightViewContainer.wiggle(withDuration: isOddyRow ? 0.105 : 0.115)
+                    isOddyRow = !isOddyRow
+                    cell.showDeleteButtons(true)
+                } else {
+                    cell.leftViewContainer.layer.removeAllAnimations()
+                    cell.centerViewContainer.layer.removeAllAnimations()
+                    cell.rightViewContainer.layer.removeAllAnimations()
+                    cell.showDeleteButtons(false)
+                }
+                
+            }
+        }
+    }
+
 }
 
 extension InventoryViewController: ItemScanningViewControllerDelegate {

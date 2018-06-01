@@ -20,4 +20,12 @@ class ItemRealmDatabase: ItemDatabaseProtocol {
             itemToSave.status = statusToSave
         } 
     }
+    
+    func deleteItem(_ item: Item!) {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.delete(item)
+        }
+    }
+    
 }
