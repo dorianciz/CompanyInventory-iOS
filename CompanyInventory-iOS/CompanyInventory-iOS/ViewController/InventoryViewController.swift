@@ -228,7 +228,7 @@ class InventoryViewController: UIViewController {
 
 extension InventoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.height * 0.35
+        return UIScreen.main.bounds.height * 0.33
     }
 }
 
@@ -317,6 +317,8 @@ extension InventoryViewController: UITableViewDataSource {
                 cell.leftImageView.image = imagesOfItems?[photoLocalPath]
             }
             fillLabel(cell.leftResultLabel, dependsOnItemStatus: leftItemValue.status)
+        } else {
+            cell.leftViewContainer.isHidden = true
         }
         
         if let centerItemValue = centerItem {
@@ -326,6 +328,8 @@ extension InventoryViewController: UITableViewDataSource {
                 cell.centerImageView.image = imagesOfItems?[photoLocalPath]
             }
             fillLabel(cell.centerResultLabel, dependsOnItemStatus: centerItemValue.status)
+        } else {
+            cell.centerViewContainer.isHidden = true
         }
         
         if let rightItemValue = rightItem {
@@ -335,6 +339,8 @@ extension InventoryViewController: UITableViewDataSource {
                 cell.rightImageView.image = imagesOfItems?[photoLocalPath]
             }
             fillLabel(cell.rightResultLabel, dependsOnItemStatus: rightItemValue.status)
+        } else {
+            cell.rightViewContainer.isHidden = true
         }
         
         cell.selectionStyle = .none
@@ -423,9 +429,9 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
     
     func itemLongPressed(_ position: ItemPosition!) {
         // User is able to delete item only if the status is open
-//        if let inventoryStatus = inventory?.status, inventoryStatus != .open {
-//                return
-//        }
+        if let inventoryStatus = inventory?.status, inventoryStatus != .open {
+                return
+        }
         
         isDeleteMode = true
         AnimationChainingFactory.sharedInstance.animation(withDuration: 0.2, withDelay: 0, withAnimations: {
@@ -437,9 +443,6 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
     }
     
     func deleteButtonTouched(_ position: ItemPosition!, _ indexPath: IndexPath!) {
-        if let cell = tableView.cellForRow(at: indexPath) as? ItemsByDateTableViewCell {
-            cell.hideItem(position)
-        }
         guard let items = inventory?.items?[indexPath.section].items else {
             return
         }

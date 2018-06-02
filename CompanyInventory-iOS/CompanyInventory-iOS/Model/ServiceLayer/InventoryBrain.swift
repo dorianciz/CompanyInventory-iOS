@@ -28,7 +28,7 @@ class InventoryBrain {
         inventoryEngine.getAllInventories { (response, inventories) in
             // Sort and save to database
             if var inventoriesArray = inventories {
-                inventoriesArray.sort(by: { $0.creationDate! > $1.creationDate! })
+                inventoriesArray.sort(by: { $0.creationDate! < $1.creationDate! })
                 for inventory in inventoriesArray {
                     self.inventoryDatabase.saveInventory(inventory)
                 }

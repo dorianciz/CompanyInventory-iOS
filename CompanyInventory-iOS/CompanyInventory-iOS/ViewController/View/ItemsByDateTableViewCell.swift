@@ -185,22 +185,25 @@ class ItemsByDateTableViewCell: UITableViewCell {
     func showDeleteButtons(_ show: Bool!) {
         print("test")
         AnimationChainingFactory.sharedInstance.animation(withDuration: 0.5, withDelay: 0, withAnimations: {
-            self.leftDeleteLeading.constant = show ? -15 : -4
-            self.leftDeleteTrailing.constant = show ? 7 : -4
-            self.leftDeleteTop.constant = show ? -9 : 2
-            self.leftDeleteBottom.constant = show ? 13 : 2
+            self.leftImageView.layoutIfNeeded()
+            self.leftDeleteLeading.constant = show ? -16 : -5
+            self.leftDeleteTrailing.constant = show ? 8 : -5
+            self.leftDeleteTop.constant = show ? -10 : 3
+            self.leftDeleteBottom.constant = show ? 14 : 3
             self.leftViewContainer.layoutIfNeeded()
             
-            self.centerDeleteLeading.constant = show ? -15 : -4
-            self.centerDeleteTrailing.constant = show ? 7 : -4
-            self.centerDeleteTop.constant = show ? -9 : 2
-            self.centerDeleteBottom.constant = show ? 13 : 2
+            self.centerImageView.layoutIfNeeded()
+            self.centerDeleteLeading.constant = show ? -16 : -5
+            self.centerDeleteTrailing.constant = show ? 8 : -5
+            self.centerDeleteTop.constant = show ? -10 : 3
+            self.centerDeleteBottom.constant = show ? 14 : 3
             self.centerViewContainer.layoutIfNeeded()
             
-            self.rightDeleteLeading.constant = show ? -15 : -4
-            self.rightDeleteTrailing.constant = show ? 7 : -4
-            self.rightDeleteTop.constant = show ? -9 : 2
-            self.rightDeleteBottom.constant = show ? 13 : 2
+            self.rightImageView.layoutIfNeeded()
+            self.rightDeleteLeading.constant = show ? -16 : -5
+            self.rightDeleteTrailing.constant = show ? 8 : -5
+            self.rightDeleteTop.constant = show ? -10 : 3
+            self.rightDeleteBottom.constant = show ? 14 : 3
             self.rightViewContainer.layoutIfNeeded()
         }, withCompletion: {
             self.enableDeleteButtons(show)
