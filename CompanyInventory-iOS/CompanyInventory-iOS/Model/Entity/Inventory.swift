@@ -21,6 +21,7 @@ class Inventory: Object {
     @objc dynamic var inventoryId: String? = UUID().uuidString //Required
     @objc dynamic var name: String? //Required
     @objc dynamic var descriptionText: String? //Optional
+    @objc dynamic var creationDate: Date? //Required
     @objc private dynamic var privateStatus: Int = InventoryStatus.open.rawValue //Required
     var status: InventoryStatus {
         get { return InventoryStatus(rawValue: privateStatus)! }
@@ -40,6 +41,7 @@ extension Inventory: NSCopying {
         inventory.name = name
         inventory.descriptionText = descriptionText
         inventory.privateStatus = InventoryStatus.open.rawValue
+        inventory.creationDate = Date()
         
         let lastInventoryByDate = self.items?.last?.copy() as! InventoryItemByDate
         inventory.items?.append(lastInventoryByDate)

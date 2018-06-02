@@ -40,4 +40,21 @@ class DateHelper {
         return date
     }
     
+    func getTimestampFromDate(_ date: Date?) -> Double? {
+        guard let dateToConvert = date else {
+            return nil
+        }
+        
+        return dateToConvert.timeIntervalSince1970
+    }
+    
+    func getDateFromTimestamp(_ timestamp: Double?) -> Date? {
+        guard let timestampToConvert = timestamp else {
+            return nil
+        }
+        
+        return Date(timeIntervalSince1970: timestampToConvert)
+        
+    }
+    
 }

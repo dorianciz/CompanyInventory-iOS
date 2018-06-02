@@ -26,8 +26,9 @@ class InventoryBrain {
     
     func fetchAllInventories(_ completion: @escaping(Response, [Inventory]?) -> Void) {
         inventoryEngine.getAllInventories { (response, inventories) in
-            // Save to database
-            if let inventoriesArray = inventories {
+            // Sort and save to database
+            if var inventoriesArray = inventories {
+                inventoriesArray.sort(by: { $0.creationDate! > $1.creationDate! })
                 for inventory in inventoriesArray {
                     self.inventoryDatabase.saveInventory(inventory)
                 }
@@ -48,6 +49,7 @@ class InventoryBrain {
             inventory = fromInventory.copy() as! Inventory
         } else {
             inventory = Inventory()
+            inventory.creationDate = Date()
         }
         
         inventory.name = inventoryName

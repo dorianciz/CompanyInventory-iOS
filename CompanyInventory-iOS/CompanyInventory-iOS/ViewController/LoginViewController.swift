@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
         usernameTextfield.delegate = self
         passwordTextfield.delegate = self
         
-        usernameTextfield.text = "testuser4@companyinventory.com"
+        usernameTextfield.text = "t@t.com"
         passwordTextfield.text = "Test123"
         applyStyles()
         fillStaticLabels()

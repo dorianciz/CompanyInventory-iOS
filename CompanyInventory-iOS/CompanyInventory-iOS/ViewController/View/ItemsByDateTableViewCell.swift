@@ -90,14 +90,16 @@ class ItemsByDateTableViewCell: UITableViewCell {
         rightImageView.addGestureRecognizer(tap3)
         rightImageView.isUserInteractionEnabled = true
         
-        let longPress1 = UILongPressGestureRecognizer(target: self, action: #selector(leftLongPressed))
+        let longPress1 = UILongPressGestureRecognizer(target: self, action: #selector(leftLongPressed(_:)))
         leftImageView.addGestureRecognizer(longPress1)
         
-        let longPress2 = UILongPressGestureRecognizer(target: self, action: #selector(centerLongPressed))
+        let longPress2 = UILongPressGestureRecognizer(target: self, action: #selector(centerLongPressed(_:)))
         centerImageView.addGestureRecognizer(longPress2)
         
-        let longPress3 = UILongPressGestureRecognizer(target: self, action: #selector(rightLongPressed))
+        let longPress3 = UILongPressGestureRecognizer(target: self, action: #selector(rightLongPressed(_:)))
         rightImageView.addGestureRecognizer(longPress3)
+        
+        
     }
     
     private func hideAllItems() {
@@ -118,16 +120,22 @@ class ItemsByDateTableViewCell: UITableViewCell {
         delegate?.rightItemTouched(self)
     }
     
-    @objc func leftLongPressed() {
-        delegate?.itemLongPressed(.left)
+    @objc func leftLongPressed(_ recognizer: UILongPressGestureRecognizer) {
+        if recognizer.state == .began {
+            delegate?.itemLongPressed(.left)
+        }
     }
     
-    @objc func centerLongPressed() {
-        delegate?.itemLongPressed(.center)
+    @objc func centerLongPressed(_ recognizer: UILongPressGestureRecognizer) {
+        if recognizer.state == .began {
+            delegate?.itemLongPressed(.center)
+        }
     }
     
-    @objc func rightLongPressed() {
-        delegate?.itemLongPressed(.right)
+    @objc func rightLongPressed(_ recognizer: UILongPressGestureRecognizer) {
+        if recognizer.state == .began {
+            delegate?.itemLongPressed(.right)
+        }
     }
     
     @IBAction func leftDeleteAction(_ sender: Any) {

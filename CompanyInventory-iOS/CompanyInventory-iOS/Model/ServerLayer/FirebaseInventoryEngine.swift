@@ -14,6 +14,7 @@ class FirebaseInventoryEngine: GenericEngine, InventoryEngineProtocol {
     
     var firebaseDatabase = Database.database().reference()
     private var userRealmDatabase: CIUserDatabaseProtocol!
+    private let dateHelper: DateHelper! = DateHelper()
     
     init(withUserDatabaseProtocol database: CIUserDatabaseProtocol = CIUserRealmDatabase()) {
         userRealmDatabase = database
@@ -69,6 +70,7 @@ class FirebaseInventoryEngine: GenericEngine, InventoryEngineProtocol {
         let dictionary = [  Constants.kFirebaseInventoryNameNodeName: name,
                             Constants.kFirebaseInventoryDescriptionNodeName: inventoryToSave.descriptionText ?? "",
                             Constants.kFirebaseInventoryStatusNodeName: inventoryToSave.status.rawValue,
+                            Constants.kFirebaseInventoryCreatedDateNodeName: dateHelper.getTimestampFromDate(inventoryToSave.creationDate) ?? 0,
                             Constants.kFirebaseInventoryItemsByDateNodeName: dictionaryItems] as [String : Any]
         
         let loggedInUser = userRealmDatabase.getCurrentUser()
@@ -100,7 +102,7 @@ class FirebaseInventoryEngine: GenericEngine, InventoryEngineProtocol {
                 completion(.noInternetConnection, nil)
                 return
             }
-            self.firebaseDatabase.child(Constants.kFirebaseInventoriesNodeName).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+            self.firebaseDatabase.child(Constants.kFirebaseInventoriesNodeName).child(userId).queryLimited(toFirst: 7).observeSingleEvent(of: .value, with: { (snapshot) in
                 print("\(snapshot)")
                 var inventories = [Inventory]()
                 let inventoriesResult = snapshot.value as? NSDictionary
@@ -113,10 +115,12 @@ class FirebaseInventoryEngine: GenericEngine, InventoryEngineProtocol {
                         var name: String?
                         var descriptionText: String?
                         var inventoryStatus: InventoryStatus = .none
+                        var creationDate: Double?
                         
                         if let inventoryDictionary = inventory as? NSDictionary {
                             name = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryNameNodeName) as? String
                             descriptionText = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryDescriptionNodeName) as? String
+                            creationDate = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryCreatedDateNodeName) as? Double
                             let statusInt = inventoryDictionary.value(forKey: Constants.kFirebaseInventoryStatusNodeName) as? Int
                             let status = InventoryStatus(rawValue: statusInt ?? 0)
                             inventoryStatus = status ?? .none
@@ -165,6 +169,7 @@ class FirebaseInventoryEngine: GenericEngine, InventoryEngineProtocol {
                         inventoryToSave.inventoryId = inventoryId
                         inventoryToSave.name = name
                         inventoryToSave.descriptionText = descriptionText
+                        inventoryToSave.creationDate = self.dateHelper.getDateFromTimestamp(creationDate)
                         inventoryToSave.status = inventoryStatus
                         inventories.append(inventoryToSave)
                     }

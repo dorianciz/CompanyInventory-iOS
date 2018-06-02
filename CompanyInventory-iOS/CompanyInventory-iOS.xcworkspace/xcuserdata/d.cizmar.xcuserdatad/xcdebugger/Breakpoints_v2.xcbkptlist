@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CompanyInventory-iOS/ViewController/InventoryViewController.swift"
-            timestampString = "549508760.832868"
+            filePath = "CompanyInventory-iOS/Model/ServiceLayer/InventoryBrain.swift"
+            timestampString = "549593414.942638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "451"
-            endingLineNumber = "451"
-            landmarkName = "deleteButtonTouched(_:_:)"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "fetchAllInventories(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

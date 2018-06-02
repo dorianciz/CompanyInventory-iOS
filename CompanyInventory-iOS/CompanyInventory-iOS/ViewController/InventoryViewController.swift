@@ -138,12 +138,16 @@ class InventoryViewController: UIViewController {
     
     @IBAction func startScanningAction(_ sender: Any) {
         if isDeleteMode {
-            wiggleAllCells(false)
             AnimationChainingFactory.sharedInstance.animation(withDuration: 0.2, withDelay: 0, withAnimations: {
                 self.startButton.titleLabel?.text = NSLocalizedString(Constants.LocalizationKeys.kStartInventory, comment: "")
                 self.startButton.backgroundColor = ThemeManager.sharedInstance.inventoryOpenedColor
             }, withCompletion: {
+                
+                //Disable wiggle animation by setting isDeleteMode to false.
+                //Table will reload all cells and delete wiggle animation from each cell
                 self.isDeleteMode = false
+                self.tableView.reloadData()
+                
             }, withOptions: UIViewAnimationOptions(rawValue: 0)).run()
             return
         }
@@ -337,6 +341,9 @@ extension InventoryViewController: UITableViewDataSource {
         cell.delegate = self
         cell.indexPath = indexPath
         
+        //Wiggle cell if delete mode is on
+        wiggleCell(cell, isDeleteMode, (indexPath.row % 2 == 0))
+        
         return cell
     }
 }
@@ -416,9 +423,9 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
     
     func itemLongPressed(_ position: ItemPosition!) {
         // User is able to delete item only if the status is open
-        if let inventoryStatus = inventory?.status, inventoryStatus != .open {
-                return
-        }
+//        if let inventoryStatus = inventory?.status, inventoryStatus != .open {
+//                return
+//        }
         
         isDeleteMode = true
         AnimationChainingFactory.sharedInstance.animation(withDuration: 0.2, withDelay: 0, withAnimations: {
@@ -426,7 +433,7 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
             self.startButton.backgroundColor = ThemeManager.sharedInstance.errorColor
         }, withCompletion: {
         }, withOptions: UIViewAnimationOptions(rawValue: 0)).run()
-        wiggleAllCells()
+        tableView.reloadData()
     }
     
     func deleteButtonTouched(_ position: ItemPosition!, _ indexPath: IndexPath!) {
@@ -451,27 +458,19 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
         itemBrain.deleteItem(item)
         
         tableView.reloadData()
-        wiggleAllCells()
     }
     
-    private func wiggleAllCells(_ wiggle: Bool! = true) {
-        var isOddyRow = true
-        tableView.visibleCells.forEach { (cell) in
-            if let cell = cell as? ItemsByDateTableViewCell {
-                if wiggle {
-                    cell.leftViewContainer.wiggle(withDuration: isOddyRow ? 0.105 : 0.115)
-                    cell.centerViewContainer.wiggle(withDuration: isOddyRow ? 0.115 : 0.105)
-                    cell.rightViewContainer.wiggle(withDuration: isOddyRow ? 0.105 : 0.115)
-                    isOddyRow = !isOddyRow
-                    cell.showDeleteButtons(true)
-                } else {
-                    cell.leftViewContainer.layer.removeAllAnimations()
-                    cell.centerViewContainer.layer.removeAllAnimations()
-                    cell.rightViewContainer.layer.removeAllAnimations()
-                    cell.showDeleteButtons(false)
-                }
-                
-            }
+    private func wiggleCell(_ cell: ItemsByDateTableViewCell!, _ wiggle: Bool! = true, _ isOddyRow: Bool!) {
+        if wiggle {
+            cell.leftViewContainer.wiggle(withDuration: isOddyRow ? 0.105 : 0.115)
+            cell.centerViewContainer.wiggle(withDuration: isOddyRow ? 0.115 : 0.105)
+            cell.rightViewContainer.wiggle(withDuration: isOddyRow ? 0.105 : 0.115)
+            cell.showDeleteButtons(true)
+        } else {
+            cell.leftViewContainer.layer.removeAllAnimations()
+            cell.centerViewContainer.layer.removeAllAnimations()
+            cell.rightViewContainer.layer.removeAllAnimations()
+            cell.showDeleteButtons(false)
         }
     }
 

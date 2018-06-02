@@ -27,6 +27,7 @@ struct Constants {
     static let kFirebaseInventoryDescriptionNodeName = "inventoryDescription"
     static let kFirebaseInventoryStatusNodeName = "inventoryStatus"
     static let kFirebaseInventoryItemsByDateNodeName = "inventoryItemsByDate"
+    static let kFirebaseInventoryCreatedDateNodeName = "inventoryCreatedDate"
     //ItemByDate node names
     static let kFirebaseItemByDateIdNodeName = "itemByDateId"
     static let kFirebaseItemByDateDateNodeName = "itemByDateDate"
