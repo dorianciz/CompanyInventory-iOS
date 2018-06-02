@@ -924,13 +924,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = H2N6F5RHWC;
+				DEVELOPMENT_TEAM = TW98687ZKD;
 				INFOPLIST_FILE = "CompanyInventory-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dorian.CompanyInventory-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f57e611b-6c0e-467c-a9bc-029f15e3f5b4";
-				PROVISIONING_PROFILE_SPECIFIER = Generic_DevProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_NAME}/Resources/ObjCBridge.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
