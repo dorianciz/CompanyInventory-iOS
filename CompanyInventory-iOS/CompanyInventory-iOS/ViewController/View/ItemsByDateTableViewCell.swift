@@ -15,12 +15,9 @@ enum ItemPosition {
 }
 
 protocol ItemsByDateTableViewCellDelegate: class {
-    func leftItemTouched(_ sender: ItemsByDateTableViewCell)
-    func centerItemTouched(_ sender: ItemsByDateTableViewCell)
-    func rightItemTouched(_ sender: ItemsByDateTableViewCell)
-    
     func itemLongPressed(_ position: ItemPosition!)
     func deleteButtonTouched(_ position: ItemPosition!, _ indexPath: IndexPath!)
+    func itemTouched(_ position: ItemPosition!, _ indexPath: IndexPath!)
 }
 
 class ItemsByDateTableViewCell: UITableViewCell {
@@ -109,15 +106,15 @@ class ItemsByDateTableViewCell: UITableViewCell {
     }
     
     @objc func leftTapped() {
-        delegate?.leftItemTouched(self)
+        delegate?.itemTouched(.left, indexPath)
     }
     
     @objc func centerTapped() {
-        delegate?.centerItemTouched(self)
+        delegate?.itemTouched(.center, indexPath)
     }
     
     @objc func rightTapped() {
-        delegate?.rightItemTouched(self)
+        delegate?.itemTouched(.right, indexPath)
     }
     
     @objc func leftLongPressed(_ recognizer: UILongPressGestureRecognizer) {

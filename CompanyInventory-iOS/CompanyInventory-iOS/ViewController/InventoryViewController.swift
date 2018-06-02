@@ -355,64 +355,26 @@ extension InventoryViewController: UITableViewDataSource {
 }
 
 extension InventoryViewController: ItemsByDateTableViewCellDelegate {
-    func leftItemTouched(_ sender: ItemsByDateTableViewCell) {
-        let indexPath: IndexPath! = sender.indexPath
-        
+    func itemTouched(_ position: ItemPosition!, _ indexPath: IndexPath!) {
         guard let items = inventory?.items?[indexPath.section].items else {
             return
         }
-        let item = items.indices.contains((indexPath.row) * 3) ? items[(indexPath.row) * 3] : nil
+        
+        var item: Item!
+        
+        switch position {
+        case .left:
+            item = items.indices.contains(((indexPath.row) * 3)) ? items[((indexPath.row) * 3)] : nil
+        case .center:
+            item = items.indices.contains(((indexPath.row) * 3) + 1) ? items[((indexPath.row) * 3) + 1] : nil
+        case .right:
+            item = items.indices.contains(((indexPath.row) * 3) + 2) ? items[((indexPath.row) * 3) + 2] : nil
+        default:
+            break
+        }
         
         if let item = item {
-            NSLog("Item: \(item.name!)")
-            selectedItem = item
-            if let isScanning = isScanning {
-                if isScanning {
-                    scanningItem = item
-                    performSegue(withIdentifier: Constants.kShowScanningItemSegue, sender: self)
-                    return
-                }
-            }
-            
-            //If scanning is off, show edit item screen
-            performSegue(withIdentifier: Constants.kShowItemDetailsSegue, sender: nil)
-        }
-    }
-    
-    func centerItemTouched(_ sender: ItemsByDateTableViewCell) {
-        let indexPath: IndexPath! = sender.indexPath
-        
-        guard let items = inventory?.items?[indexPath.section].items else {
-            return
-        }
-        let item = items.indices.contains(((indexPath.row) * 3) + 1) ? items[((indexPath.row) * 3) + 1] : nil
-        
-        if let item = item {
-            NSLog("Item: \(item.name!)")
-            selectedItem = item
-            if let isScanning = isScanning {
-                if isScanning {
-                    scanningItem = item
-                    performSegue(withIdentifier: Constants.kShowScanningItemSegue, sender: self)
-                    return
-                }
-            }
-            
-            //If scanning is off, show edit item screen
-            performSegue(withIdentifier: Constants.kShowItemDetailsSegue, sender: nil)
-        }
-    }
-    
-    func rightItemTouched(_ sender: ItemsByDateTableViewCell) {
-        let indexPath: IndexPath! = sender.indexPath
-        
-        guard let items = inventory?.items?[indexPath.section].items else {
-            return
-        }
-        let item = items.indices.contains(((indexPath.row) * 3) + 2) ? items[((indexPath.row) * 3) + 2] : nil
-        
-        if let item = item {
-            NSLog("Item: \(item.name!)")
+            print("Item: \(item.name!)")
             selectedItem = item
             if let isScanning = isScanning {
                 if isScanning {
