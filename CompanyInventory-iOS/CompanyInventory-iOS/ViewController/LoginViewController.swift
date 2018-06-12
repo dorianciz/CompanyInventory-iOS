@@ -30,6 +30,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var logoPostTrailingConstraint: NSLayoutConstraint!
     
     var loginBrain = LoginBrain()
+    var ciUserBrain: CIUserBrain!
+    
     
     private var firstLayoutSubviews: Bool?
     
@@ -40,6 +42,9 @@ class LoginViewController: UIViewController {
         
         usernameTextfield.text = "t@t.com"
         passwordTextfield.text = "Test123"
+        
+        ciUserBrain = CIUserBrain()
+        
         applyStyles()
         fillStaticLabels()
         
@@ -52,7 +57,11 @@ class LoginViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        checkIfUserHasBeenLoggedIn()
+        if let shouldStaySignedIn = PersistanceService.sharedInstance.shouldStaySignedIn() {
+            if shouldStaySignedIn {
+                checkIfUserHasBeenLoggedIn()
+            }
+        }
         animateLaunchScreen()
     }
     
@@ -85,9 +94,12 @@ class LoginViewController: UIViewController {
     }
     
     private func applyStyles() {
+        view.backgroundColor = ThemeManager.sharedInstance.brandColor
+        launchScreen.backgroundColor = ThemeManager.sharedInstance.brandColor
         errorLabel.isHidden = true
         usernameTextfield.keyboardType = .emailAddress
         passwordTextfield.isSecureTextEntry = true
+        ThemeManager.sharedInstance.styleClearButton(button: loginButton)
     }
     
     private func fillStaticLabels() {
@@ -115,7 +127,23 @@ class LoginViewController: UIViewController {
                 NavigationManager.sharedInstance.hideLoader {
                     switch response {
                     case .success:
-                        self.performSegue(withIdentifier: Constants.kShowLoggedInAppSegue, sender: nil)
+                        NavigationManager.sharedInstance.showLoader {
+                            self.ciUserBrain.fetchCurrentUserProfile(withCompletion: { (ciUser, response) in
+                                switch response {
+                                case .success:
+                                    PersistanceService.sharedInstance.setStaySignedIn(true)
+                                    self.performSegue(withIdentifier: Constants.kShowLoggedInAppSegue, sender: nil)
+                                case .noInternetConnection:
+                                    PopupManager.sharedInstance.showNoInternetConnection {
+                                        self.perform(#selector(self.loginAction(_:)))
+                                    }
+                                case .error:
+                                    PopupManager.sharedInstance.showGeneralError()
+                                default:
+                                    break
+                                }
+                            })
+                        }
                     case .error:
                         self.errorLabel.isHidden = false
                     case .missingUsernameAndPassword:
@@ -129,9 +157,9 @@ class LoginViewController: UIViewController {
                         self.passwordTextfield.shake()
                         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                     case .noInternetConnection:
-                        PopupManager.sharedInstance.showPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kGeneralErrorTitle, comment: ""), withDescription: NSLocalizedString(Constants.LocalizationKeys.kNoInternetConnection, comment: ""), withOkButtonText: NSLocalizedString(Constants.LocalizationKeys.kRetryButtonTitle, comment: ""), withCancelButtonText: NSLocalizedString(Constants.LocalizationKeys.kGeneralCancel, comment: ""), withPopupType: .error, withOkCompletion: {
+                        PopupManager.sharedInstance.showNoInternetConnection {
                             self.perform(#selector(self.loginAction(_:)))
-                        }, withCancelCompletion: nil)
+                        }
                     default: break
                     }
                 }

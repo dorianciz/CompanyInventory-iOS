@@ -38,11 +38,12 @@ extension GenericPhotoPicker: UIImagePickerControllerDelegate, UINavigationContr
         NavigationManager.sharedInstance.showLoader {
             let smallImage = info[UIImagePickerControllerOriginalImage] as? UIImage
             let largeImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+            let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage
             self.photoHelper.prepare(image: smallImage, withSize: Constants.kDefaultItemSmallPhotoSize)
             self.photoHelper.prepare(image: largeImage, withSize: Constants.kDefaultItemLargePhotoSize)
             picker.dismiss(animated: true, completion: {
                 NavigationManager.sharedInstance.hideLoader {
-                    self.delegate?.photoHasBeenChoosen(smallImage)
+                    self.delegate?.photoHasBeenChoosen(picker.allowsEditing ? editedImage : smallImage)
                 }
             })
         }

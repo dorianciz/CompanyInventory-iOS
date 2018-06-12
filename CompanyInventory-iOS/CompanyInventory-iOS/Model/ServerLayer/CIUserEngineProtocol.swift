@@ -9,6 +9,7 @@
 import Foundation
 
 protocol CIUserEngineProtocol {
-    func getCIUser(byUID: String, withCompletion completion: @escaping (CIUser, Response) -> Void)
-    func saveUser(user: CIUser, withCompletion completion:@escaping (Response) -> Void)
+    func getCIUser(byUID: String?, withCompletion completion: @escaping (CIUser?, Response) -> Void)
+    func saveUser(user: CIUser?, withCompletion completion:@escaping (Response) -> Void)
+    func changePassword(newPassword: String, withCompletion completion: @escaping(Response) -> Void)
 }

@@ -180,4 +180,23 @@ class FirebaseInventoryEngine: GenericEngine, InventoryEngineProtocol {
             })
         }
     }
+    
+    func clearAllInventories(withCompletion completion: @escaping (Response) -> Void) {
+        let loggedInUser = userRealmDatabase.getCurrentUser()
+        guard let userId = loggedInUser?.uid else {
+            completion(.error)
+            return
+        }
+        
+        performRequest { (response) in
+            if response == .noInternetConnection {
+                completion(.noInternetConnection)
+                return
+            }
+            
+            self.firebaseDatabase.child(Constants.kFirebaseInventoriesNodeName).child(userId).setValue(nil)
+            completion(.success)
+            
+        }
+    }
 }

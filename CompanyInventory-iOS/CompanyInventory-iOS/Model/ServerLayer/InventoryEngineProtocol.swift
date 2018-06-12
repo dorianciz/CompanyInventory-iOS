@@ -11,4 +11,5 @@ import Foundation
 protocol InventoryEngineProtocol {
     func createInventory(withInventory inventory: Inventory?, withCompletion completion:@escaping(Response) -> Void)
     func getAllInventories(withCompletion completion: @escaping(Response, [Inventory]?) -> Void)
+    func clearAllInventories(withCompletion completion: @escaping(Response) -> Void)
 }

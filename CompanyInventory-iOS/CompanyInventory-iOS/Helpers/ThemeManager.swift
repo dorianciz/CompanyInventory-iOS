@@ -13,7 +13,7 @@ final class ThemeManager {
     
     static let sharedInstance = ThemeManager()
     
-    let brandColor = #colorLiteral(red: 1, green: 0.9865267873, blue: 0.4715276957, alpha: 1)
+    let brandColor = #colorLiteral(red: 0.4620226622, green: 0.8382837176, blue: 1, alpha: 1)
     let generalGrayColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
     let generalBlueColor = #colorLiteral(red: 0, green: 0.5008062124, blue: 1, alpha: 1)
     let errorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
@@ -32,15 +32,15 @@ final class ThemeManager {
     let itemResultLabelSuccessColor = #colorLiteral(red: 0.2176683843, green: 0.8194433451, blue: 0.2584097683, alpha: 0.86)
     let itemResultLabelExpiredColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0.86)
     let itemResultLabelMissingColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 0.86)
+    let logoutColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
     let headerFont = UIFont(name: Constants.kDefaultBoldFontName, size: Constants.kHeaderFontSize)
     let titleFont = UIFont(name: Constants.kDefaultBoldFontName, size: Constants.kTitleFontSize)
     let defaultFont = UIFont(name: Constants.kDefaultFontName, size: Constants.kDefaultFontSize)
     let clearButtonColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
-    let clearButtonBorderWidth:CGFloat = 2.0
+    let clearButtonBorderWidth:CGFloat = 1.0
     let clearButtonBorderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-    
-    
-    
+    let bottomLineColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        
     func addShadow(toView view: UIView) {
         view.layer.shadowColor = UIColor.gray.cgColor
         view.layer.shadowOpacity = 0.8
@@ -113,7 +113,7 @@ final class ThemeManager {
         button.layer.cornerRadius = buttonDefaultCornerRadius
         button.backgroundColor = clearButtonColor
         button.setTitleColor(color, for: .normal)
-        button.titleLabel?.font = titleFont
+        button.titleLabel?.font = defaultFont
         button.layer.borderWidth = clearButtonBorderWidth
         button.layer.borderColor = color.cgColor
     }

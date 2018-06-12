@@ -21,9 +21,14 @@ class DocumentManager {
         directoryPath = path
     }
     
-    func getImageFromDocument(withName name: String) -> UIImage? {
+    func getImageFromDocument(withName name: String?) -> UIImage? {
+        guard let imageName = name else {
+            print("Image name is invalid")
+            return nil
+        }
+        
         let fileManager = FileManager.default
-        let imagePath = (self.directoryPath as NSString).appendingPathComponent(name)
+        let imagePath = (self.directoryPath as NSString).appendingPathComponent(imageName)
         if fileManager.fileExists(atPath: imagePath){
             return UIImage(contentsOfFile: imagePath)
         }else{
@@ -48,10 +53,14 @@ class DocumentManager {
         return nil
     }
     
-    func saveImageToDocumentDirectory(_ imageName: String, _ image: UIImage) {
+    func saveImageToDocumentDirectory(_ imageName: String?, _ image: UIImage?) {
+        guard let name = imageName, let imageToSave = image else {
+            print("Error - Invalid data has been passed")
+            return
+        }
         let fileManager = FileManager.default
-        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
-        let imageData = UIImageJPEGRepresentation(image, 0.5)
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(name)
+        let imageData = UIImageJPEGRepresentation(imageToSave, 0.5)
         fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
     }
     

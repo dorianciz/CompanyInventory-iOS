@@ -3,10 +3,21 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "InventoryBrain.addNewInventoryByDate(toInventory:_:):InventoryBrain.swift">
+      </ContextState>
+      <ContextState
          contextName = "GenericPhotoPicker.imagePickerController(_:didFinishPickingMediaWithInfo:):GenericPhotoPicker.swift">
          <PersistentStrings>
             <PersistentString
                value = "info[&quot;UIImagePickerControllerOriginalImage&quot;]! as! UIImage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ProfileViewController.fillPersistanceData():ProfileViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "profileImage.image">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -17,9 +28,6 @@
                value = "imagesOfItems">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "InventoryBrain.addNewInventoryByDate(toInventory:_:):InventoryBrain.swift">
       </ContextState>
       <ContextState
          contextName = "InventoryViewController.tableView(_:cellForRowAt:):InventoryViewController.swift">
@@ -33,18 +41,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ItemViewController.saveTapped():ItemViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "image">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "InventoryBrain.saveItem(_:toInventoryByDate:toInventoryWithId:_:):InventoryBrain.swift">
          <PersistentStrings>
             <PersistentString
                value = "item!.image!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ItemViewController.saveTapped():ItemViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "image">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

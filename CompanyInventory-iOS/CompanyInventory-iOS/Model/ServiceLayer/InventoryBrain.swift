@@ -17,7 +17,6 @@ class InventoryBrain {
     var documentManager = DocumentManager()
     var bluetoothManager = BluetoothConnection()
     
-    
     init(withInventoryDatabase database: InventoryDatabaseProtocol = InventoryRealmDatabase(), withInventoryEngine engine: InventoryEngineProtocol = FirebaseInventoryEngine(), withItemDatabase itemDatabase: ItemDatabaseProtocol = ItemRealmDatabase()) {
         inventoryDatabase = database
         inventoryEngine = engine
@@ -233,6 +232,15 @@ class InventoryBrain {
             inventory.status = status
         }
         inventoryEngine.createInventory(withInventory: inventory) { (response) in
+            completion(response)
+        }
+    }
+    
+    func clearAllInventories(withCompletion completion: @escaping(Response) -> Void) {
+        inventoryEngine.clearAllInventories { (response) in
+            if response == .success {
+                self.inventoryDatabase.clearAll()
+            }
             completion(response)
         }
     }

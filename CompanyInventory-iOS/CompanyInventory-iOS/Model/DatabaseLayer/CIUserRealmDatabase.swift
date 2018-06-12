@@ -26,13 +26,15 @@ class CIUserRealmDatabase: CIUserDatabaseProtocol {
         
         let realm = try! Realm()
         let checkIfUserExists = realm.objects(CIUser.self).filter("uid = '\(uid)'").first
-        if var savedUser = checkIfUserExists {
+        if let savedUser = checkIfUserExists {
             try! realm.write {
                 print(savedUser)
+                savedUser.username = userToSave.username
                 savedUser.name = userToSave.name
                 savedUser.surname = userToSave.surname
-                savedUser.photoName = userToSave.photoName
-                savedUser.photoData = userToSave.photoData
+                savedUser.photoPath = userToSave.photoPath
+                savedUser.isProfileConfigured.value = userToSave.isProfileConfigured.value
+                savedUser.phoneNumber = userToSave.phoneNumber
             }
         } else {
             try! realm.write {

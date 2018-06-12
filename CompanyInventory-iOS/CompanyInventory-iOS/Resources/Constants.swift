@@ -20,6 +20,8 @@ struct Constants {
     static let kFirebaseNameNodeName = "name"
     static let kFirebaseSurnameNodeName = "surname"
     static let kFirebasePhotoFileName = "photoFileName"
+    static let kFirebasePhoneNumberNodeName = "phoneNumber"
+    static let kFirebaseIsProfileConfigured = "isProfileConfigured"
     static let kFirebaseInventoriesNodeName = "inventories"
     //Inventory node names
     static let kFirebaseInventoryIdNodeName = "inventoryId"
@@ -50,6 +52,8 @@ struct Constants {
     static let kItemsByDateCellHeaderIdentifier = "ItemsByDateCellHeaderIdentifier"
     static let kItemsByDateCellFooterIdentifier = "ItemsByDateCellFooterIdentifier"
     static let kGenericPopupIdentifier = "GenericPopupIdentifier"
+    static let kMoreCellReuseIdentifier = "MoreCellIdentifier"
+    static let kLogoutCellReuseIdentifier = "LogoutCellIdentifier"
     
     //Segue ids
     static let kShowLoggedInAppSegue = "showLoggedInAppSegue"
@@ -58,6 +62,8 @@ struct Constants {
     static let kShowScanningItemSegue = "showScanningItemSegue"
     static let kShowBeaconScanningSegue = "showBeaconScanningSegue"
     static let kShowItemDetailsSegue = "showItemDetailsSegue"
+    static let kLogoutSegue = "logoutSegue"
+    static let kEditProfileSegue = "showEditProfileSegue"
     
     //Animations files names
     static let kScanningBeaconAnimation = "scanningBeacon"
@@ -151,10 +157,33 @@ struct Constants {
         static let kGeneralWarning = "general_warning"
         static let kOpenedInventoryError = "opened_inventory_error"
         static let kItemDetails = "item_details_title"
-        static let kDescriptionLabel = "description_label_title";
-        static let kLocationLabel = "location_label_title";
-        static let kBeaconIdLabel = "beacon_id_label_title";
-        static let kDeleteItemButtonTitle = "delete_item_button_title";
+        static let kDescriptionLabel = "description_label_title"
+        static let kLocationLabel = "location_label_title"
+        static let kBeaconIdLabel = "beacon_id_label_title"
+        static let kDeleteItemButtonTitle = "delete_item_button_title"
+        static let kMoreItemClearInventories = "more_item_clear_inventories"
+        static let kMoreItemHelpAndSupport = "more_item_support"
+        static let kMoreItemStaySignedIn = "more_item_stay_sign_in"
+        static let kMoreItemVersion = "more_item_version"
+        static let kMoreItemLogout = "more_item_logout"
+        static let kLogoutTitle = "logout_title"
+        static let kGeneralYes = "general_yes"
+        static let kGeneralNo = "general_no"
+        static let kClearInventoriesQuestion = "clear_inventories_question"
+        static let kShareContact = "share_contact"
+        static let kConfigureProfileButton = "configure_profile_button"
+        static let kConfigureProfileTitle = "configure_profile_title"
+        static let kConfigureProfileDescription = "configure_profile_description"
+        static let kEditProfileTitle = "edit_profile_title"
+        static let kEditProfileNameAndSurnamePlaceholder = "edit_profile_name_surname_placeholder"
+        static let kEditProfilePhonePlaceholder = "edit_profile_phone_placeholder"
+        static let kEditProfileChangePassword = "edit_profile_change_password"
+        static let kChangePasswordTitle = "change_password_title"
+        static let kChangePasswordMessage = "change_password_message"
+        static let kChangePasswordOld = "change_password_old"
+        static let kChangePasswordNew = "change_password_new"
+        static let kChangePasswordRepeat = "change_password_repeat"
+        static let kPasswordsMissmatches = "missmatch_passwords"
     }
     
 }

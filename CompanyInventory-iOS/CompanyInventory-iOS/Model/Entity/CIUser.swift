@@ -15,9 +15,9 @@ class CIUser: Object {
     @objc dynamic var password: String?
     @objc dynamic var name: String?
     @objc dynamic var surname: String?
-    @objc dynamic var photoName: String?
-    var photoData: Data?
-    var inventories: [Inventory]?
+    @objc dynamic var photoPath: String?
+    @objc dynamic var phoneNumber: String?
+    var isProfileConfigured = RealmOptional<Bool>()
     
     override static func primaryKey() -> String? {
         return "uid"

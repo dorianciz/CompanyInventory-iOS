@@ -12,7 +12,7 @@ import UIKit
 class PopupManager {
     static let sharedInstance = PopupManager()
     
-    func showGenericPopup(withTitle title: String, withMessage message: String, withTextFieldsPlaceholders placeholders: [String]?, withOkCompletion completion:@escaping([String]) -> Void) -> UIAlertController {
+    func showGenericPopup(withTitle title: String, withMessage message: String, withTextFieldsPlaceholders placeholders: [String]?, isPasswordType: Bool! = false, withOkCompletion completion:@escaping([String]) -> Void) -> UIAlertController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
         let addAction = UIAlertAction(title: NSLocalizedString(Constants.LocalizationKeys.kInventoryAddButton, comment: ""), style: .default) { (action) in
@@ -30,6 +30,7 @@ class PopupManager {
         placeholders?.forEach {
             let title = $0
             alertController.addTextField(configurationHandler: { textField in
+                textField.isSecureTextEntry = isPasswordType
                 textField.placeholder = title
             })
         }
@@ -76,6 +77,16 @@ class PopupManager {
             }
             topController.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    func showNoInternetConnection(_ completion: @escaping() -> Void) {
+        PopupManager.sharedInstance.showPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kGeneralErrorTitle, comment: ""), withDescription: NSLocalizedString(Constants.LocalizationKeys.kNoInternetConnection, comment: ""), withOkButtonText: NSLocalizedString(Constants.LocalizationKeys.kRetryButtonTitle, comment: ""), withCancelButtonText: NSLocalizedString(Constants.LocalizationKeys.kGeneralCancel, comment: ""), withPopupType: .error, withOkCompletion: {
+            completion()
+        }, withCancelCompletion: nil)
+    }
+    
+    func showGeneralError() {
+        PopupManager.sharedInstance.showPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kGeneralErrorTitle, comment: ""), withDescription: NSLocalizedString(Constants.LocalizationKeys.kGeneralErrorMessage, comment: ""), withOkButtonText: NSLocalizedString(Constants.LocalizationKeys.kGeneralOk, comment: ""), withCancelButtonText: nil, withPopupType: .error, withOkCompletion: nil, withCancelCompletion: nil)
     }
     
 }
