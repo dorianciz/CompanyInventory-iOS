@@ -84,3 +84,5 @@
 "change_password_new" = "New password";
 "change_password_repeat" = "Repeat new password";
 "missmatch_passwords" = "New password and repeated password missmatches. Please try again.";
+"map_button" = "Map";
+"map_items_title" = "Items locations";

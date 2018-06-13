@@ -331,12 +331,12 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aF7-fM-NwD">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHH-e1-y67">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                         <subviews>
-                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vCa-SC-WYn">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vCa-SC-WYn" customClass="GradientView" customModule="CompanyInventory_iOS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1" translatesAutoresizingMaskIntoConstraints="NO" id="IJv-JI-P9u">
@@ -365,6 +365,32 @@
                                                     <constraint firstAttribute="trailing" secondItem="IJv-JI-P9u" secondAttribute="trailing" constant="90" id="na2-Yj-CyK"/>
                                                     <constraint firstAttribute="trailing" secondItem="adn-Oc-ZzP" secondAttribute="trailing" constant="5" id="pTv-Bf-WX9"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointX">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointY">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointX">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointY">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                                        <real key="value" value="17"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowY">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowX">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emil Heskey" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dB-ah-H5z">
                                                 <rect key="frame" x="0.0" y="345" width="375" height="55"/>
@@ -445,14 +471,14 @@
                             <constraint firstItem="aF7-fM-NwD" firstAttribute="leading" secondItem="KNu-XC-iRL" secondAttribute="leading" id="TVR-8r-Tld"/>
                             <constraint firstItem="sbf-J0-FcJ" firstAttribute="leading" secondItem="KNu-XC-iRL" secondAttribute="leading" id="ZgX-8w-c1S"/>
                             <constraint firstItem="aF7-fM-NwD" firstAttribute="trailing" secondItem="KNu-XC-iRL" secondAttribute="trailing" id="hp2-mm-XC2"/>
-                            <constraint firstItem="aF7-fM-NwD" firstAttribute="top" secondItem="KNu-XC-iRL" secondAttribute="top" id="jff-dy-H3K"/>
+                            <constraint firstItem="aF7-fM-NwD" firstAttribute="top" secondItem="GwZ-de-hZZ" secondAttribute="top" id="jff-dy-H3K"/>
                             <constraint firstItem="aF7-fM-NwD" firstAttribute="bottom" secondItem="KNu-XC-iRL" secondAttribute="bottom" id="zlG-hO-L92"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KNu-XC-iRL"/>
                     </view>
                     <navigationItem key="navigationItem" id="t9Q-pJ-Pby"/>
                     <connections>
-                        <outlet property="imageViewContainer" destination="vCa-SC-WYn" id="Mg0-xy-Nds"/>
+                        <outlet property="imageViewContainer" destination="vCa-SC-WYn" id="4mt-gn-YdW"/>
                         <outlet property="nameLabel" destination="4dB-ah-H5z" id="z5j-f3-lVN"/>
                         <outlet property="nameLineView" destination="Ny2-Sf-IPT" id="Ybu-8m-RUS"/>
                         <outlet property="nextButton" destination="adn-Oc-ZzP" id="U9j-uj-3F2"/>
@@ -810,11 +836,44 @@
                         <outlet property="noInventoriesLabel" destination="xA2-cc-rIv" id="18B-RS-GSp"/>
                         <outlet property="tableView" destination="MWn-Fu-ehT" id="I8U-21-0Dn"/>
                         <segue destination="ZhS-1R-9xQ" kind="show" identifier="showInventorySegue" id="HyA-RH-q1P"/>
+                        <segue destination="jLV-jz-JjX" kind="show" identifier="showInventoryMapSegue" id="bSn-IZ-dlH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ztr-li-hDZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2876" y="-982.75862068965523"/>
+        </scene>
+        <!--Inventory Map View Controller-->
+        <scene sceneID="aO2-CB-Qra">
+            <objects>
+                <viewController id="jLV-jz-JjX" customClass="InventoryMapViewController" customModule="CompanyInventory_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ryx-GE-SM6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dIE-Fb-xVH">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <connections>
+                                    <outlet property="delegate" destination="jLV-jz-JjX" id="12z-Qp-3Zh"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dIE-Fb-xVH" firstAttribute="top" secondItem="biP-4g-nnM" secondAttribute="top" id="5fC-3b-efI"/>
+                            <constraint firstItem="dIE-Fb-xVH" firstAttribute="leading" secondItem="biP-4g-nnM" secondAttribute="leading" id="Feu-pe-bbV"/>
+                            <constraint firstItem="biP-4g-nnM" firstAttribute="bottom" secondItem="dIE-Fb-xVH" secondAttribute="bottom" id="GXb-B7-3Yi"/>
+                            <constraint firstItem="biP-4g-nnM" firstAttribute="trailing" secondItem="dIE-Fb-xVH" secondAttribute="trailing" id="aHe-av-BY1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="biP-4g-nnM"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="dIE-Fb-xVH" id="t5B-bg-83x"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z3K-k3-Ifb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2856" y="-1770"/>
         </scene>
         <!--Item Details View Controller-->
         <scene sceneID="HKE-u8-ilt">

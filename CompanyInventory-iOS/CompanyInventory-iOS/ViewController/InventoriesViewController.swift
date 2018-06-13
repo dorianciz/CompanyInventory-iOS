@@ -14,6 +14,7 @@ class InventoriesViewController: UIViewController {
     
     private let inventoryBrain = InventoryBrain()
     private var inventories: [Inventory]?
+    private var currentInventory: Inventory?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,6 +124,12 @@ class InventoriesViewController: UIViewController {
                     }
                     
                 }
+            } else if segueId == Constants.kshowInventoryMapSegue {
+                if let controller = segue.destination as? InventoryMapViewController {
+                    if let items = currentInventory?.items?.last?.items {
+                        controller.items = Array(items)
+                    }
+                }
             }
         }
     }
@@ -165,7 +172,13 @@ extension InventoriesViewController: UITableViewDelegate {
         report.backgroundColor = ThemeManager.sharedInstance.generalBlueColor
         // Check if inventory is finished
         
-        return [report]
+        let showMap = UITableViewRowAction(style: .default, title: NSLocalizedString(Constants.LocalizationKeys.kMapButton, comment: "")) { (action, index) in
+            self.currentInventory = self.inventories?[index.row]
+            self.performSegue(withIdentifier: Constants.kshowInventoryMapSegue, sender: nil)
+        }
+        showMap.backgroundColor = ThemeManager.sharedInstance.brandColor
+        
+        return [report, showMap]
     }
     
 }

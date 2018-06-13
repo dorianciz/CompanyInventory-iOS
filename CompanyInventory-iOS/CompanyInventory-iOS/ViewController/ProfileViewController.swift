@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLineView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var imageViewContainer: UIView!
+    @IBOutlet weak var imageViewContainer: GradientView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var shareContacButton: UIButton!
@@ -58,7 +58,9 @@ class ProfileViewController: UIViewController {
         profileImage.layer.cornerRadius = profileImage.layer.frame.size.width / 2;
         profileImage.layer.masksToBounds = true;
         nameLineView.backgroundColor = ThemeManager.sharedInstance.bottomLineColor
-        imageViewContainer.backgroundColor = ThemeManager.sharedInstance.brandColor
+        imageViewContainer.topColor = ThemeManager.sharedInstance.generalBlueColor
+        imageViewContainer.bottomColor = ThemeManager.sharedInstance.brandColor
+        imageViewContainer.shadowColor = ThemeManager.sharedInstance.gradientShadowColor
         ThemeManager.sharedInstance.styleDefaultLabel(usernameLabel)
         ThemeManager.sharedInstance.styleDefaultLabel(phoneNumberLabel)
         ThemeManager.sharedInstance.styleHeaderLabel(nameLabel)

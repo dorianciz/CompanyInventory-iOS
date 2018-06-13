@@ -40,8 +40,8 @@ class LoginViewController: UIViewController {
         usernameTextfield.delegate = self
         passwordTextfield.delegate = self
         
-        usernameTextfield.text = "t@t.com"
-        passwordTextfield.text = "Test123"
+//        usernameTextfield.text = "t@t.com"
+//        passwordTextfield.text = "Test123"
         
         ciUserBrain = CIUserBrain()
         

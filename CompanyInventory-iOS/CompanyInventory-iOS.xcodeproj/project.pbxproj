@@ -75,6 +75,10 @@
 		EDB975822036F05400F79FBF /* CIUserEngine_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB975812036F05400F79FBF /* CIUserEngine_iOSTests.swift */; };
 		EDB975842036F42C00F79FBF /* FirebaseCIUserEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB975832036F42C00F79FBF /* FirebaseCIUserEngine.swift */; };
 		EDB975862036F45A00F79FBF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB975852036F45A00F79FBF /* Constants.swift */; };
+		EDBE44FD20D055E500187A04 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBE44FC20D055E500187A04 /* GradientView.swift */; };
+		EDBE44FF20D0739200187A04 /* InventoryMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBE44FE20D0739200187A04 /* InventoryMapViewController.swift */; };
+		EDBE450120D082DB00187A04 /* ItemAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBE450020D082DB00187A04 /* ItemAnnotationView.swift */; };
+		EDBE450320D082F700187A04 /* ItemAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDBE450220D082F700187A04 /* ItemAnnotationView.xib */; };
 		EDC7BD1220AF72CF00979E8B /* PhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7BD1120AF72CF00979E8B /* PhotoHelper.swift */; };
 		EDC7BD1420AF806100979E8B /* DocumentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7BD1320AF806100979E8B /* DocumentManager.swift */; };
 		EDC7BD1620AFBD1200979E8B /* ItemScanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC7BD1520AFBD1200979E8B /* ItemScanningViewController.swift */; };
@@ -185,6 +189,10 @@
 		EDB975812036F05400F79FBF /* CIUserEngine_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIUserEngine_iOSTests.swift; sourceTree = "<group>"; };
 		EDB975832036F42C00F79FBF /* FirebaseCIUserEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCIUserEngine.swift; sourceTree = "<group>"; };
 		EDB975852036F45A00F79FBF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EDBE44FC20D055E500187A04 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		EDBE44FE20D0739200187A04 /* InventoryMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryMapViewController.swift; sourceTree = "<group>"; };
+		EDBE450020D082DB00187A04 /* ItemAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAnnotationView.swift; sourceTree = "<group>"; };
+		EDBE450220D082F700187A04 /* ItemAnnotationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemAnnotationView.xib; sourceTree = "<group>"; };
 		EDC7BD1120AF72CF00979E8B /* PhotoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoHelper.swift; sourceTree = "<group>"; };
 		EDC7BD1320AF806100979E8B /* DocumentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentManager.swift; sourceTree = "<group>"; };
 		EDC7BD1520AFBD1200979E8B /* ItemScanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemScanningViewController.swift; sourceTree = "<group>"; };
@@ -319,6 +327,7 @@
 		EDB9756E20365FF400F79FBF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				EDBE44FC20D055E500187A04 /* GradientView.swift */,
 				EDB975712036600F00F79FBF /* Response.swift */,
 				EDA283BB206ACA40004B46F1 /* ThemeManager.swift */,
 				ED4B57E2208175C1002734FD /* NavigationManager.swift */,
@@ -347,6 +356,8 @@
 				EDE0E2BB20B71E2700F97990 /* ItemsByDateFooterTableViewCell.swift */,
 				EDEE7E0520C48A0600B8006E /* MoreItemTableViewCell.swift */,
 				EDAD956920C5D8D4009E3984 /* LogoutTableViewCell.swift */,
+				EDBE450020D082DB00187A04 /* ItemAnnotationView.swift */,
+				EDBE450220D082F700187A04 /* ItemAnnotationView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -437,6 +448,7 @@
 				EDEE7E0720C4946F00B8006E /* MoreViewController.swift */,
 				ED757C5820C8968900FF04E0 /* ProfileViewController.swift */,
 				ED4A0EF620C9CBEF00E0CDA3 /* EditProfileViewController.swift */,
+				EDBE44FE20D0739200187A04 /* InventoryMapViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -608,6 +620,7 @@
 			files = (
 				ED8077CD2086CDF200E8952D /* successScanAudio.m4a in Resources */,
 				ED8077C92086BE7200E8952D /* successScanning.json in Resources */,
+				EDBE450320D082F700187A04 /* ItemAnnotationView.xib in Resources */,
 				ED8077CC2086C9AE00E8952D /* success_pulse.json in Resources */,
 				EDDF489F20363FC000167991 /* LaunchScreen.storyboard in Resources */,
 				ED1E2D6A20B207B500DE24D6 /* Localizable.strings in Resources */,
@@ -793,6 +806,7 @@
 				EDD8F6E320841BA000563BD5 /* InventoryTableViewCell.swift in Sources */,
 				ED4B57EA208228F8002734FD /* CIUserDatabaseProtocol.swift in Sources */,
 				ED4B57F4208295E7002734FD /* InventoryRealmDatabase.swift in Sources */,
+				EDBE44FF20D0739200187A04 /* InventoryMapViewController.swift in Sources */,
 				ED0C672420B4B640006B9E56 /* GenericEngine.swift in Sources */,
 				EDEE7E0E20C499C300B8006E /* MoreTabItemsProtocol.swift in Sources */,
 				ED2AB75620C0D38500C52D8B /* ItemBrain.swift in Sources */,
@@ -801,6 +815,7 @@
 				ED80072020BE0A9E000AD92C /* ItemDetailsBrain.swift in Sources */,
 				ED7C33CC20ACD2D500FA4144 /* BeaconScanner.swift in Sources */,
 				EDD8F6DE2084078600563BD5 /* InventoryBrain.swift in Sources */,
+				EDBE450120D082DB00187A04 /* ItemAnnotationView.swift in Sources */,
 				ED1E2D6C20B21F4300DE24D6 /* ItemDatabaseProtocol.swift in Sources */,
 				ED51C5C720880BC7000EB303 /* GeneralRealmDatabase.swift in Sources */,
 				EDEE7E1120C49B0800B8006E /* MoreTabTestItems.swift in Sources */,
@@ -818,6 +833,7 @@
 				ED4B57F020824DD8002734FD /* InventoryDatabaseProtocol.swift in Sources */,
 				EDAD956C20C5EE04009E3984 /* PersistanceService.swift in Sources */,
 				ED689E6E2085572F00187584 /* ItemsByDateTableViewCell.swift in Sources */,
+				EDBE44FD20D055E500187A04 /* GradientView.swift in Sources */,
 				EDB975722036600F00F79FBF /* Response.swift in Sources */,
 				EDEE7E0020C4836400B8006E /* MoreTabItems.swift in Sources */,
 				ED4B57E1208174E5002734FD /* LoaderViewController.swift in Sources */,

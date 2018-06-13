@@ -64,6 +64,7 @@ struct Constants {
     static let kShowItemDetailsSegue = "showItemDetailsSegue"
     static let kLogoutSegue = "logoutSegue"
     static let kEditProfileSegue = "showEditProfileSegue"
+    static let kshowInventoryMapSegue = "showInventoryMapSegue"
     
     //Animations files names
     static let kScanningBeaconAnimation = "scanningBeacon"
@@ -104,6 +105,7 @@ struct Constants {
     static let kAnimationLayerName = "AnimationLayerId"
     static let kWaitAfterBluetoothRetry = 1.0
     static let kWaitBeforeTableViewScrollToBottom = 0.7
+    static let kCalloutViewIdentifier = "mapCalloutId"
     
     struct LocalizationKeys {
         static let kLoginSmallLabel = "login_top_label"
@@ -184,6 +186,8 @@ struct Constants {
         static let kChangePasswordNew = "change_password_new"
         static let kChangePasswordRepeat = "change_password_repeat"
         static let kPasswordsMissmatches = "missmatch_passwords"
+        static let kMapButton = "map_button"
+        static let kMapItemsTitle = "map_items_title"
     }
     
 }

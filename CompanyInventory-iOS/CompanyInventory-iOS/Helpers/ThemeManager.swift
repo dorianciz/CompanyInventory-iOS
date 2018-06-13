@@ -40,6 +40,7 @@ final class ThemeManager {
     let clearButtonBorderWidth:CGFloat = 1.0
     let clearButtonBorderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     let bottomLineColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    let gradientShadowColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 0.6025390625)
         
     func addShadow(toView view: UIView) {
         view.layer.shadowColor = UIColor.gray.cgColor
