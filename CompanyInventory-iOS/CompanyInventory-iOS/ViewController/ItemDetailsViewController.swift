@@ -28,6 +28,7 @@ class ItemDetailsViewController: UIViewController {
         super.viewDidLoad()
         applyStyles()
         fillStaticLabels()
+        editInfo()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +63,18 @@ class ItemDetailsViewController: UIViewController {
         locationValueLabel.text = item!.locationName
         beaconIdValueLabel.text = item!.beaconId
         itemImageView.image = itemDetailsBrain.getImage(forPath: item!.photoLocalPath)
+    }
+    
+    private func editInfo() {
+        guard let status = item?.status, status == .none else {
+            return
+        }
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString(Constants.LocalizationKeys.kGeneralEdit, comment: ""), style: .done, target: self, action: #selector(editTapped))
+    }
+    
+    @objc func editTapped() {
+        
     }
     
 }

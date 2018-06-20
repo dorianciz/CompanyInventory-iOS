@@ -16,8 +16,24 @@ class ItemBrain {
         itemDatabase = database
     }
     
+    func getItem(byBeaconId beaconId: String?) -> Item? {
+        guard let id = beaconId else {
+            return nil
+        }
+        
+        return itemDatabase?.getItem(byBeaconId: id)
+    }
+    
     func deleteItem(_ item: Item!) {
         itemDatabase?.deleteItem(item)
+    }
+    
+    func updateItem(_ item: Item?, withStatus status: ItemStatus?) {
+        itemDatabase?.updateItem(item, withStatus: status)
+    }
+    
+    func isInventoryFinished(_ allItems: [Item]?) -> Bool? {
+        return allItems?.filter({$0.status != .success}).count == 0
     }
     
 }

@@ -39,7 +39,7 @@ class InventoryBrain {
     }
     
     func createNewInventory(_ fromInventory: Inventory?, _ name: String?, _ description: String?, _ completion: @escaping(Response) -> Void) {
-        guard let inventoryName = name else {
+        guard let inventoryName = name, let _ = description else {
             completion(.missingInformations)
             return
         }
@@ -188,9 +188,11 @@ class InventoryBrain {
             inventoryByDate.date = Date()
             
             for item in items {
-                let copiedItem = item.copy() as! Item
-                copiedItem.status = .none
-                inventoryByDate.items?.append(copiedItem)
+                if item.status == .success {
+                    let copiedItem = item.copy() as! Item
+                    copiedItem.status = .none
+                    inventoryByDate.items?.append(copiedItem)
+                }
             }
             
             let realm = try! Realm()
@@ -243,6 +245,27 @@ class InventoryBrain {
             }
             completion(response)
         }
+    }
+    
+    func getItem(fromInventory: Inventory?, forIndexPath indexPath: IndexPath!, andPosition position: ItemPosition!) -> Item? {
+        guard let items = fromInventory?.items?[indexPath.section].items else {
+            return nil
+        }
+        
+        var item: Item?
+        
+        switch position {
+        case .left:
+            item = items.indices.contains(((indexPath.row) * 3)) ? items[((indexPath.row) * 3)] : nil
+        case .center:
+            item = items.indices.contains(((indexPath.row) * 3) + 1) ? items[((indexPath.row) * 3) + 1] : nil
+        case .right:
+            item = items.indices.contains(((indexPath.row) * 3) + 2) ? items[((indexPath.row) * 3) + 2] : nil
+        default:
+            break
+        }
+        
+        return item
     }
     
 }

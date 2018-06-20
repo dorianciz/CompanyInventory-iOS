@@ -28,4 +28,10 @@ class ItemRealmDatabase: ItemDatabaseProtocol {
         }
     }
     
+    func getItem(byBeaconId beaconId: String) -> Item? {
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "beaconId == %@", beaconId)
+        return realm.objects(Item.self).filter(predicate).first
+    }
+    
 }

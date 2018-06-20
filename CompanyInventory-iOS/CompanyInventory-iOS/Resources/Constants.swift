@@ -125,6 +125,7 @@ struct Constants {
         static let kGeneralDescriptionPlaceholder = "general_description_placeholder"
         static let kGeneralCancel = "general_cancel"
         static let kGeneralOk = "general_ok"
+        static let kGeneralEdit = "general_edit"
         static let kInventoryAddButton = "inventory_add_button"
         static let kStartInventory = "start_inventory_button_title"
         static let kScanningInventory = "scanning_inventory_button_title"
@@ -138,7 +139,7 @@ struct Constants {
         static let kGeneralScanning = "general_scanning"
         static let kInventoryTitle = "inventory_title"
         static let kScanningItemExpired = "scanning_item_expired"
-        static let kScanningItemMissing = "scanning_item_missing"
+        static let kScanningItemFinished = "scanning_item_finished"
         static let kItemSuccess = "itemSuccess"
         static let kItemExpired = "itemExpired"
         static let kItemNotExisted = "itemNotExisted"
@@ -188,6 +189,9 @@ struct Constants {
         static let kPasswordsMissmatches = "missmatch_passwords"
         static let kMapButton = "map_button"
         static let kMapItemsTitle = "map_items_title"
+        static let kFinishInventoryTitle = "finish_inventory_title"
+        static let kFinishInventoryDescription = "finish_inventory_description"
+        static let kCreateNewInventoryButtonTitle = "create_new_inventory_button_title"
     }
     
 }

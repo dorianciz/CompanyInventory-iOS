@@ -23,9 +23,11 @@
 "general_description_placeholder" = "Description";
 "general_cancel" = "Cancel";
 "general_ok" = "Ok";
+"general_edit" = "Edit";
 "inventory_add_button" = "Add";
+"create_new_inventory_button_title" = "Create new inventory";
 "start_inventory_button_title" = "Start inventory";
-"scanning_inventory_button_title" = "Select item to start scan";
+"scanning_inventory_button_title" = "Continue scanning";
 "general_save" = "Save";
 "new_item_title" = "New item details";
 "new_item_add_photo" = "Add photo";
@@ -36,7 +38,7 @@
 "general_scanning" = "Scanning";
 "inventory_title" = "Inventory";
 "scanning_item_expired" = "Expired";
-"scanning_item_missing" = "Not exist";
+"scanning_item_finished" = "Finish inventory";
 "itemSuccess" = "Listed";
 "itemExpired" = "Expired";
 "itemNotExisted" = "Not exist";
@@ -86,3 +88,5 @@
 "missmatch_passwords" = "New password and repeated password missmatches. Please try again.";
 "map_button" = "Map";
 "map_items_title" = "Items locations";
+"finish_inventory_title" = "Are you sure you want to finish inventory?";
+"finish_inventory_description" = "There are unscanned items. If you click yes, all unscanned items will be treated as \"Not exists\"";

@@ -10,24 +10,33 @@ import Foundation
 
 class MonitoringBeaconScanner: BeaconScanner {
     
-    private var beaconIdToScan: String?
+    var beaconsIdsToScan: [String]?
     
-    init(forBeaconId id: String?) {
-        beaconIdToScan = id
+    private var queueOfBeaconIds = CustomQueue<Int>()
+    
+    init(withBeaconsIdsToScan beaconsIds: [String]?) {
+        self.beaconsIdsToScan = beaconsIds
+        queueOfBeaconIds.maximumNumberOfElements = 7
     }
     
     override func beaconManager(_ manager: Any, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        if let beaconIdToScan = beaconIdToScan {
-            print("Beacons:\n")
-            for beacon in beacons {
-                print("Minor: \(beacon.minor)\nProximity: \(beacon.proximity.rawValue)\nAccuracy: \(beacon.accuracy)\nRSSI: \(beacon.rssi)\n")
-                
-                if beacon.proximity != Constants.kBeaconMonitoringForbiddenProximity && beacon.accuracy < Constants.kBeaconMonitoringMinAccuracy && beaconIdToScan == "\(beacon.minor.intValue)" {
-                    delegate?.foundBeacon(withId: beaconIdToScan)
-                    return
+        beacons.forEach { (beacon) in
+            beaconsIdsToScan?.forEach({ (beaconId) in
+                if beaconId == "\(beacon.minor.intValue)", beacon.accuracy < 1 {
+                    self.queueOfBeaconIds.enqueue(beacon.minor.intValue)
+                    var counter = 0
+                    for qElement in self.queueOfBeaconIds.list {
+                        if qElement == beacon.minor.intValue {
+                            counter += 1
+                            if counter >= 3 {
+                                self.queueOfBeaconIds = CustomQueue<Int>()
+                                self.delegate?.foundBeacon(withId: "\(beacon.minor.intValue)")
+                                return
+                            }
+                        }
+                    }
                 }
-            }
-            print("\n")
+            })
         }
     }
 }

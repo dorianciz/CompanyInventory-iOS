@@ -41,6 +41,15 @@ final class ThemeManager {
     let clearButtonBorderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     let bottomLineColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     let gradientShadowColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 0.6025390625)
+    let finishScanningButtonColor = #colorLiteral(red: 0.4620226622, green: 0.8382837176, blue: 1, alpha: 1)
+    let itemResultColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    
+    let itemResultShownTopConstraintValue: CGFloat = 15
+    let itemResultHiddenTopConstraintValue: CGFloat = -3000
+    let itemResultShownTrailingConstraint: CGFloat = 15
+    let itemResultShownLeadingConstraint: CGFloat = 15
+    let itemResultHiddenTrailingConstraint: CGFloat = -1015
+    let itemResultHiddenLeadingConstraint: CGFloat = 1015
         
     func addShadow(toView view: UIView) {
         view.layer.shadowColor = UIColor.gray.cgColor
