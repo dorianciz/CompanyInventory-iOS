@@ -38,19 +38,14 @@ class InventoryBrain {
         }
     }
     
-    func createNewInventory(_ fromInventory: Inventory?, _ name: String?, _ description: String?, _ completion: @escaping(Response) -> Void) {
+    func createNewInventory(_ name: String?, _ description: String?, _ completion: @escaping(Response) -> Void) {
         guard let inventoryName = name, let _ = description else {
             completion(.missingInformations)
             return
         }
         var inventory: Inventory!
-        if let fromInventory = fromInventory {
-            inventory = fromInventory.copy() as! Inventory
-        } else {
-            inventory = Inventory()
-            inventory.creationDate = Date()
-        }
-        
+        inventory = Inventory()
+        inventory.creationDate = Date()
         inventory.name = inventoryName
         inventory.descriptionText = description
         

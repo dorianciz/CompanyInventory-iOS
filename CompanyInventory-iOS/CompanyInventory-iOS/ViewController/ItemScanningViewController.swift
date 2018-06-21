@@ -11,6 +11,7 @@ import Lottie
 import AVFoundation
 
 protocol ItemScanningViewControllerDelegate: class {
+    func pauseScanning()
     func finishInventory()
 }
 
@@ -185,6 +186,7 @@ class ItemScanningViewController: UIViewController {
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {
+        delegate?.pauseScanning()
         dismiss(animated: true, completion: nil)
     }
     

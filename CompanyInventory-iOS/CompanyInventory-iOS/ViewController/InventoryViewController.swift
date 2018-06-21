@@ -142,7 +142,6 @@ class InventoryViewController: UIViewController {
     }
     
     @IBAction func startScanningAction(_ sender: Any) {
-        
         if isDeleteMode {
             AnimationChainingFactory.sharedInstance.animation(withDuration: 0.2, withDelay: 0, withAnimations: {
                 self.startButton.titleLabel?.text = NSLocalizedString(Constants.LocalizationKeys.kStartInventory, comment: "")
@@ -275,6 +274,7 @@ extension InventoryViewController: UITableViewDelegate {
 }
 
 extension InventoryViewController: UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return inventory?.items?.count ?? 0
     }
@@ -311,7 +311,7 @@ extension InventoryViewController: UITableViewDataSource {
                 cell.titleLabel.text = "\(cell.titleLabel.text!) - \(NSLocalizedString(Constants.LocalizationKeys.kInventoryByDateFinished, comment: ""))"
             }
         }
-        
+
         return cell
     }
     
@@ -419,7 +419,7 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
                 return
         }
         
-        guard let item = inventoryBrain.getItem(fromInventory: inventory, forIndexPath: indexPath, andPosition: position), item.status != .none else {
+        guard let item = inventoryBrain.getItem(fromInventory: inventory, forIndexPath: indexPath, andPosition: position), item.status == .none else {
             return
         }
 
@@ -458,6 +458,10 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
 }
 
 extension InventoryViewController: ItemScanningViewControllerDelegate {
+    func pauseScanning() {
+        tableView.reloadData()
+    }
+    
     func finishInventory() {
         NavigationManager.sharedInstance.showLoader {
             self.inventoryBrain.updateInventoryStatus(self.inventory, .closed) { (response) in

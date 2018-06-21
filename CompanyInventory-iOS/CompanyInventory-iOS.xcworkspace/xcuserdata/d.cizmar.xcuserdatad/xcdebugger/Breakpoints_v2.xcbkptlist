@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CompanyInventory-iOS/Model/ServiceLayer/CIUserBrain.swift"
-            timestampString = "550457093.604808"
+            filePath = "CompanyInventory-iOS/ViewController/ItemScanningViewController.swift"
+            timestampString = "551234957.413029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "saveUserProfileData(withUid:withUsername:withNameAndSurname:withProfileImage:withPhoneNumber:withCompletion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CompanyInventory-iOS/ViewController/InventoryViewController.swift"
-            timestampString = "551230941.399588"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "startScanningAction(_:)"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "cancelButtonAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
