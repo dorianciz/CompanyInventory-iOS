@@ -180,7 +180,6 @@ class ItemsByDateTableViewCell: UITableViewCell {
     }
     
     func showDeleteButtons(_ show: Bool!) {
-        print("test")
         AnimationChainingFactory.sharedInstance.animation(withDuration: 0.5, withDelay: 0, withAnimations: {
             self.leftImageView.layoutIfNeeded()
             self.leftDeleteLeading.constant = show ? -16 : -5

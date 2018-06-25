@@ -25,6 +25,7 @@ class InventoryViewController: UIViewController {
     private var imagesOfItems: [String:UIImage]?
     private var selectedItem: Item?
     private var isDeleteMode = false
+    private var sectionsStatuses = [Int: Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,8 @@ class InventoryViewController: UIViewController {
         super.viewWillAppear(animated)
         startButton.layoutIfNeeded()
         fillPersistanceData()
+        fillSectionsStatusesDictionary(forInventory: inventory)
+        tableView.reloadData()
     }
     
     private func applyStyles() {
@@ -101,14 +104,26 @@ class InventoryViewController: UIViewController {
                 showItems(true)
                 tableView.reloadData()
                 DispatchQueue.main.asyncAfter(deadline: .now() + Constants.kWaitBeforeTableViewScrollToBottom) {
-                    let indexPath = IndexPath(row: 0, section: count - 1)
-                    self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                    let indexPath = IndexPath(row: NSNotFound, section: count - 1)
+//                    self.tableView.scrollToRow(at: indexPath, at: .top , animated: true)
                 }
             } else {
                 showItems(false)
             }
         } else {
             showItems(false)
+        }
+    }
+    
+    private func fillSectionsStatusesDictionary(forInventory inventory: Inventory?) {
+        if let itemsByDate = inventory?.items, let count = inventory?.items?.count {
+            for index in 0...count - 1 {
+                if let items = itemsByDate[index].items {
+                    if let isFinished = inventoryBrain.checkIsInventoryFinished(Array(items)) {
+                        sectionsStatuses[index] = isFinished
+                    }
+                }
+            }
         }
     }
     
@@ -147,12 +162,10 @@ class InventoryViewController: UIViewController {
                 self.startButton.titleLabel?.text = NSLocalizedString(Constants.LocalizationKeys.kStartInventory, comment: "")
                 self.startButton.backgroundColor = ThemeManager.sharedInstance.inventoryOpenedColor
             }, withCompletion: {
-                
                 //Disable wiggle animation by setting isDeleteMode to false.
                 //Table will reload all cells and delete wiggle animation from each cell
                 self.isDeleteMode = false
                 self.tableView.reloadData()
-                
             }, withOptions: UIViewAnimationOptions(rawValue: 0)).run()
             return
         }
@@ -162,7 +175,6 @@ class InventoryViewController: UIViewController {
             if response == .bluetoothOn {
                 
                 // Bluetooth is on, phone is ready for scanning beacons
-                
                 if let inventory = self.inventory {
                     
                     if inventory.status == .inProgress {
@@ -291,6 +303,10 @@ extension InventoryViewController: UITableViewDataSource {
             return 0
         }
         
+        if let isFinished = sectionsStatuses[section], isFinished {
+            return 0
+        }
+        
         let numberOfRows = countOfItems != 0 ? ((countOfItems - 1)/3) + 1 : 0
         
         return numberOfRows
@@ -305,18 +321,23 @@ extension InventoryViewController: UITableViewDataSource {
         }
         
         cell.titleLabel.text = dateHelper.getStringFromDate(date)
+        cell.section = section
+        cell.delegate = self
         
         if let isFinished = inventoryBrain.checkIsInventoryFinished(Array(items)) {
             if isFinished {
                 cell.titleLabel.text = "\(cell.titleLabel.text!) - \(NSLocalizedString(Constants.LocalizationKeys.kInventoryByDateFinished, comment: ""))"
             }
+            cell.isCollapsed = isFinished
         }
-
+        
         return cell
     }
     
+    
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 65
+        return 70
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -477,5 +498,15 @@ extension InventoryViewController: ItemScanningViewControllerDelegate {
 extension InventoryViewController: ItemsByDateFooterTableViewCellDelegate {
     func reportAction(_ sender: Any) {
         print("Report button action")
+    }
+}
+
+extension InventoryViewController: SectionHeaderDelegate {
+    func sectionHeaderTap(isCollapsed: Bool, section: Int) {
+        sectionsStatuses[section] = !isCollapsed
+        tableView.beginUpdates()
+        tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .none)
+        tableView.endUpdates()
+        tableView.reloadData()
     }
 }

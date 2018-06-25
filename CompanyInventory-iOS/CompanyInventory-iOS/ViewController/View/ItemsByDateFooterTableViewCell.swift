@@ -21,10 +21,6 @@ class ItemsByDateFooterTableViewCell: UITableViewCell {
         super.awakeFromNib()
         ThemeManager.sharedInstance.styleDefaultButton(button: reportButton)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
     
     @IBAction func reportButtonAction(_ sender: Any) {
         delegate?.reportAction(sender)
