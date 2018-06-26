@@ -21,6 +21,23 @@ class ItemRealmDatabase: ItemDatabaseProtocol {
         } 
     }
     
+    func updateItem(_ item: Item?) {
+        guard let changedItem = item, let itemId = changedItem.itemId else {
+            return
+        }
+        let realm = try! Realm()
+        
+        let predicate = NSPredicate(format: "itemId == %@", itemId)
+        let itemToUpdate = realm.objects(Item.self).filter(predicate).first
+        
+        try! realm.write {
+            itemToUpdate?.name = changedItem.name
+            itemToUpdate?.descriptionText = changedItem.descriptionText
+            itemToUpdate?.locationName = changedItem.locationName
+            itemToUpdate?.photoLocalPath = changedItem.photoLocalPath
+        }
+    }
+    
     func deleteItem(_ item: Item!) {
         let realm = try! Realm()
         try! realm.write {
@@ -32,6 +49,12 @@ class ItemRealmDatabase: ItemDatabaseProtocol {
         let realm = try! Realm()
         let predicate = NSPredicate(format: "beaconId == %@", beaconId)
         return realm.objects(Item.self).filter(predicate).first
+    }
+    
+    func getLastItem(byBeaconId beaconId: String) -> Item? {
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "beaconId == %@", beaconId)
+        return realm.objects(Item.self).filter(predicate).last
     }
     
 }

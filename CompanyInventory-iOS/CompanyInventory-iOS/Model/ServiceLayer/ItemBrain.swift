@@ -24,6 +24,14 @@ class ItemBrain {
         return itemDatabase?.getItem(byBeaconId: id)
     }
     
+    func getLastItem(byBeaconId beaconId: String?) -> Item? {
+        guard let id = beaconId else {
+            return nil
+        }
+        
+        return itemDatabase?.getLastItem(byBeaconId: id)
+    }
+    
     func deleteItem(_ item: Item!) {
         itemDatabase?.deleteItem(item)
     }

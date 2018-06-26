@@ -49,6 +49,7 @@ class ItemScanningViewController: UIViewController {
         applyStyles()
         fillStaticLabels()
         styleAnimationViews()
+        configureAvPlayer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -168,7 +169,7 @@ class ItemScanningViewController: UIViewController {
     }
     
     private func updateUIIfBeaconIsFound(forBeaconId id: String) {
-        if let item = itemBrain.getItem(byBeaconId: id) {
+        if let item = itemBrain.getLastItem(byBeaconId: id) {
             titleLabel.text = item.name
             itemImage.image = documentManager?.getImageFromDocument(withName: item.photoLocalPath)
         }
@@ -181,8 +182,8 @@ class ItemScanningViewController: UIViewController {
                 itemBrain.updateItem(item, withStatus: .nonExistent)
             }
         })
+        finishScanningSuccessfully()
         self.delegate?.finishInventory()
-        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {
@@ -192,9 +193,12 @@ class ItemScanningViewController: UIViewController {
     
     @IBAction func finishInventoryAction(_ sender: Any) {
         if let isFinished = itemBrain.isInventoryFinished(itemsToScan), !isFinished {
+            beaconScanner?.stopRanging()
             PopupManager.sharedInstance.showPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kFinishInventoryTitle, comment: ""), withDescription: NSLocalizedString(Constants.LocalizationKeys.kFinishInventoryDescription, comment: ""), withPopupType: .success, withOkCompletion: {
                 self.finishInventory()
-            }, withCancelCompletion: nil)
+            }, withCancelCompletion: {
+                self.beaconScanner?.startRanging()
+            })
         } else {
             finishInventory()
         }
@@ -210,8 +214,9 @@ class ItemScanningViewController: UIViewController {
         showResultView(false)
         
         if let isFinished = itemBrain.isInventoryFinished(itemsToScan), isFinished {
+            finishScanningSuccessfully()
             self.delegate?.finishInventory()
-            dismiss(animated: true, completion: nil)
+            //            dismiss(animated: true, completion: nil)
             return
         }
         

@@ -24,6 +24,7 @@ class InventoryViewController: UIViewController {
     private var isScanning: Bool?
     private var imagesOfItems: [String:UIImage]?
     private var selectedItem: Item?
+    private var selectedItemByDateId: String?
     private var isDeleteMode = false
     private var sectionsStatuses = [Int: Bool]()
     
@@ -116,7 +117,7 @@ class InventoryViewController: UIViewController {
     }
     
     private func fillSectionsStatusesDictionary(forInventory inventory: Inventory?) {
-        if let itemsByDate = inventory?.items, let count = inventory?.items?.count {
+        if let itemsByDate = inventory?.items, let count = inventory?.items?.count, count != 0 {
             for index in 0...count - 1 {
                 if let items = itemsByDate[index].items {
                     if let isFinished = inventoryBrain.checkIsInventoryFinished(Array(items)) {
@@ -152,6 +153,8 @@ class InventoryViewController: UIViewController {
             } else if segueId == Constants.kShowItemDetailsSegue {
                 let controller = segue.destination as! ItemDetailsViewController
                 controller.item = selectedItem
+                controller.inventoryId = inventoryId
+                controller.inventoryItemByDateId = selectedItemByDateId
             }
         }
     }
@@ -330,11 +333,13 @@ extension InventoryViewController: UITableViewDataSource {
             }
             cell.isCollapsed = isFinished
         }
-        
+    
         return cell
     }
     
-    
+    @objc func test() {
+        print("test")
+    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 70
@@ -430,6 +435,7 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
             return
         }
 
+        selectedItemByDateId = inventoryBrain.getItemByDateId(fromInventory: inventory, forSection: indexPath.section)
         selectedItem = item
         performSegue(withIdentifier: Constants.kShowItemDetailsSegue, sender: nil)
     }
@@ -503,10 +509,10 @@ extension InventoryViewController: ItemsByDateFooterTableViewCellDelegate {
 
 extension InventoryViewController: SectionHeaderDelegate {
     func sectionHeaderTap(isCollapsed: Bool, section: Int) {
-        sectionsStatuses[section] = !isCollapsed
-        tableView.beginUpdates()
-        tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .none)
-        tableView.endUpdates()
+        sectionsStatuses[section] = !sectionsStatuses[section]!
+//        tableView.beginUpdates()
+//        tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .none)
+//        tableView.endUpdates()
         tableView.reloadData()
     }
 }

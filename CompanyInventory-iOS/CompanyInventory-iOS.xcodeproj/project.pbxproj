@@ -101,6 +101,7 @@
 		EDEE7E0C20C498E800B8006E /* MoreMenuBrain_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEE7E0B20C498E800B8006E /* MoreMenuBrain_iOSTests.swift */; };
 		EDEE7E0E20C499C300B8006E /* MoreTabItemsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEE7E0D20C499C300B8006E /* MoreTabItemsProtocol.swift */; };
 		EDEE7E1120C49B0800B8006E /* MoreTabTestItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEE7E1020C49B0800B8006E /* MoreTabTestItems.swift */; };
+		EDF4C08C20E2E1DC00635F69 /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF4C08B20E2E1DC00635F69 /* EditItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,6 +220,7 @@
 		EDEE7E0B20C498E800B8006E /* MoreMenuBrain_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuBrain_iOSTests.swift; sourceTree = "<group>"; };
 		EDEE7E0D20C499C300B8006E /* MoreTabItemsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabItemsProtocol.swift; sourceTree = "<group>"; };
 		EDEE7E1020C49B0800B8006E /* MoreTabTestItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabTestItems.swift; sourceTree = "<group>"; };
+		EDF4C08B20E2E1DC00635F69 /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,6 +451,7 @@
 				ED757C5820C8968900FF04E0 /* ProfileViewController.swift */,
 				ED4A0EF620C9CBEF00E0CDA3 /* EditProfileViewController.swift */,
 				EDBE44FE20D0739200187A04 /* InventoryMapViewController.swift */,
+				EDF4C08B20E2E1DC00635F69 /* EditItemViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -791,6 +794,7 @@
 				EDC7BD1220AF72CF00979E8B /* PhotoHelper.swift in Sources */,
 				EDDF48BB2036451D00167991 /* Inventory.swift in Sources */,
 				ED4B57DF20816ABD002734FD /* ShakeAnimation.swift in Sources */,
+				EDF4C08C20E2E1DC00635F69 /* EditItemViewController.swift in Sources */,
 				EDB97567203648BD00F79FBF /* Item.swift in Sources */,
 				ED10C9F520AB976F0053CD36 /* GenericPhotoPicker.swift in Sources */,
 				EDB9756D20365F7100F79FBF /* ItemEngineProtocol.swift in Sources */,

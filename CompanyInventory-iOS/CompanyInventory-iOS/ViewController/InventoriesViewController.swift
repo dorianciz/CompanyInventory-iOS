@@ -95,7 +95,7 @@ class InventoriesViewController: UIViewController {
                     }
                     
                 }
-            } else if segueId == Constants.kshowInventoryMapSegue {
+            } else if segueId == Constants.kShowInventoryMapSegue {
                 if let controller = segue.destination as? InventoryMapViewController {
                     if let items = currentInventory?.items?.last?.items {
                         controller.items = Array(items)
@@ -146,7 +146,7 @@ extension InventoriesViewController: UITableViewDelegate {
         
         let showMap = UITableViewRowAction(style: .default, title: NSLocalizedString(Constants.LocalizationKeys.kMapButton, comment: "")) { (action, index) in
             self.currentInventory = self.inventories?[index.row]
-            self.performSegue(withIdentifier: Constants.kshowInventoryMapSegue, sender: nil)
+            self.performSegue(withIdentifier: Constants.kShowInventoryMapSegue, sender: nil)
         }
         showMap.backgroundColor = ThemeManager.sharedInstance.brandColor
         

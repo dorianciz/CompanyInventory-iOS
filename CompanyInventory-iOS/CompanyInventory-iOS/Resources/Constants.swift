@@ -64,7 +64,8 @@ struct Constants {
     static let kShowItemDetailsSegue = "showItemDetailsSegue"
     static let kLogoutSegue = "logoutSegue"
     static let kEditProfileSegue = "showEditProfileSegue"
-    static let kshowInventoryMapSegue = "showInventoryMapSegue"
+    static let kShowInventoryMapSegue = "showInventoryMapSegue"
+    static let kShowEditItemSegue = "showEditItemSegue"
     
     //Animations files names
     static let kScanningBeaconAnimation = "scanningBeacon"
@@ -192,6 +193,7 @@ struct Constants {
         static let kFinishInventoryTitle = "finish_inventory_title"
         static let kFinishInventoryDescription = "finish_inventory_description"
         static let kCreateNewInventoryButtonTitle = "create_new_inventory_button_title"
+        static let kEditItemTitleLabel = "edit_item_title_label"
     }
     
 }

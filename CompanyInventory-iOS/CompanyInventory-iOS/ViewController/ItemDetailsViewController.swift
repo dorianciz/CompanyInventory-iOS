@@ -23,6 +23,8 @@ class ItemDetailsViewController: UIViewController {
     
     let itemDetailsBrain = ItemDetailsBrain()
     var item: Item?
+    var inventoryId: String?
+    var inventoryItemByDateId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,19 @@ class ItemDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fillPersistanceData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let segueId = segue.identifier, segueId == Constants.kShowEditItemSegue {
+            if let navigationController = segue.destination as? UINavigationController {
+                if let destinationController = navigationController.viewControllers.first as? EditItemViewController {
+                    //Passing item data to destination controller
+                    destinationController.item = item
+                    destinationController.inventoryId = inventoryId
+                    destinationController.inventoryItemByDateId = inventoryItemByDateId
+                }
+            }
+        }
     }
     
     private func applyStyles() {
@@ -74,7 +89,7 @@ class ItemDetailsViewController: UIViewController {
     }
     
     @objc func editTapped() {
-        
+        performSegue(withIdentifier: Constants.kShowEditItemSegue, sender: self)
     }
     
 }

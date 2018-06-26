@@ -10,6 +10,8 @@ import Foundation
 
 protocol ItemDatabaseProtocol {
     func updateItem(_ item: Item?, withStatus status: ItemStatus?)
+    func updateItem(_ item: Item?)
     func deleteItem(_ item: Item!)
     func getItem(byBeaconId beaconId: String) -> Item?
+    func getLastItem(byBeaconId beaconId: String) -> Item?
 }

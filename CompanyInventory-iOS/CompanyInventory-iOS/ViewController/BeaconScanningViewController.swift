@@ -96,9 +96,9 @@ class BeaconScanningViewController: UIViewController {
         successView.isHidden = false
         scanningView.pause()
         if let player = self.avPlayer {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
             player.prepareToPlay()
             player.play()
-            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         }
         successView.play { (isFinished) in
             if isFinished {
@@ -117,6 +117,5 @@ extension BeaconScanningViewController: BeaconScannerDelegate {
         print("Scanned beacon ID: \(id)")
         finishScanningSuccessfully()
         delegate?.foundBeacon(withId: id)
-        dismiss(animated: true, completion: nil)
     }
 }

@@ -102,6 +102,28 @@ class InventoryBrain {
         }
     }
     
+    func updateItem(_ itemToUpdate: Item?, forInventoryId inventoryId: String?, forItemByDateId itemByDateId: String?, completion: @escaping(Response) -> Void) {
+        guard let item = itemToUpdate else {
+            return
+        }
+        
+        if !isItemDataValid(item) {
+            completion(.missingInformations)
+            return
+        }
+        
+        documentManager.saveImageToDocumentDirectory(item.photoLocalPath!, item.image!)
+        
+        itemDatabase.updateItem(item)
+        
+        getAndUpdateLocalInventoryById(inventoryId) { (inventory) in
+            self.saveInventory(inventory, { (response) in
+                completion(response)
+            })
+        }
+        
+    }
+    
     func isItemDataValid(_ item: Item) -> Bool {
         if let id = item.itemId, let name = item.name, let beaconId = item.beaconId, let locationName = item.locationName, let _ = item.latitude.value, let _ = item.longitude.value, let _ = item.photoLocalPath {
             return id != "" && name != "" && beaconId != "" && locationName != ""
@@ -261,6 +283,13 @@ class InventoryBrain {
         }
         
         return item
+    }
+    
+    func getItemByDateId(fromInventory: Inventory?, forSection section: Int!) -> String? {
+        guard let itemByDate = fromInventory?.items?[section] else {
+            return nil
+        }
+        return itemByDate.id
     }
     
 }
