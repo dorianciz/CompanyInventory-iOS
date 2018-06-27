@@ -74,7 +74,13 @@ class EditItemViewController: UIViewController {
         nameTextField.text = item?.name
         descriptionTextField.text = item?.descriptionText
         locationTextField.text = item?.locationName
-        itemImage.image = itemDetailsBrain?.getImage(forPath: item?.photoLocalPath)
+        
+        let currentImage = itemDetailsBrain?.getImage(forPath: item?.photoLocalPath)
+        
+        itemImage.image = currentImage ?? ThemeManager.sharedInstance.defaultItemImage
+        self.image = currentImage ?? ThemeManager.sharedInstance.defaultItemImage
+        imageChanged = currentImage != nil ? true : false
+        addPhotoButton.setTitle(imageChanged ? NSLocalizedString(Constants.LocalizationKeys.kNewItemChangePhoto, comment: "") : NSLocalizedString(Constants.LocalizationKeys.kNewItemAddPhoto, comment: ""), for: .normal)
     }
     
     @objc func cancelTapped() {
@@ -104,6 +110,8 @@ class EditItemViewController: UIViewController {
                 }
             case .error:
                 PopupManager.sharedInstance.showGeneralError()
+            case .missingInformations:
+                self.present(PopupManager.sharedInstance.showInfoPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kMissingItemInfoTitle, comment: ""), withMessage: NSLocalizedString(Constants.LocalizationKeys.kMissingItemInfoMessage, comment: "")), animated: true, completion: nil)
             default:
                 break
             }

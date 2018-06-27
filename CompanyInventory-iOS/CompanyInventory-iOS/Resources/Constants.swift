@@ -107,6 +107,8 @@ struct Constants {
     static let kWaitAfterBluetoothRetry = 1.0
     static let kWaitBeforeTableViewScrollToBottom = 0.7
     static let kCalloutViewIdentifier = "mapCalloutId"
+    static let mapDetailsViewHiddenConstraint: CGFloat = 200
+    static let mapDetailsViewShownConstraint: CGFloat = 10
     
     struct LocalizationKeys {
         static let kLoginSmallLabel = "login_top_label"

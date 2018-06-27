@@ -102,6 +102,8 @@
 		EDEE7E0E20C499C300B8006E /* MoreTabItemsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEE7E0D20C499C300B8006E /* MoreTabItemsProtocol.swift */; };
 		EDEE7E1120C49B0800B8006E /* MoreTabTestItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEE7E1020C49B0800B8006E /* MoreTabTestItems.swift */; };
 		EDF4C08C20E2E1DC00635F69 /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF4C08B20E2E1DC00635F69 /* EditItemViewController.swift */; };
+		EDF4C08F20E30ED500635F69 /* ItemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF4C08E20E30ED500635F69 /* ItemAnnotation.swift */; };
+		EDF4C09220E3152E00635F69 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF4C09120E3152E00635F69 /* UIImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,6 +223,8 @@
 		EDEE7E0D20C499C300B8006E /* MoreTabItemsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabItemsProtocol.swift; sourceTree = "<group>"; };
 		EDEE7E1020C49B0800B8006E /* MoreTabTestItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabTestItems.swift; sourceTree = "<group>"; };
 		EDF4C08B20E2E1DC00635F69 /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
+		EDF4C08E20E30ED500635F69 /* ItemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAnnotation.swift; sourceTree = "<group>"; };
+		EDF4C09120E3152E00635F69 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +333,7 @@
 		EDB9756E20365FF400F79FBF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				EDF4C09020E3151B00635F69 /* Extensions */,
 				EDBE44FC20D055E500187A04 /* GradientView.swift */,
 				EDB975712036600F00F79FBF /* Response.swift */,
 				EDA283BB206ACA40004B46F1 /* ThemeManager.swift */,
@@ -425,6 +430,7 @@
 		EDDF48B42036423900167991 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EDF4C08D20E30EA400635F69 /* Map */,
 				EDEE7DFC20C4834800B8006E /* MoreTabData */,
 				ED4B57E62082257E002734FD /* DatabaseLayer */,
 				EDDF48B82036428E00167991 /* Entity */,
@@ -529,6 +535,22 @@
 				EDEE7E1020C49B0800B8006E /* MoreTabTestItems.swift */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		EDF4C08D20E30EA400635F69 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				EDF4C08E20E30ED500635F69 /* ItemAnnotation.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		EDF4C09020E3151B00635F69 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EDF4C09120E3152E00635F69 /* UIImageExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -809,6 +831,7 @@
 				ED757C5920C8968900FF04E0 /* ProfileViewController.swift in Sources */,
 				EDD8F6E320841BA000563BD5 /* InventoryTableViewCell.swift in Sources */,
 				ED4B57EA208228F8002734FD /* CIUserDatabaseProtocol.swift in Sources */,
+				EDF4C09220E3152E00635F69 /* UIImageExtension.swift in Sources */,
 				ED4B57F4208295E7002734FD /* InventoryRealmDatabase.swift in Sources */,
 				EDBE44FF20D0739200187A04 /* InventoryMapViewController.swift in Sources */,
 				ED0C672420B4B640006B9E56 /* GenericEngine.swift in Sources */,
@@ -833,6 +856,7 @@
 				ED1E2D6E20B21F9700DE24D6 /* ItemRealmDatabase.swift in Sources */,
 				EDC7BD1820B0E1F300979E8B /* MonitoringBeaconScanner.swift in Sources */,
 				ED4B57FA2082B584002734FD /* FirebaseInventoryEngine.swift in Sources */,
+				EDF4C08F20E30ED500635F69 /* ItemAnnotation.swift in Sources */,
 				EDB975842036F42C00F79FBF /* FirebaseCIUserEngine.swift in Sources */,
 				ED4B57F020824DD8002734FD /* InventoryDatabaseProtocol.swift in Sources */,
 				EDAD956C20C5EE04009E3984 /* PersistanceService.swift in Sources */,

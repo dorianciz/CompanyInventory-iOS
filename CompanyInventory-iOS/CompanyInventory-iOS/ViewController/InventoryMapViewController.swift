@@ -13,13 +13,25 @@ import CoreGraphics
 class InventoryMapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var detailsView: UIView!
+    @IBOutlet weak var itemImageView: UIImageView!
+    @IBOutlet weak var itemNameLabel: UILabel!
+    @IBOutlet weak var itemLocationLabel: UILabel!
+    @IBOutlet weak var itemDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var detailsViewTrailingConstraint: NSLayoutConstraint!
+    
+    
+    private var currentAnnotation: MKAnnotation?
     
     var items: [Item]?
+    var itemDetailsBrain = ItemDetailsBrain()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         mapView.showsUserLocation = true
+        applyStyles()
         fillStaticData()
     }
     
@@ -31,6 +43,15 @@ class InventoryMapViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         zoomToCurrentLocation()
+    }
+    
+    private func applyStyles() {
+        ThemeManager.sharedInstance.styleBoldLabel(itemNameLabel)
+        ThemeManager.sharedInstance.styleDefaultLabel(itemDescriptionLabel)
+        self.detailsViewTrailingConstraint.constant = Constants.mapDetailsViewHiddenConstraint
+        self.view.layoutIfNeeded()
+        setDetailsViewAlpha(0)
+        detailsView.layer.cornerRadius = ThemeManager.sharedInstance.buttonDefaultCornerRadius
     }
     
     private func fillStaticData() {
@@ -48,12 +69,38 @@ class InventoryMapViewController: UIViewController {
     
     private func addAnnotations() {
         items?.forEach({ (item) in
-            let itemAnnotation = MKPointAnnotation()
-            itemAnnotation.title = item.name
-            itemAnnotation.subtitle = item.locationName
-            itemAnnotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(item.latitude.value!), longitude: CLLocationDegrees(item.longitude.value!))
-            mapView.addAnnotation(itemAnnotation)
+            
+            if let name = item.name, let locationName = item.locationName, let description = item.descriptionText, let photoPath = item.photoLocalPath {
+                let itemAnnotation = ItemAnnotation(name, description, locationName, photoPath, CLLocationCoordinate2D(latitude: CLLocationDegrees(item.latitude.value!), longitude: CLLocationDegrees(item.longitude.value!)))
+                mapView.addAnnotation(itemAnnotation)
+            }
         })
+    }
+    
+    private func setDetailsViewAlpha(_ alpha: CGFloat) {
+        detailsView.alpha = alpha
+        itemImageView.alpha = alpha
+        itemNameLabel.alpha = alpha
+        itemDescriptionLabel.alpha = alpha
+        itemLocationLabel.alpha = alpha
+    }
+    
+    @objc func markerInfoButtonAction(_ sender: Any?) {
+        if let currentAnnotation = self.currentAnnotation as? ItemAnnotation {
+            self.itemNameLabel.text = currentAnnotation.name
+            self.itemDescriptionLabel.text = currentAnnotation.descriptionText
+            self.itemLocationLabel.text = currentAnnotation.locationName
+            self.itemImageView.image = self.itemDetailsBrain.getImage(forPath: currentAnnotation.photoPath)
+        }
+        
+        AnimationChainingFactory.sharedInstance
+            .animation(withDuration: 1, withDelay: 0, withAnimations: {
+            self.setDetailsViewAlpha(0.9)
+                self.detailsViewTrailingConstraint.constant = Constants.mapDetailsViewShownConstraint
+            self.view.layoutIfNeeded()
+        }, withCompletion: {
+
+        }, withOptions: .transitionCrossDissolve ).run()
     }
 
 }
@@ -66,18 +113,39 @@ extension InventoryMapViewController: MKMapViewDelegate {
             return nil
         }
 
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.kCalloutViewIdentifier) as? MKPinAnnotationView
-        
-        if pinView == nil {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.kCalloutViewIdentifier)
-            pinView!.canShowCallout = true
-            pinView!.animatesDrop = true
-        }
-        else {
-            pinView!.annotation = annotation
-        }
+        let ann = annotation as? ItemAnnotation
 
-        return pinView
+        var view: MKMarkerAnnotationView
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.kCalloutViewIdentifier)
+            as? MKMarkerAnnotationView {
+            dequeuedView.annotation = ann
+            view = dequeuedView
+        } else {
+            let infoButton = UIButton(type: .detailDisclosure)
+            infoButton.addTarget(self, action: #selector(markerInfoButtonAction(_:)), for: .touchUpInside )
+            
+            view = MKMarkerAnnotationView(annotation: ann, reuseIdentifier: Constants.kCalloutViewIdentifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = infoButton
+        }
+        
+        return view
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("Select")
+        currentAnnotation = view.annotation
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        print("Deselect")
+        AnimationChainingFactory.sharedInstance.animation(withDuration: 1, withDelay: 0, withAnimations: {
+            self.detailsViewTrailingConstraint.constant = Constants.mapDetailsViewHiddenConstraint
+            self.view.layoutIfNeeded()
+            self.setDetailsViewAlpha(0)
+        }, withCompletion: {}, withOptions: .transitionCrossDissolve ).run()
     }
     
 }
