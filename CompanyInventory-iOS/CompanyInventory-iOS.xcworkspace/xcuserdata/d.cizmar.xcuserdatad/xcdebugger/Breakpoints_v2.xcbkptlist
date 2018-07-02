@@ -43,38 +43,6 @@
             endingLineNumber = "89"
             landmarkName = "saveAction(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CompanyInventory_iOS.EditItemViewController.saveAction(Any) -&gt; ()"
-                  moduleName = "CompanyInventory-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/d.cizmar/Developer/Projects/InventoryApp-iOS/Repo/CompanyInventory-iOS/CompanyInventory-iOS/ViewController/EditItemViewController.swift"
-                  timestampString = "551749510.151507"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "89"
-                  endingLineNumber = "89"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CompanyInventory_iOS.EditItemViewController.saveAction(Any) -&gt; ()"
-                  moduleName = "CompanyInventory-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/d.cizmar/Developer/Projects/InventoryApp-iOS/Repo/CompanyInventory-iOS/CompanyInventory-iOS/ViewController/EditItemViewController.swift"
-                  timestampString = "551749510.153546"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "89"
-                  endingLineNumber = "89"
-                  offsetFromSymbolStart = "3464">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -91,6 +59,22 @@
             endingLineNumber = "67"
             landmarkName = "saveItem(_:toInventoryByDate:toInventoryWithId:_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CompanyInventory-iOS/Helpers/PDFHandler.swift"
+            timestampString = "551907107.1412131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "PDFHandler"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

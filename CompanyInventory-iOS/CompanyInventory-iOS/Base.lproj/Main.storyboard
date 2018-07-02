@@ -624,16 +624,30 @@
         <!--Locations-->
         <scene sceneID="w8V-zV-lQQ">
             <objects>
-                <viewController id="umO-L7-YJb" sceneMemberID="viewController">
+                <viewController id="umO-L7-YJb" customClass="ARInventoryViewController" customModule="CompanyInventory_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FcM-Xa-X4f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JjJ-1N-IFz">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                            </arscnView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JjJ-1N-IFz" firstAttribute="leading" secondItem="e7z-Dn-Kf4" secondAttribute="leading" id="6FN-pP-qcP"/>
+                            <constraint firstItem="e7z-Dn-Kf4" firstAttribute="bottom" secondItem="JjJ-1N-IFz" secondAttribute="bottom" id="K5E-ZR-1Va"/>
+                            <constraint firstItem="JjJ-1N-IFz" firstAttribute="top" secondItem="e7z-Dn-Kf4" secondAttribute="top" id="UEI-Qb-YZr"/>
+                            <constraint firstItem="e7z-Dn-Kf4" firstAttribute="trailing" secondItem="JjJ-1N-IFz" secondAttribute="trailing" id="sYM-DP-Jko"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="e7z-Dn-Kf4"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Locations" image="locations" id="Rne-aj-CS7">
                         <color key="badgeColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="arSceneView" destination="JjJ-1N-IFz" id="zLm-i7-st7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fD7-8q-hSe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
