@@ -27,6 +27,7 @@ class InventoryViewController: UIViewController {
     private var selectedItemByDateId: String?
     private var isDeleteMode = false
     private var sectionsStatuses = [Int: Bool]()
+    private var currentReportPath: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,6 +156,9 @@ class InventoryViewController: UIViewController {
                 controller.item = selectedItem
                 controller.inventoryId = inventoryId
                 controller.inventoryItemByDateId = selectedItemByDateId
+            } else if segueId == Constants.kShowInventoryReportSegue {
+                let controller = segue.destination as! PDFWebViewController
+                controller.pdfFilePath = currentReportPath
             }
         }
     }
@@ -356,6 +360,7 @@ extension InventoryViewController: UITableViewDataSource {
             if isFinished {
                 cell.delegate = self
                 cell.reportButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kReportTitle, comment: ""), for: .normal)
+                cell.section = section
                 return cell
             }
         }
@@ -502,17 +507,18 @@ extension InventoryViewController: ItemScanningViewControllerDelegate {
 }
 
 extension InventoryViewController: ItemsByDateFooterTableViewCellDelegate {
-    func reportAction(_ sender: Any) {
-        print("Report button action")
+    func reportAction(_ sender: Any, _ section: Int) {
+        if let itemByDate = inventoryBrain.getItemByDate(fromInventory: inventory, forSection: section), let id = itemByDate.id {
+            currentReportPath = "\(Constants.kReportsDirectory)/\(id).pdf"
+            PDFHandler.sharedInstance.generatePDFDocument(forInventoryByDate: itemByDate, withInventoryName: inventory?.name ?? NSLocalizedString(Constants.LocalizationKeys.kUnknownInventory, comment: ""))
+            performSegue(withIdentifier: Constants.kShowInventoryReportSegue, sender: nil)
+        }
     }
 }
 
 extension InventoryViewController: SectionHeaderDelegate {
     func sectionHeaderTap(isCollapsed: Bool, section: Int) {
         sectionsStatuses[section] = !sectionsStatuses[section]!
-//        tableView.beginUpdates()
-//        tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .none)
-//        tableView.endUpdates()
         tableView.reloadData()
     }
 }

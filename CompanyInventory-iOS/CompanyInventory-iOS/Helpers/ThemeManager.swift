@@ -36,6 +36,7 @@ final class ThemeManager {
     let headerFont = UIFont(name: Constants.kDefaultBoldFontName, size: Constants.kHeaderFontSize)
     let titleFont = UIFont(name: Constants.kDefaultBoldFontName, size: Constants.kTitleFontSize)
     let defaultFont = UIFont(name: Constants.kDefaultFontName, size: Constants.kDefaultFontSize)
+    let pdfRowFont = UIFont(name: Constants.kDefaultFontName, size: Constants.kPDFRowFontSize)
     let clearButtonColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
     let clearButtonBorderWidth:CGFloat = 1.0
     let clearButtonBorderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -141,5 +142,11 @@ final class ThemeManager {
     func styleHeaderLabel(_ label: UILabel!) {
         label.font = ThemeManager.sharedInstance.headerFont
         label.textColor = ThemeManager.sharedInstance.textColor
+    }
+    
+    func stylePDFRowLabel(_ label: UILabel!) {
+        label.font = pdfRowFont
+        label.layer.borderWidth = 1
+        label.layer.borderColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
     }
 }

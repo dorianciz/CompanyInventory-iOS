@@ -91,3 +91,5 @@
 "finish_inventory_title" = "Are you sure you want to finish inventory?";
 "finish_inventory_description" = "There are unscanned items. If you click yes, all unscanned items will be treated as \"Not exists\"";
 "edit_item_title_label" = "Edit item details";
+"report_unknown_inventory" = "Unknown inventory";
+

@@ -292,4 +292,15 @@ class InventoryBrain {
         return itemByDate.id
     }
     
+    func getItemByDate(fromInventory: Inventory?, forSection section: Int) -> InventoryItemByDate? {
+        return fromInventory?.items?[section]
+    }
+    
+    func getReportsPath(forInventory inventory: Inventory?) -> String? {
+        if let id = inventory?.inventoryId {
+            return "\(Constants.kReportsDirectory)/\(id).pdf"
+        }
+        return nil
+    }
+    
 }

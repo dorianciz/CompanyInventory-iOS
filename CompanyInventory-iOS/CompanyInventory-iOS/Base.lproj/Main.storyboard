@@ -199,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WpZ-Kf-f0X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137" y="837"/>
+            <point key="canvasLocation" x="-121" y="842"/>
         </scene>
         <!--Generic Popup View Controller-->
         <scene sceneID="kvv-RY-bFF">
@@ -851,11 +851,47 @@
                         <outlet property="tableView" destination="MWn-Fu-ehT" id="I8U-21-0Dn"/>
                         <segue destination="ZhS-1R-9xQ" kind="show" identifier="showInventorySegue" id="HyA-RH-q1P"/>
                         <segue destination="jLV-jz-JjX" kind="show" identifier="showInventoryMapSegue" id="bSn-IZ-dlH"/>
+                        <segue destination="beY-JK-aOZ" kind="show" identifier="showInventoryReportSegue" id="H1I-if-yno"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ztr-li-hDZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2876" y="-982.75862068965523"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="aC7-Fo-voU">
+            <objects>
+                <viewController id="beY-JK-aOZ" customClass="PDFWebViewController" customModule="CompanyInventory_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KHJ-YH-oaE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1T-lN-g0k">
+                                <rect key="frame" x="305" y="548" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="2Az-pU-SCW"/>
+                                    <constraint firstAttribute="height" constant="45" id="2UI-Nl-GFE"/>
+                                </constraints>
+                                <state key="normal" image="message"/>
+                                <connections>
+                                    <action selector="mailAction:" destination="beY-JK-aOZ" eventType="touchUpInside" id="b7W-gH-qwv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Ln-V4-OFL" firstAttribute="bottom" secondItem="U1T-lN-g0k" secondAttribute="bottom" constant="25" id="tHP-LR-zLU"/>
+                            <constraint firstItem="6Ln-V4-OFL" firstAttribute="trailing" secondItem="U1T-lN-g0k" secondAttribute="trailing" constant="25" id="tdY-QI-Mfy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Ln-V4-OFL"/>
+                    </view>
+                    <connections>
+                        <outlet property="mailButton" destination="U1T-lN-g0k" id="yqm-Je-0bN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H4T-69-VhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1916" y="-1776"/>
         </scene>
         <!--Inventory Map View Controller-->
         <scene sceneID="aO2-CB-Qra">
@@ -1588,6 +1624,7 @@
                         <segue destination="Fvy-te-LSo" kind="show" identifier="showAddItemSegue" id="1TD-BC-dz0"/>
                         <segue destination="tP0-DV-dHN" kind="presentation" identifier="showScanningItemSegue" modalPresentationStyle="overCurrentContext" id="W6j-2r-Q80"/>
                         <segue destination="wzj-Yo-8jJ" kind="show" identifier="showItemDetailsSegue" id="3yh-SZ-PCz"/>
+                        <segue destination="beY-JK-aOZ" kind="show" identifier="showInventoryReportSegue" id="oe3-e1-mU9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgl-0g-izN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2062,9 +2099,13 @@
         <image name="delete" width="37" height="37"/>
         <image name="inventories" width="30" height="30"/>
         <image name="locations" width="30" height="30"/>
+        <image name="message" width="30" height="30"/>
         <image name="no_image" width="300" height="700"/>
         <image name="profile" width="30" height="30"/>
         <image name="profile1" width="256" height="256"/>
         <image name="right_arrow" width="37" height="37"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="oe3-e1-mU9"/>
+    </inferredMetricsTieBreakers>
 </document>

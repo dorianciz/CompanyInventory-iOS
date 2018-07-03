@@ -15,6 +15,7 @@ target 'CompanyInventory-iOS' do
   pod 'IQKeyboardManagerSwift', '~> 5.0'
   pod 'lottie-ios'
   pod 'EstimoteSDK'
+  pod 'PDFGenerator', '~> 2.1'
 
   target 'CompanyInventory-iOSTests' do
     inherit! :search_paths

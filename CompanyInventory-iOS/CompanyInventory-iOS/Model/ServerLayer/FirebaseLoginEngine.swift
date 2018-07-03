@@ -19,8 +19,8 @@ class FirebaseLoginEngine: GenericEngine, LoginEngineProtocol {
             Auth.auth().signIn(withEmail: username, password: password) { (user, error) in
                 if error == nil {
                     let ciUser = CIUser()
-                    ciUser.uid = user?.uid
-                    ciUser.username = user?.email
+                    ciUser.uid = user?.user.uid
+                    ciUser.username = user?.user.email
                     completion(Response.success, ciUser)
                 } else {
                     completion(Response.error, nil)
@@ -39,8 +39,8 @@ class FirebaseLoginEngine: GenericEngine, LoginEngineProtocol {
                 let newUser = CIUser()
                 
                 if let user = firUser {
-                    newUser.username = user.email
-                    newUser.uid = user.uid
+                    newUser.username = user.user.email
+                    newUser.uid = user.user.uid
                     completion(newUser, Response.success)
                 } else {
                     completion(nil, Response.error)

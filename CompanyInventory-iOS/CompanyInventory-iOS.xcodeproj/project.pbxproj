@@ -59,6 +59,8 @@
 		ED93CB59206454B000ABBDEF /* CIUserBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED93CB58206454B000ABBDEF /* CIUserBrain.swift */; };
 		ED93CB5D206455CF00ABBDEF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED93CB5C206455CF00ABBDEF /* LoginViewController.swift */; };
 		ED96CFFE20EA5EB600F6E1B1 /* ARInventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED96CFFD20EA5EB600F6E1B1 /* ARInventoryViewController.swift */; };
+		ED96D00020EAE5B000F6E1B1 /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED96CFFF20EAE5B000F6E1B1 /* PDFWebViewController.swift */; };
+		ED96D00220EAE68000F6E1B1 /* sample1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = ED96D00120EAE68000F6E1B1 /* sample1.pdf */; };
 		EDA283BC206ACA40004B46F1 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA283BB206ACA40004B46F1 /* ThemeManager.swift */; };
 		EDA283BE206AE867004B46F1 /* AnimationChainingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA283BD206AE867004B46F1 /* AnimationChainingFactory.swift */; };
 		EDAD956A20C5D8D4009E3984 /* LogoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAD956920C5D8D4009E3984 /* LogoutTableViewCell.swift */; };
@@ -176,6 +178,8 @@
 		ED93CB58206454B000ABBDEF /* CIUserBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIUserBrain.swift; sourceTree = "<group>"; };
 		ED93CB5C206455CF00ABBDEF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ED96CFFD20EA5EB600F6E1B1 /* ARInventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARInventoryViewController.swift; sourceTree = "<group>"; };
+		ED96CFFF20EAE5B000F6E1B1 /* PDFWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFWebViewController.swift; sourceTree = "<group>"; };
+		ED96D00120EAE68000F6E1B1 /* sample1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample1.pdf; sourceTree = "<group>"; };
 		EDA283BB206ACA40004B46F1 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		EDA283BD206AE867004B46F1 /* AnimationChainingFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationChainingFactory.swift; sourceTree = "<group>"; };
 		EDAD956920C5D8D4009E3984 /* LogoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutTableViewCell.swift; sourceTree = "<group>"; };
@@ -462,6 +466,7 @@
 				EDBE44FE20D0739200187A04 /* InventoryMapViewController.swift */,
 				EDF4C08B20E2E1DC00635F69 /* EditItemViewController.swift */,
 				ED96CFFD20EA5EB600F6E1B1 /* ARInventoryViewController.swift */,
+				ED96CFFF20EAE5B000F6E1B1 /* PDFWebViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -509,6 +514,7 @@
 		EDDF48B9203642E300167991 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ED96D00120EAE68000F6E1B1 /* sample1.pdf */,
 				ED0C671D20B4B591006B9E56 /* Obj-C */,
 				ED8077CB2086C9AD00E8952D /* success_pulse.json */,
 				ED8077CA2086C64400E8952D /* successScanAudio.m4a */,
@@ -588,7 +594,6 @@
 				EDDF48A220363FC000167991 /* Frameworks */,
 				EDDF48A320363FC000167991 /* Resources */,
 				82F2ED5D88FC37E450EF8A52 /* [CP] Embed Pods Frameworks */,
-				112BF0021322A7D6BD770EB9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -648,6 +653,7 @@
 			files = (
 				ED8077CD2086CDF200E8952D /* successScanAudio.m4a in Resources */,
 				ED8077C92086BE7200E8952D /* successScanning.json in Resources */,
+				ED96D00220EAE68000F6E1B1 /* sample1.pdf in Resources */,
 				EDBE450320D082F700187A04 /* ItemAnnotationView.xib in Resources */,
 				ED8077CC2086C9AE00E8952D /* success_pulse.json in Resources */,
 				EDDF489F20363FC000167991 /* LaunchScreen.storyboard in Resources */,
@@ -679,6 +685,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PDFGenerator/PDFGenerator.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -690,6 +697,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDFGenerator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -712,26 +720,11 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CompanyInventory-iOS/Pods-CompanyInventory-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		112BF0021322A7D6BD770EB9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CompanyInventory-iOSTests/Pods-CompanyInventory-iOSTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		442878D3E90AB6C96603FA2D /* [CP] Check Pods Manifest.lock */ = {
@@ -872,6 +865,7 @@
 				ED10C9F320AB90600053CD36 /* GenericPhotoMenu.swift in Sources */,
 				ED0C672020B4B5A2006B9E56 /* Reachability.m in Sources */,
 				EDEE7E0A20C4970B00B8006E /* MoreMenuBrain.swift in Sources */,
+				ED96D00020EAE5B000F6E1B1 /* PDFWebViewController.swift in Sources */,
 				ED4B57EC208229EA002734FD /* CIUserRealmDatabase.swift in Sources */,
 				ED0C671C20B4752D006B9E56 /* GenericPopupViewController.swift in Sources */,
 				EDB975862036F45A00F79FBF /* Constants.swift in Sources */,

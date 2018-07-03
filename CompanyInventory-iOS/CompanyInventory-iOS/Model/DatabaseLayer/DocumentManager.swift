@@ -70,6 +70,12 @@ class DocumentManager {
         fileManager.createFile(atPath: paths as String, contents: data, attributes: nil)
     }
     
+    func createDirectory(withName name: String) {
+        let fileManager = FileManager.default
+        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(name)
+        try? fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+    }
+    
     func isFileExists(withName name: String) -> Bool {
         let fileManager = FileManager.default
         let filePath = (self.directoryPath as NSString).appendingPathComponent(name)
@@ -80,7 +86,7 @@ class DocumentManager {
         }
     }
     
-    private func getDirectoryPath() -> String {
+    func getDirectoryPath() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
         return documentsDirectory

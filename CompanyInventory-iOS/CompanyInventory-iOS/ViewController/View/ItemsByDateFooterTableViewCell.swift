@@ -9,11 +9,13 @@
 import UIKit
 
 protocol ItemsByDateFooterTableViewCellDelegate: class {
-    func reportAction(_ sender: Any)
+    func reportAction(_ sender: Any, _ section: Int)
 }
 
 class ItemsByDateFooterTableViewCell: UITableViewCell {
 
+    var section: Int?
+    
     @IBOutlet weak var reportButton: UIButton!
     weak var delegate: ItemsByDateFooterTableViewCellDelegate?
     
@@ -23,7 +25,10 @@ class ItemsByDateFooterTableViewCell: UITableViewCell {
     }
     
     @IBAction func reportButtonAction(_ sender: Any) {
-        delegate?.reportAction(sender)
+        guard let sectionNumber = section else {
+            return
+        }
+        delegate?.reportAction(sender, sectionNumber)
     }
     
 }

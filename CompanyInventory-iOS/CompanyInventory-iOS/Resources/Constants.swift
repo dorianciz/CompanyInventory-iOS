@@ -66,6 +66,7 @@ struct Constants {
     static let kEditProfileSegue = "showEditProfileSegue"
     static let kShowInventoryMapSegue = "showInventoryMapSegue"
     static let kShowEditItemSegue = "showEditItemSegue"
+    static let kShowInventoryReportSegue = "showInventoryReportSegue"
     
     //Animations files names
     static let kScanningBeaconAnimation = "scanningBeacon"
@@ -94,6 +95,7 @@ struct Constants {
     static let kDefaultFontSize:CGFloat = 15.0
     static let kHeaderFontSize:CGFloat = 23.0
     static let kDescriptionFontSize = 15.0
+    static let kPDFRowFontSize:CGFloat = 10.0
     static let kDefaultFontName = "Helvetica"
     static let kDefaultBoldFontName = "Helvetica Bold"
     
@@ -109,6 +111,8 @@ struct Constants {
     static let kCalloutViewIdentifier = "mapCalloutId"
     static let mapDetailsViewHiddenConstraint: CGFloat = 200
     static let mapDetailsViewShownConstraint: CGFloat = 10
+    static let kPFDItemsPerPage = 17
+    static let kReportsDirectory = "Reports"
     
     struct LocalizationKeys {
         static let kLoginSmallLabel = "login_top_label"
@@ -196,6 +200,7 @@ struct Constants {
         static let kFinishInventoryDescription = "finish_inventory_description"
         static let kCreateNewInventoryButtonTitle = "create_new_inventory_button_title"
         static let kEditItemTitleLabel = "edit_item_title_label"
+        static let kUnknownInventory = "report_unknown_inventory"
     }
     
 }

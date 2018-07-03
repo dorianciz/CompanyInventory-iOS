@@ -101,6 +101,10 @@ class InventoriesViewController: UIViewController {
                         controller.items = Array(items)
                     }
                 }
+            } else if segueId == Constants.kShowInventoryReportSegue {
+                if let controller = segue.destination as? PDFWebViewController {
+                    controller.pdfFilePath = inventoryBrain.getReportsPath(forInventory: currentInventory)
+                }
             }
         }
     }
@@ -140,6 +144,11 @@ extension InventoriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let report = UITableViewRowAction(style: .normal, title: NSLocalizedString(Constants.LocalizationKeys.kReportTitle, comment: "")) { action, index in
             print("Creating report")
+            self.currentInventory = self.inventories?[index.row]
+            if let inventory = self.currentInventory {
+                PDFHandler.sharedInstance.generatePDFDocument(forInventory: inventory)
+                self.performSegue(withIdentifier: Constants.kShowInventoryReportSegue, sender: nil)
+            }
         }
         report.backgroundColor = ThemeManager.sharedInstance.generalBlueColor
         // Check if inventory is finished
