@@ -58,7 +58,6 @@
 		ED8077CD2086CDF200E8952D /* successScanAudio.m4a in Resources */ = {isa = PBXBuildFile; fileRef = ED8077CA2086C64400E8952D /* successScanAudio.m4a */; };
 		ED93CB59206454B000ABBDEF /* CIUserBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED93CB58206454B000ABBDEF /* CIUserBrain.swift */; };
 		ED93CB5D206455CF00ABBDEF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED93CB5C206455CF00ABBDEF /* LoginViewController.swift */; };
-		ED96CFFE20EA5EB600F6E1B1 /* ARInventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED96CFFD20EA5EB600F6E1B1 /* ARInventoryViewController.swift */; };
 		ED96D00020EAE5B000F6E1B1 /* PDFWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED96CFFF20EAE5B000F6E1B1 /* PDFWebViewController.swift */; };
 		ED96D00220EAE68000F6E1B1 /* sample1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = ED96D00120EAE68000F6E1B1 /* sample1.pdf */; };
 		EDA283BC206ACA40004B46F1 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA283BB206ACA40004B46F1 /* ThemeManager.swift */; };
@@ -177,7 +176,6 @@
 		ED8077CB2086C9AD00E8952D /* success_pulse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = success_pulse.json; sourceTree = "<group>"; };
 		ED93CB58206454B000ABBDEF /* CIUserBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIUserBrain.swift; sourceTree = "<group>"; };
 		ED93CB5C206455CF00ABBDEF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		ED96CFFD20EA5EB600F6E1B1 /* ARInventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARInventoryViewController.swift; sourceTree = "<group>"; };
 		ED96CFFF20EAE5B000F6E1B1 /* PDFWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFWebViewController.swift; sourceTree = "<group>"; };
 		ED96D00120EAE68000F6E1B1 /* sample1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample1.pdf; sourceTree = "<group>"; };
 		EDA283BB206ACA40004B46F1 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -465,7 +463,6 @@
 				ED4A0EF620C9CBEF00E0CDA3 /* EditProfileViewController.swift */,
 				EDBE44FE20D0739200187A04 /* InventoryMapViewController.swift */,
 				EDF4C08B20E2E1DC00635F69 /* EditItemViewController.swift */,
-				ED96CFFD20EA5EB600F6E1B1 /* ARInventoryViewController.swift */,
 				ED96CFFF20EAE5B000F6E1B1 /* PDFWebViewController.swift */,
 			);
 			path = ViewController;
@@ -818,7 +815,6 @@
 				EDB9756D20365F7100F79FBF /* ItemEngineProtocol.swift in Sources */,
 				ED689E6C20854D1300187584 /* ItemViewController.swift in Sources */,
 				EDB9757A2036CF8E00F79FBF /* LoginEngineProtocol.swift in Sources */,
-				ED96CFFE20EA5EB600F6E1B1 /* ARInventoryViewController.swift in Sources */,
 				ED4B57E3208175C1002734FD /* NavigationManager.swift in Sources */,
 				ED4B57E520821D3D002734FD /* InventoriesViewController.swift in Sources */,
 				EDC7BD1420AF806100979E8B /* DocumentManager.swift in Sources */,
