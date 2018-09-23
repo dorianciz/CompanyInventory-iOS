@@ -52,12 +52,12 @@ class BeaconScanner: NSObject {
 
 extension BeaconScanner: ESTBeaconManagerDelegate {
     func beaconManager(_ manager: Any, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        
+        // Implement logic for beacons that are received from beacon manager
     }
-    
+}
     func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
         if region.proximityUUID.uuidString == Constants.kBeaconProximityUid && region.identifier == Constants.kBeaconIdentifier {
-            delegate?.foundBeacon(withId: "test")
+            delegate?.foundBeacon(withId: "")
         }
     }
     

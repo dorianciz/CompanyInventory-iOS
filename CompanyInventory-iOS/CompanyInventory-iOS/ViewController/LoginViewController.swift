@@ -40,9 +40,6 @@ class LoginViewController: UIViewController {
         usernameTextfield.delegate = self
         passwordTextfield.delegate = self
         
-//        usernameTextfield.text = "t@t.com"
-//        passwordTextfield.text = "Test123"
-        
         ciUserBrain = CIUserBrain()
         
         applyStyles()
@@ -131,7 +128,9 @@ class LoginViewController: UIViewController {
                             self.ciUserBrain.fetchCurrentUserProfile(withCompletion: { (ciUser, response) in
                                 switch response {
                                 case .success:
-                                    PersistanceService.sharedInstance.setStaySignedIn(true)
+                                    if PersistanceService.sharedInstance.shouldStaySignedIn() == nil {
+                                        PersistanceService.sharedInstance.setStaySignedIn(true)
+                                    }
                                     self.performSegue(withIdentifier: Constants.kShowLoggedInAppSegue, sender: nil)
                                 case .noInternetConnection:
                                     PopupManager.sharedInstance.showNoInternetConnection {

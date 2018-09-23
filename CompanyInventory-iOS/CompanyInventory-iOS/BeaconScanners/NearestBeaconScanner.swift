@@ -19,12 +19,12 @@ class NearestBeaconScanner: BeaconScanner {
     
     override init() {
         super.init()
-        queueOfBeaconIds.maximumNumberOfElements = 7
+        queueOfBeaconIds.capacity = 7
         beaconIds = [String]()
     }
     
     init(withInventoryId inventoryId: String?, withInventoryByDateId inventoryByDateId: String?) {
-        queueOfBeaconIds.maximumNumberOfElements = 7
+        queueOfBeaconIds.capacity = 7
         if let inventoryId = inventoryId, let inventoryByDateId = inventoryByDateId {
             beaconIds = inventoryBrain.getUsedBeaconIdsFromLocalItems(forInventoryId: inventoryId, forInventoryByDateId: inventoryByDateId)
         } else {

@@ -10,6 +10,7 @@ import UIKit
 
 class EditProfileViewController: UIViewController {
     
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var titleLineView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -55,11 +56,11 @@ class EditProfileViewController: UIViewController {
         nameAndSurnameLineView.backgroundColor = ThemeManager.sharedInstance.bottomLineColor
         phoneLineView.backgroundColor = ThemeManager.sharedInstance.bottomLineColor
         ThemeManager.sharedInstance.styleClearButton(button: changePasswordButton)
+        ThemeManager.sharedInstance.styleDefaultButton(button: saveButton)
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = ThemeManager.sharedInstance.itemCornerRadius
         
         navigationItem.hidesBackButton = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString(Constants.LocalizationKeys.kGeneralSave, comment: ""), style: .done, target: self, action: #selector(saveTapped))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString(Constants.LocalizationKeys.kGeneralCancel, comment: ""), style: .done, target: self, action: #selector(cancelTapped))
     }
     
@@ -68,7 +69,9 @@ class EditProfileViewController: UIViewController {
         changePhotoButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kChoosePhoto, comment: ""), for: .normal)
         nameAndSurnameTextField.placeholder = NSLocalizedString(Constants.LocalizationKeys.kEditProfileNameAndSurnamePlaceholder, comment: "")
         phoneTextField.placeholder = NSLocalizedString(Constants.LocalizationKeys.kEditProfilePhonePlaceholder, comment: "")
-        changePasswordButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kEditProfileChangePassword, comment: ""), for: .normal)
+        changePasswordButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kEditProfileChangePassword, comment:
+            ""), for: .normal)
+        saveButton.setTitle(NSLocalizedString(Constants.LocalizationKeys.kGeneralSave, comment: ""), for: .normal)
     }
     
     private func fillPersistanceData() {
@@ -81,14 +84,22 @@ class EditProfileViewController: UIViewController {
         profileImageView.image = image
     }
     
-    @objc func saveTapped() {
+    @objc func cancelTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    @IBAction func changePhotoAction(_ sender: Any) {
+        present(photoMenu.photoAlert, animated: true, completion: nil)
+    }
+    
+    @IBAction func saveButtonAction(_ sender: Any) {
         ciUserBrain.saveUserProfileData(withUid: ciUserToChange?.uid, withUsername: ciUserToChange?.username, withNameAndSurname: nameAndSurnameTextField.text, withProfileImage: image, withPhoneNumber: phoneTextField.text) { (response) in
             switch response {
             case .success:
                 self.navigationController?.popViewController(animated: true)
             case .noInternetConnection:
                 PopupManager.sharedInstance.showNoInternetConnection {
-                    self.saveTapped()
+                    self.saveButtonAction(self.saveButton)
                 }
             case .missingInformations:
                 PopupManager.sharedInstance.showPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kMissingItemInfoTitle, comment: ""), withDescription: NSLocalizedString(Constants.LocalizationKeys.kMissingItemInfoMessage, comment: ""), withOkButtonText: NSLocalizedString(Constants.LocalizationKeys.kGeneralOk, comment: ""), withCancelButtonText: nil, withPopupType: .error, withOkCompletion: nil, withCancelCompletion: nil)
@@ -98,14 +109,6 @@ class EditProfileViewController: UIViewController {
                 break
             }
         }
-    }
-    
-    @objc func cancelTapped() {
-        navigationController?.popViewController(animated: true)
-    }
-
-    @IBAction func changePhotoAction(_ sender: Any) {
-        present(photoMenu.photoAlert, animated: true, completion: nil)
     }
     
     @IBAction func changePasswordAction(_ sender: Any) {

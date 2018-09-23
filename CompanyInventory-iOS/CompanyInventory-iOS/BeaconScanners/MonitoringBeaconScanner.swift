@@ -16,27 +16,35 @@ class MonitoringBeaconScanner: BeaconScanner {
     
     init(withBeaconsIdsToScan beaconsIds: [String]?) {
         self.beaconsIdsToScan = beaconsIds
-        queueOfBeaconIds.maximumNumberOfElements = 7
+        queueOfBeaconIds.capacity = 7
     }
     
     override func beaconManager(_ manager: Any, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        beacons.forEach { (beacon) in
-            beaconsIdsToScan?.forEach({ (beaconId) in
-                if beaconId == "\(beacon.minor.intValue)", beacon.accuracy < 1 {
-                    self.queueOfBeaconIds.enqueue(beacon.minor.intValue)
-                    var counter = 0
-                    for qElement in self.queueOfBeaconIds.list {
-                        if qElement == beacon.minor.intValue {
-                            counter += 1
-                            if counter >= 3 {
-                                self.queueOfBeaconIds = CustomQueue<Int>()
-                                self.delegate?.foundBeacon(withId: "\(beacon.minor.intValue)")
-                                return
+        print("|---Scanned beacons: --- ID -------- ACCURACY -------- RSSI ---|\n\n")
+        
+        for beacon in beacons {
+            print("                        \(beacon.minor)     \(beacon.accuracy)      \(beacon.rssi)")
+            if let idsToScan = beaconsIdsToScan {
+                for beaconId in idsToScan {
+                    if beaconId == "\(beacon.minor.intValue)", beacon.accuracy < 1, beacon.accuracy >= 0 {
+                        self.queueOfBeaconIds.enqueue(beacon.minor.intValue)
+                        var counter = 0
+                        for qElement in self.queueOfBeaconIds.list {
+                            if qElement == beacon.minor.intValue {
+                                counter += 1
+                                if counter >= 4 {
+                                    self.queueOfBeaconIds.emptyQueue()
+                                    self.delegate?.foundBeacon(withId: "\(beacon.minor.intValue)")
+                                    return
+                                }
                             }
                         }
+                        return
                     }
                 }
-            })
+            }
         }
+        print("   List of scanned IDs: \(queueOfBeaconIds.list)")
+        print("|-------------------------------------------------------------------|\n\n")
     }
 }

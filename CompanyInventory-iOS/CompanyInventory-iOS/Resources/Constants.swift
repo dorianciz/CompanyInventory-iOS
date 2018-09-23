@@ -79,9 +79,9 @@ struct Constants {
     //Beacons
     static let kBeaconProximityUid = "88888888-4444-4444-4444-111111222222"
     static let kBeaconIdentifier = "Inventory Beacon Region"
-    static let kBeaconMinAccuracy = 0.4
+    static let kBeaconMinAccuracy = 0.5
     static let kBeaconMinProximity: CLProximity = .immediate
-    static let kBeaconMinRSSI = -85
+    static let kBeaconMinRSSI = -75
     static let kBeaconMonitoringForbiddenProximity: CLProximity = .unknown
     static let kBeaconMonitoringMinAccuracy = 0.8
     
@@ -201,6 +201,7 @@ struct Constants {
         static let kCreateNewInventoryButtonTitle = "create_new_inventory_button_title"
         static let kEditItemTitleLabel = "edit_item_title_label"
         static let kUnknownInventory = "report_unknown_inventory"
+        static let kDeleteError = "delete_error"
     }
     
 }

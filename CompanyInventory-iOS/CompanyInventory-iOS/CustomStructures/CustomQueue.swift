@@ -10,18 +10,19 @@ import Foundation
 
 struct CustomQueue<T> {
     
-    var maximumNumberOfElements: Int?
+    var capacity: Int?
     var list = Array<T>()
     
     mutating func enqueue(_ element: T) {
         list.append(element)
         
-        if let maximumNumber = maximumNumberOfElements {
+        if let maximumNumber = capacity {
             if list.count == maximumNumber {
                 dequeue()
             }
         }
     }
+    
     
     mutating func dequeue() {
         list.removeFirst()
@@ -32,6 +33,12 @@ struct CustomQueue<T> {
             return list[index]
         }
         return nil
+    }
+    
+    mutating func emptyQueue() {
+        while list.count != 0 {
+            self.dequeue()
+        }
     }
     
 }

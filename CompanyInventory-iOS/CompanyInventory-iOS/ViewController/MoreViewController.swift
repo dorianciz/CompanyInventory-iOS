@@ -148,7 +148,7 @@ extension MoreViewController: UITableViewDataSource {
                 }
                 
                 if type == .StaySignedIn {
-                    cell.switchButton.isOn = PersistanceService.sharedInstance.shouldStaySignedIn() ?? true
+                    cell.switchButton.isOn = PersistanceService.sharedInstance.shouldStaySignedIn() ?? false
                 }
                 
                 cell.indexPath = indexPath

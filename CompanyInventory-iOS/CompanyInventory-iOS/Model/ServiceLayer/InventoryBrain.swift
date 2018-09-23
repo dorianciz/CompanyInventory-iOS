@@ -159,6 +159,7 @@ class InventoryBrain {
             if inventoryByDate.id! == inventoryByDateId {
                 items = [String]()
                 Array(inventoryByDate.items!).forEach({ (item) in
+                    // If beacon id exists, it means that item was scanned. If not, item should be scanned yet
                     if let beaconId = item.beaconId {
                         items?.append(beaconId)
                     }

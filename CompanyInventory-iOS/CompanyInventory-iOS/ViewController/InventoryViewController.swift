@@ -469,6 +469,15 @@ extension InventoryViewController: ItemsByDateTableViewCellDelegate {
             return
         }
         
+        guard let count = inventory?.items?.last?.items?.count else {
+            return
+        }
+        
+        if count == 1 {
+            PopupManager.sharedInstance.showPopup(withTitle: NSLocalizedString(Constants.LocalizationKeys.kGeneralErrorTitle, comment: ""), withDescription: NSLocalizedString(Constants.LocalizationKeys.kDeleteError, comment: ""), withOkButtonText: NSLocalizedString(Constants.LocalizationKeys.kGeneralOk, comment: ""), withCancelButtonText: nil, withPopupType: .error, withOkCompletion: nil, withCancelCompletion: nil)
+            return
+        }
+        
         itemBrain.deleteItem(item)
         tableView.reloadData()
     }

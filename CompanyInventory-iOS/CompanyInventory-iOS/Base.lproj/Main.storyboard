@@ -392,7 +392,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emil Heskey" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dB-ah-H5z">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dB-ah-H5z">
                                                 <rect key="frame" x="0.0" y="345" width="375" height="55"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="55" id="qpe-vx-Cgt"/>
@@ -573,11 +573,22 @@
                                     <action selector="changePasswordAction:" destination="2Ud-0S-eCC" eventType="touchUpInside" id="jRb-5j-fFS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVy-ZT-gbD">
+                                <rect key="frame" x="25" y="573" width="325" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="J6G-iY-Eu3"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="saveButtonAction:" destination="2Ud-0S-eCC" eventType="touchUpInside" id="AP7-LZ-qin"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="chy-dg-6j2" firstAttribute="trailing" secondItem="uGv-3T-keU" secondAttribute="trailing" constant="20" id="1WN-ud-3bJ"/>
                             <constraint firstItem="2Yn-i5-Wnf" firstAttribute="top" secondItem="p3y-uJ-xGX" secondAttribute="bottom" constant="6" id="1zY-O8-HmD"/>
+                            <constraint firstItem="bVy-ZT-gbD" firstAttribute="top" secondItem="61e-jE-NCT" secondAttribute="bottom" constant="25" id="21M-Pl-Q0d"/>
                             <constraint firstItem="chy-dg-6j2" firstAttribute="trailing" secondItem="p3y-uJ-xGX" secondAttribute="trailing" constant="25" id="2GL-9z-wQ4"/>
                             <constraint firstItem="chy-dg-6j2" firstAttribute="trailing" secondItem="qTZ-yv-BrB" secondAttribute="trailing" constant="25" id="4ge-2i-qoZ"/>
                             <constraint firstItem="GN3-ln-66c" firstAttribute="leading" secondItem="chy-dg-6j2" secondAttribute="leading" constant="25" id="78y-Po-1Q9"/>
@@ -588,6 +599,7 @@
                             <constraint firstItem="chy-dg-6j2" firstAttribute="trailing" secondItem="fH3-Qr-3xL" secondAttribute="trailing" constant="20" id="Giu-h1-Ebi"/>
                             <constraint firstItem="uGv-3T-keU" firstAttribute="top" secondItem="qTZ-yv-BrB" secondAttribute="bottom" id="HSE-Sq-RYp"/>
                             <constraint firstItem="ufL-6Z-WRo" firstAttribute="centerX" secondItem="adc-hA-OZ0" secondAttribute="centerX" id="JGr-cQ-wgH"/>
+                            <constraint firstItem="bVy-ZT-gbD" firstAttribute="leading" secondItem="chy-dg-6j2" secondAttribute="leading" constant="25" id="MID-F3-tlC"/>
                             <constraint firstItem="2Yn-i5-Wnf" firstAttribute="width" secondItem="4ky-dp-dyD" secondAttribute="width" multiplier="0.7" id="NgA-R9-bJp"/>
                             <constraint firstItem="GN3-ln-66c" firstAttribute="top" secondItem="uGv-3T-keU" secondAttribute="bottom" constant="10" id="Obb-dR-OUP"/>
                             <constraint firstItem="ufL-6Z-WRo" firstAttribute="top" secondItem="adc-hA-OZ0" secondAttribute="bottom" constant="10" id="Tsq-fY-qV8"/>
@@ -597,6 +609,7 @@
                             <constraint firstItem="qTZ-yv-BrB" firstAttribute="leading" secondItem="chy-dg-6j2" secondAttribute="leading" constant="25" id="dAA-Oj-Hec"/>
                             <constraint firstItem="chy-dg-6j2" firstAttribute="trailing" secondItem="GN3-ln-66c" secondAttribute="trailing" constant="25" id="dHq-1Q-Lgf"/>
                             <constraint firstItem="adc-hA-OZ0" firstAttribute="leading" secondItem="chy-dg-6j2" secondAttribute="leading" constant="25" id="dWB-xP-NbD"/>
+                            <constraint firstItem="chy-dg-6j2" firstAttribute="trailing" secondItem="bVy-ZT-gbD" secondAttribute="trailing" constant="25" id="h7u-oa-EXa"/>
                             <constraint firstItem="61e-jE-NCT" firstAttribute="top" secondItem="fH3-Qr-3xL" secondAttribute="bottom" constant="35" id="lq2-M7-Kjl"/>
                             <constraint firstItem="qTZ-yv-BrB" firstAttribute="top" secondItem="ufL-6Z-WRo" secondAttribute="bottom" constant="10" id="mVF-7k-TMS"/>
                             <constraint firstItem="p3y-uJ-xGX" firstAttribute="leading" secondItem="chy-dg-6j2" secondAttribute="leading" constant="25" id="nhC-EA-p07"/>
@@ -613,6 +626,7 @@
                         <outlet property="phoneLineView" destination="fH3-Qr-3xL" id="3j9-Ln-nDI"/>
                         <outlet property="phoneTextField" destination="GN3-ln-66c" id="N6j-To-5zh"/>
                         <outlet property="profileImageView" destination="adc-hA-OZ0" id="POn-Du-q6S"/>
+                        <outlet property="saveButton" destination="bVy-ZT-gbD" id="LIB-fl-jPc"/>
                         <outlet property="titleLabel" destination="p3y-uJ-xGX" id="Jlo-cm-CIb"/>
                         <outlet property="titleLineView" destination="2Yn-i5-Wnf" id="ww9-UA-GT7"/>
                     </connections>
@@ -630,7 +644,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JjJ-1N-IFz">
-                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </arscnView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2020,7 +2034,6 @@
                     <connections>
                         <segue destination="Ra8-IR-x6E" kind="relationship" relationship="viewControllers" id="XF8-UT-Atd"/>
                         <segue destination="kWv-xZ-Rzo" kind="relationship" relationship="viewControllers" id="l2f-A1-Gfh"/>
-                        <segue destination="umO-L7-YJb" kind="relationship" relationship="viewControllers" id="oTo-W4-gWQ"/>
                         <segue destination="fgL-i7-WXb" kind="relationship" relationship="viewControllers" id="57l-Uy-gsu"/>
                     </connections>
                 </tabBarController>
